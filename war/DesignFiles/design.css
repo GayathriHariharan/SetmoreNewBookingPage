@@ -1,0 +1,22 @@
+#serviceDiv{
+	
+	position: relative;
+    top: 100;
+    height: 100;
+
+}.serviceLiClass{
+	font-style: oblique;
+    font-size: larger;
+    cursor:pointer;
+}.serviceDurSpan{
+	position:fixed;
+	left : 250;
+	font-size: initial;
+}.serCostSpan{
+	position : fixed;
+	left : 350;
+	font-size: initial;
+}.serviceLiClass{
+	margin : 0 0 10px 0;
+}
+
