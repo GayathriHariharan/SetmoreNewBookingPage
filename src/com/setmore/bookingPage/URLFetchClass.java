@@ -16,23 +16,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 public class URLFetchClass {
 
  
-     public static void main(String a[]) throws IOException, JSONException{
-    	 URLFetchClass obj = new URLFetchClass();
-    	 obj.getAccessToken();
-     }
      // String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";
      // String saffUrl = "https://developer.setmore.com/api/v1/bookingapi/staffs";
       
-      
-
      
            Map<String,String> hashmap = new HashMap<String,String>();           
            ObjectMapper objectmapper      = new ObjectMapper();
            
 	
            public String getAccessToken() throws IOException, JSONException{
+        	   
+        	   String companykey = "be4b831b-f68f-471b-adbf-140feebf8cec";
         	
-        	   URL obj = new URL("https://developer.setmore.com/api/v1/admin/contact/be4b831b-f68f-471b-adbf-140feebf8cec");
+        	   URL obj = new URL("https://developer.setmore.com/api/v1/admin/contact/" + companykey);
         	   HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");

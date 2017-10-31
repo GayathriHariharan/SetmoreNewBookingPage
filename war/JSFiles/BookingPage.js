@@ -2,6 +2,18 @@
 $(document).ready(function(){	
 	
 	
+	var mapOptions = {
+		    zoom: 8,
+		    center: new google.maps.LatLng(13.0826802, 80.2707184),
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  }
+	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+	
+	var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(13.0826802, 80.2707184),
+        map: map
+      });
+	
 	
 	var serviceStaffPair=[];
 	function serviceStaff(serviceName,staffKeys){
@@ -10,17 +22,18 @@ $(document).ready(function(){
 	 }
 	 
 	
+	
 	//Making AJAX call to fetch the service
 	
 	
 	
 	 $.ajax({
 
-		 	url      : '/service',
+		 	url      : '/bookingpage/{companykey}',
 		 	type     : 'GET',
 		 	dataType : 'json',
 		 	success  : function(result){
-		 		
+		 		console.log(result);
 
 		 		$.each(result, function(key,value){
 
@@ -97,8 +110,6 @@ $(document).ready(function(){
 													
 													staffs = value.staffs;
 													
-													var staffNamesul = document.createElement('ul');	
-													staffNamesul.setAttribute('class','staffNamesul');
 													
 													$.each(staffs, function(k,v){
 														
@@ -110,17 +121,20 @@ $(document).ready(function(){
 
 																staffName = v.first_name;
 																
-																var staffli = document.createElement("li");
-											 					staffli.setAttribute('class','staffliclass');
-
+																
+																var staffDiv = document.getElementById('staffList');
+											 					
+											 					var staffNameDiv = document.createElement('div');
+											 					staffNameDiv.setAttribute('class','staffNameDiv');
+											 					
+											 					
 											 					var staffNameSpan = document.createElement('span');
 											 					staffNameSpan.setAttribute('class','staffNameSpan');
 											 					staffNameSpan.appendChild(document.createTextNode(staffName));
-											 					staffli.appendChild(staffNameSpan);
+											 					staffNameDiv.appendChild(staffNameSpan);
 											 					
-											 					var staffDiv = document.getElementById('staffList');	
-											 					staffNamesul.appendChild(staffli);
-											 					staffDiv.append(staffNamesul);
+											 					staffDiv.append(staffNameDiv);
+																
 															
 															}									
 

@@ -11,13 +11,21 @@
 	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <link rel = "stylesheet" type="text/css" href = "/DesignFiles/design.css" /> 
+	  
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIWbhUy5liy6BOaw982UY8cAmyrNjLCDA"></script>
+	  
 	  <script src="/JSFiles/BookingPage.js"></script>  
+	  
 	  
 </head>
 
 <body>
 
-<div id='serviceHeader'><span>Book My Service!</span></div>
+<div id='map-canvas'></div>
+
+<div id="container">
+<br>
+<div id='serviceHeader'><span><h1>Book your Service!</h1></span></div>
 
 	<div id ='serviceDiv'> 
   
@@ -30,6 +38,6 @@
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
-
+</div>
 </body>
 </html>

@@ -1,22 +1,24 @@
-#serviceDiv{
-	
-	position: relative;
-    top: 100;
-    height: 100;
 
-}.serviceLiClass{
-	font-style: oblique;
-    font-size: larger;
-    cursor:pointer;
-}.serviceDurSpan{
-	position:fixed;
-	left : 250;
-	font-size: initial;
-}.serCostSpan{
-	position : fixed;
-	left : 350;
-	font-size: initial;
-}.serviceLiClass{
-	margin : 0 0 10px 0;
+
+ #map-canvas {
+  height: 100%;
+  position: absolute; 
+  top: 0; 
+  bottom: -200px; 
+  left: 0; 
+  right: 0; 
+  z-index: 0;
 }
 
+#container {
+  z-index: 100;
+  position: relative;
+}
+
+.serviceNameDiv{
+	font-size: 30px;
+}
+
+.staffNameDiv{
+	font-size: 30px;
+}
