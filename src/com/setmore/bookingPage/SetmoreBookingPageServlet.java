@@ -17,7 +17,6 @@ public class SetmoreBookingPageServlet  {
    
 	
 	@RequestMapping(value="/bookingpage/{id}")
-	
 	public ModelAndView getCompanyDetails(@PathVariable(value="id") String companyKey) throws Exception{
 		
 		String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";

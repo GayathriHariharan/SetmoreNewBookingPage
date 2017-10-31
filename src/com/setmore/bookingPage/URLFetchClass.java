@@ -27,11 +27,9 @@ public class URLFetchClass {
         	   
         	   URL url                   =  new URL("https://developer.setmore.com/api/v1/admin/contact/" + companyKey);  
         	   String accessToken        = "";
-  	   
         	   String inputLine;
         	   String response = "";
-        	   
-        	   HttpURLConnection con =  (HttpURLConnection)url.openConnection();
+        	   HttpURLConnection con = (HttpURLConnection)url.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");
     
