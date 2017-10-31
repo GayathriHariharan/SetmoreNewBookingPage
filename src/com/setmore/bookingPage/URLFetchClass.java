@@ -8,31 +8,18 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-
-import org.codehaus.jackson.map.JsonSerializer;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
-import com.google.appengine.labs.repackaged.org.json.JSONObject;
-
-import net.sf.json.JSONSerializer;
-
-
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 public class URLFetchClass {
 
-    /* public static void main(String args[]) throws Exception{
-    	 URLFetchClass object = new URLFetchClass();
-    	String at= object.getAccessToken();
-    	String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";
-    	 object.fetchDetails(serviceUrl,at);
-    	 
-     }*/
-     
+ 
+     public static void main(String a[]) throws IOException, JSONException{
+    	 URLFetchClass obj = new URLFetchClass();
+    	 obj.getAccessToken();
+     }
      // String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";
      // String saffUrl = "https://developer.setmore.com/api/v1/bookingapi/staffs";
       
@@ -45,7 +32,7 @@ public class URLFetchClass {
 	
            public String getAccessToken() throws IOException, JSONException{
         	
-        	   URL obj = new URL("https://developer.setmore.com/api/v1/o/oauth2/token?refreshToken=7af7d05d50SB3I6gYN6AosocWO_N3Tquz1s0w4_vNvnw8");
+        	   URL obj = new URL("https://developer.setmore.com/api/v1/admin/contact/be4b831b-f68f-471b-adbf-140feebf8cec");
         	   HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");
@@ -72,18 +59,13 @@ public class URLFetchClass {
         	    	String key = entry.getKey();
         	    	if(key.equals("data")){
         	    	     	    		
-        	    		Map<String,Object> token = (Map<String, Object>) entry.getValue();
-        	    	    		
-        	    		   for(Map.Entry<String, Object> entryVal : token.entrySet()){
+        	    		Map<String,Object> data = (Map<String, Object>) entry.getValue();
+        	    	    		System.out.println(data);
+        	    		   for(Map.Entry<String, Object> accesstoken : data.entrySet()){
         	    			
-        	    			   if( entryVal.getKey().equals("token")){
-        	    			
-        	    				      Map<String,Object> accessTokenValue = (Map<String, Object>) entryVal.getValue();
-        	    				          for(Map.Entry<String, Object> accessTokenEntry : accessTokenValue.entrySet()){
-	        	    					      if(accessTokenEntry.getKey().equals("access_token"))
-	        	    						   accessToken = (String) accessTokenEntry.getValue();    	    						
-        	    				}
-        	    			}
+        	    			   if( accesstoken.getKey().equals("access_token")){
+        	    				  accessToken =  (String) accesstoken.getValue();
+        	    			   }
         	    			
         	    		}
         	    		
