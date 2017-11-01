@@ -22,15 +22,14 @@ var serviceStaffPair=[];
 		 this.serviceName = serviceName;
 		 this.staffKeys   = staffKeys;
 	 }
-   		var select = $('<select />');
+   		var select = $('#selectService');
 		var serviceDiv = document.getElementById('serviceList');
-		select.prepend('<option disabled selected value> -- select an option -- </option>');
+	
+		select.prepend('<option disabled selected value> select service </option>');
 		
  		 		$.each(result, function(key,value){
 
  		 			var service = value.services;
- 		 			
- 		
  		 				$.each(service,function(k,v){	
  		 					
 
@@ -55,10 +54,13 @@ var serviceStaffPair=[];
  		 		});
  		 		
  		 		select.appendTo(serviceDiv);
-
+ 		 		
+ 		 		var selectStaff = $('#selectStaff');
+ 	 		 	 var serviceDiv = document.getElementById('staffList');
+ 	 			
+ 	 			selectStaff.prepend('<option disabled selected value>select Staff </option>');
  		 		
  		 		 $('.serviceNameDiv').on("click", function(){
-						 
 						 
 						 $('#serviceDiv').hide();
 						 $('#staffDiv').show();
@@ -73,8 +75,6 @@ var serviceStaffPair=[];
 								success     :  function(data){
 									
 												staffResponse = JSON.stringify(data);
-												
-												
 												$.each(serviceStaffPair, function(Key,value){
 													
 													if(value.serviceName == service_name ){
@@ -88,8 +88,7 @@ var serviceStaffPair=[];
 				                                $.each(data, function(key,value){
 													
 													staffs = value.staffs;
-													
-													
+												
 													
 													$.each(staffs, function(k,v){
 														
@@ -101,19 +100,8 @@ var serviceStaffPair=[];
 
 																staffName = v.first_name;
 																
-																
-																var saffDiv = document.getElementById('staffList');
+									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff); 
 
-									 		 					var staffNameDiv = document.createElement('div');
-									 		 					staffNameDiv.setAttribute('class','staffNameDiv');
-
-
-									 		 					var staffNameSpan = document.createElement('span');
-									 		 					staffNameSpan.setAttribute('class','staffNameSpan');
-									 		 					staffNameSpan.appendChild(document.createTextNode(staffName));
-									 		 					staffNameDiv.appendChild(staffNameSpan);
-
-									 		 					staffDiv.append(staffNameDiv);
 																
 															
 															}									

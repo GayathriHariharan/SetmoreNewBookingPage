@@ -19,21 +19,36 @@ console.log("the result value is " + result);
 <body>
  <div id='map-canvas'></div>
  <div id='container'>
- <div id='bookingPageHeader'><span>Book Your Appointment!</span></div>
-
-	<div id ='serviceDiv'> 
+ <h1>CompanyName</h1>
+ 
+ <div id ='serviceContainer' class='dropdownContainer'>
 	
-
-  
+	 <select id='selectService'></select>
 	  <div id='serviceList' class ='serviceListClass'></div>
 	  
   	</div>
   	
-  	<div id='staffDiv'>
-  	
+  	<div id='staffContainer' class ='dropdownContainerS'>
+  	    <select id='selectStaff'></select>
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
+  
+  	
+  	 <div id='datepicker'>
+    <input type="text" id="selectDate" placeholder = "Click here to select date">
+    </div>
+    
+    
+    <div id = "submitValue">
+    <input type = "button" value = "GET SLOTS">
+    </div>
+    
+    <div id="displaySlots">
+    </div>
+  	
+  	
+  	
   	</div>
   	 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	 

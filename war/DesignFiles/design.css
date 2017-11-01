@@ -1,22 +1,40 @@
-#map-canvas {
+body{
+	margin: 0;
+}
+#container{
+	   height: 100%;
+       width: 25%;
+       background-color: white;
+       font-size: 0;
+       text-align: center;
+       overflow-y:scroll;
+}#map-canvas{
 	height: 100%;
-	width :75%;
-	position: absolute; 
-	top: 0; 
-	bottom: -200px; 
-	right: 0; 
-	z-index: 0;
+    width: 75%;
+    right: 0;
+    z-index: 0;
+    position: absolute;
 }
-
-#container {
-z-index: 100;
-position: relative;
+#container h1{
+	font-size: 30px;
 }
-
-.serviceNameDiv{
-font-size: 30px;
+#serviceContainer, #staffContainer{
+	display: inline-block;
+    vertical-align: top;
+    width: 50%;
 }
-
-.staffNameDiv{
-font-size: 30px;
+#serviceContainer select, #staffContainer select{
+	    width: calc(100% - 50px);
+        padding: 5px;
+}
+#datepicker{
+	    margin-top: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+#submitValue{
+	    display: inline-block;
+    vertical-align: top;
+    margin-top: 100px;
+    margin-left: 10px;
 }
