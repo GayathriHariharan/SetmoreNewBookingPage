@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Setmore Booking page</title>
  
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIWbhUy5liy6BOaw982UY8cAmyrNjLCDA"></script>
 	 
 	  
 </head>
@@ -17,10 +17,9 @@ result = ${services};
 console.log("the result value is " + result);
 </script>
 <body>
-
- 
-
-<div id='serviceHeader'><span>Book My Service!</span></div>
+<div id='map-canvas'></div>
+ <div id='container'>
+ <div id='serviceHeader'><span>Book My Service!</span></div>
 
 	<div id ='serviceDiv'> 
   
@@ -32,6 +31,7 @@ console.log("the result value is " + result);
   	
   		<div id='staffList' class = 'staffListClass'></div>
   	
+  	</div>
   	</div>
   	 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	 
