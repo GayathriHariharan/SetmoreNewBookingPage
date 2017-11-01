@@ -17,9 +17,10 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-   <context:component-scan base-package="com.setmore.bookingPage" />
+   <context:component-scan base-package="com.setmore.bookingPage">
+       
+   </context:component-scan>
    
-   <mvc:annotation-driven/>
   
    <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
        <property name="prefix">
@@ -30,5 +31,34 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
       </property>
       
    </bean>
+   
+   
+   <bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<ref bean="localeChangeInterceptor" />
+		</property>
+	</bean>
+   
  
 </beans>

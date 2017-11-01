@@ -68,7 +68,7 @@ var serviceStaffPair=[];
 						 $.ajax({
 								
 							    type        :  'GET',
-								url         :  '/staff',
+								url         :  '/bookingpage/staff',
 								dataType    :  'json',
 								success     :  function(data){
 									

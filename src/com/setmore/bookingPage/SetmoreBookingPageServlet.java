@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.setmore.bookingPage.URLFetchClass;
-;@Controller
+@Controller
 public class SetmoreBookingPageServlet  {
 	
 	ModelAndView model;
