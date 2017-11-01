@@ -1,4 +1,5 @@
 
+$(document).ready(function(){
 var mapOptions = {
 	zoom: 8,
 	center: new google.maps.LatLng(13.0826802, 80.2707184),
@@ -11,9 +12,7 @@ var mapOptions = {
 	map: map
 });
 
-
-var service_staff_keys = [];
-
+		
 
 
 var serviceStaffPair=[];
@@ -22,10 +21,11 @@ var serviceStaffPair=[];
 		 this.serviceName = serviceName;
 		 this.staffKeys   = staffKeys;
 	 }
-   		var select = $('#selectService');
-		var serviceDiv = document.getElementById('serviceList');
+   		var serviceSelect = $('#selectService');
+		
+   		var serviceDiv = document.getElementById('serviceList');
 	
-		select.prepend('<option disabled selected value> select service </option>');
+		serviceSelect.prepend('<option disabled selected value>Select service </option>');
 		
  		 		$.each(result, function(key,value){
 
@@ -41,31 +41,39 @@ var serviceStaffPair=[];
  		 
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
  		 					
- 		 					
  		 					//creating dropdown
  		 					
- 		 					 $('<option />', {value: serviceName, text: serviceName}).appendTo(select); 
- 		 					 		 					 
+ 		 					 $('<option />', {value: serviceName, text: serviceName}).appendTo(serviceSelect); 
+ 		 					
+ 		 					 
 
  		 				});
- 		 				
  		 				
 
  		 		});
  		 		
- 		 		select.appendTo(serviceDiv);
+ 		 		serviceSelect.appendTo(serviceDiv);
  		 		
- 		 		var selectStaff = $('#selectStaff');
- 	 		 	 var serviceDiv = document.getElementById('staffList');
- 	 			
- 	 			selectStaff.prepend('<option disabled selected value>select Staff </option>');
+ 		 	
+ 		 		 var selectStaff = $('#selectStaff');
+ 	 		 	 var serviceDiv  = document.getElementById('staffList');
  		 		
- 		 		 $('.serviceNameDiv').on("click", function(){
-						 
+ 		 $(document).on('click', function(event){
+ 			
+ 			target = event.target;
+ 			
+ 			console.log('target ' + JSON.stringify(target));
+ 			
+ 			if(target.nodeName =='OPTION'){
+ 			
+ 				
+ 		 			 $('#selectStaff').removeAttr('disabled');
+ 		 			
 						 $('#serviceDiv').hide();
 						 $('#staffDiv').show();
 						
 						 service_name = $(this).text();
+						 console.log('service name ' + service_name);
 						 
 						 $.ajax({
 								
@@ -122,8 +130,11 @@ var serviceStaffPair=[];
 							 
 								
 							});
+ 			}else{
+ 				return;
+ 			}
 					 });
 
  		 		
- 		 		
+});	
  		 			 

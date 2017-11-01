@@ -29,7 +29,7 @@ console.log("the result value is " + result);
   	</div>
   	
   	<div id='staffContainer' class ='dropdownContainerS'>
-  	    <select id='selectStaff'></select>
+  	    <select id='selectStaff' disabled></select>
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
