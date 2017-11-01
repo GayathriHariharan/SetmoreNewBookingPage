@@ -19,9 +19,11 @@ console.log("the result value is " + result);
 <body>
 <div id='map-canvas'></div>
  <div id='container'>
- <div id='serviceHeader'><span>Book My Service!</span></div>
+ <div id='bookingPageHeader'><span>Book Your Appointment!</span></div>
 
 	<div id ='serviceDiv'> 
+	
+
   
 	  <div id='serviceList' class ='serviceListClass'></div>
 	  

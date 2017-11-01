@@ -12,7 +12,7 @@ var mapOptions = {
 });
 
 
-
+var service_staff_keys = [];
 
 
 
@@ -22,14 +22,17 @@ var serviceStaffPair=[];
 		 this.serviceName = serviceName;
 		 this.staffKeys   = staffKeys;
 	 }
-            
+   		var select = $('<select />');
+		var serviceDiv = document.getElementById('serviceList');
+		select.prepend('<option disabled selected value> -- select an option -- </option>');
+		
  		 		$.each(result, function(key,value){
 
  		 			var service = value.services;
+ 		 			
  		
  		 				$.each(service,function(k,v){	
  		 					
- 		 					console.log('the service value inside the each loop' +JSON.stringify(service));
 
  		 					serviceName     = v.service_name;	
  		 					serviceDuration = v.duration;
@@ -38,101 +41,101 @@ var serviceStaffPair=[];
  		 					staffKeys 		= v.staff_keys;
  		 
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
-
- 		 					console.log('service name ' + serviceName);
- 		 					var serviceDiv = document.getElementById('serviceList');
-
- 		 					var serviceNameDiv = document.createElement('div');
- 		 					serviceNameDiv.setAttribute('class','serviceNameDiv');
-
-
- 		 					var serviceNameSpan = document.createElement('span');
- 		 					serviceNameSpan.setAttribute('class','serviceNameSpan');
- 		 					serviceNameSpan.appendChild(document.createTextNode(serviceName));
- 		 					serviceNameDiv.appendChild(serviceNameSpan);
-
- 		 					serviceDiv.append(serviceNameDiv);
  		 					
- 		 					 
- 		 					 $('.serviceNameDiv').on("click", function(){
- 		 						
- 		 						 service_name = $(this).find('span.servNameSpan').text();
- 		 						 
- 		 						 $.ajax({
- 		 								
- 		 							    type        :  'GET',
- 		 								url         :  '/staff',
- 		 								dataType    :  'json',
- 		 								success     :  function(data){
- 		 									
- 		 												staffResponse = JSON.stringify(data);
- 		 												console.log("staffResponse--  " + staffResponse);
- 		 												
- 		 												
- 		 												$.each(serviceStaffPair, function(Key,value){
- 		 													
- 		 													if(value.serviceName == service_name ){
- 		 														
- 		 														service_staff_keys = value.staffKeys;
- 		 														console.log("service staff Keys are: " + JSON.stringify(service_staff_keys));
- 		 														
- 		 														}
- 		 													
- 		 													});
-
- 		 				                                $.each(data, function(key,value){
- 		 													
- 		 													staffs = value.staffs;
- 		 													
- 		 													var staffNamesul = document.createElement('ul');	
- 		 													staffNamesul.setAttribute('class','staffNamesul');
- 		 													
- 		 													$.each(staffs, function(k,v){
- 		 														
- 		 														staff_key  = v.key;
- 		 														
- 		 														for(var i=0; i<service_staff_keys.length; i++){
- 		 															
- 		 															if(service_staff_keys[i] == staff_key){
-
- 		 																staffName = v.first_name;
- 		 																
- 		 																var staffli = document.createElement("li");
- 		 											 					staffli.setAttribute('class','staffliclass');
-
- 		 											 					var staffNameSpan = document.createElement('span');
- 		 											 					staffNameSpan.setAttribute('class','staffNameSpan');
- 		 											 					staffNameSpan.appendChild(document.createTextNode(staffName));
- 		 											 					staffli.appendChild(staffNameSpan);
- 		 											 					
- 		 											 					var staffDiv = document.getElementById('staffList');	
- 		 											 					staffNamesul.appendChild(staffli);
- 		 											 					staffDiv.append(staffNamesul);
- 		 															
- 		 															}									
-
- 		 														}
- 		 														
- 		 													});
- 		 													
- 		 												 });								
- 		 												
- 		 										},
- 		 								
- 		 								failure     :  function(data){
- 		 									
- 		 									           console.log('Failure function: ' + data);
- 		 									           
- 		 										}
- 		 							 
- 		 								
- 		 							});
- 		 					 });
-
+ 		 					
+ 		 					//creating dropdown
+ 		 					
+ 		 					 $('<option />', {value: serviceName, text: serviceName}).appendTo(select); 
+ 		 					 		 					 
 
  		 				});
-
+ 		 				
+ 		 				
 
  		 		});
+ 		 		
+ 		 		select.appendTo(serviceDiv);
+
+ 		 		
+ 		 		 $('.serviceNameDiv').on("click", function(){
+						 
+						 
+						 $('#serviceDiv').hide();
+						 $('#staffDiv').show();
+						
+						 service_name = $(this).text();
+						 
+						 $.ajax({
+								
+							    type        :  'GET',
+								url         :  '/staff',
+								dataType    :  'json',
+								success     :  function(data){
+									
+												staffResponse = JSON.stringify(data);
+												
+												
+												$.each(serviceStaffPair, function(Key,value){
+													
+													if(value.serviceName == service_name ){
+														
+														service_staff_keys = value.staffKeys;
+														
+														}
+													
+													});
+
+				                                $.each(data, function(key,value){
+													
+													staffs = value.staffs;
+													
+													
+													
+													$.each(staffs, function(k,v){
+														
+														staff_key  = v.key;
+														
+														for(var i=0; i<service_staff_keys.length; i++){
+															
+															if(service_staff_keys[i] == staff_key){
+
+																staffName = v.first_name;
+																
+																
+																var saffDiv = document.getElementById('staffList');
+
+									 		 					var staffNameDiv = document.createElement('div');
+									 		 					staffNameDiv.setAttribute('class','staffNameDiv');
+
+
+									 		 					var staffNameSpan = document.createElement('span');
+									 		 					staffNameSpan.setAttribute('class','staffNameSpan');
+									 		 					staffNameSpan.appendChild(document.createTextNode(staffName));
+									 		 					staffNameDiv.appendChild(staffNameSpan);
+
+									 		 					staffDiv.append(staffNameDiv);
+																
+															
+															}									
+
+														}
+														
+													});
+													
+												 });								
+												
+										},
+								
+								failure     :  function(data){
+									
+									           console.log('Failure function: ' + data);
+									           
+										}
+							 
+								
+							});
+					 });
+
+ 		 		
  		 		
  		 			 
