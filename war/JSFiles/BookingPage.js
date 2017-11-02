@@ -17,6 +17,7 @@
 	map: map
 });
 
+	console.log("Hi this is test");
 
 var serviceStaffPair=[];
 	
