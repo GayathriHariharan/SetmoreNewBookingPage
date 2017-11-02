@@ -1,4 +1,4 @@
-	$(document).ready(function(){
+$(document).ready(function(){
 		
 	
 	$('#loader').hide();
@@ -28,8 +28,6 @@ var serviceStaffPair=[];
    		var serviceSelect = $('#selectService');
    		var serviceDiv = document.getElementById('serviceContainer');
    		
-		serviceSelect.prepend('<option disabled selected value> Select service </option>');
-		
  		 		$.each(result, function(key,value){
 
  		 			var service = value.services;
@@ -58,19 +56,19 @@ var serviceStaffPair=[];
  		 	
  		 		 var selectStaff = $('#selectStaff');
  	 		 	 var serviceDiv  = document.getElementById('staffList');
+ 	 		 	
  		 	
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
  	 	
  		$('#selectService').change(function(event){
  			
- 			$('selectStaff').removeAttr('disabled');
+ 			$('#selectStaff').removeAttr('disabled');
  			$('#loader').show();
- 			$this = $(e.target);
+ 			
+ 			$this = $(event.target);
  			
  			service_name = ($this).val();
- 		
-
 						 $.ajax({
 								
 							    type        :  'GET',
@@ -107,10 +105,11 @@ var serviceStaffPair=[];
 																 staffkey = v.key;
 									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff);
 									 		 					 
-									 		$('#selectStaff').change(function(event){
+									 $('#selectStaff').change(function(event){
 									 		 	
-									 			target = event.target;
+									 			target = $(event.target);
 									 			
+									 			console.log()
 									 		 		$('#datePicker').datepicker({
 									 								
 									 		 						onSelect : function(string, text){
@@ -164,9 +163,8 @@ var serviceStaffPair=[];
 									 		});
 									 		 					
 									 		 					
-									 		})	;
+									 		});
 									 		 				
-									 		 					 
 															}									
 														}
 														
@@ -188,17 +186,9 @@ var serviceStaffPair=[];
 								
 							});
 						 
-						 
- 		});
-
-
- 			
- 			
  		});
 
  			
+});
 
-
- 	 		 	});
-	});
  	 		 	

@@ -25,7 +25,9 @@ console.log("the result value is " + result);
  
  <div id ='serviceContainer' class='dropdownContainer'>
 	
-	  <select id='selectService'></select>
+	  <select id='selectService'> 
+	  <option disabled selected value> Select service </option>
+	  </select>
 	  <div id='serviceList' class ='serviceListClass'></div>
 	  
   	</div>
@@ -33,7 +35,9 @@ console.log("the result value is " + result);
   	<div id='staffContainer' class ='dropdownContainerS'>
   	   
   	    <div id='loader'></div>
-  	    <select id='selectStaff' disabled> </select>
+  	    <select id='selectStaff' disabled>
+  	    <option disabled selected value> Select Staff </option>
+  	     </select>
   	    
   		<div id='staffList' class = 'staffListClass'></div>
   	
