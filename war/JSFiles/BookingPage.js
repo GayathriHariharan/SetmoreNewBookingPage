@@ -63,7 +63,6 @@ var serviceStaffPair=[];
  			console.log('target ' +target.innerHTML);
  			
  			if(target.nodeName =='OPTION'){
- 			
  				
  		 			 $('#selectStaff').removeAttr('disabled');
  		 			
@@ -74,6 +73,7 @@ var serviceStaffPair=[];
 						 console.log('service name ' + service_name);
 						
 						 $('#loader').show();
+						
 						 $.ajax({
 								
 							    type        :  'GET',
@@ -84,9 +84,9 @@ var serviceStaffPair=[];
 									         $('#loader').hide();
 												
 									           staffResponse = JSON.stringify(data);
-												$.each(serviceStaffPair, function(Key,value){
-													if(value.serviceName == service_name ){
-														
+												
+									           $.each(serviceStaffPair, function(Key,value){
+													if(value.serviceName == service_name ){	
 														service_staff_keys = value.staffKeys;
 														
 														}
@@ -106,9 +106,69 @@ var serviceStaffPair=[];
 															if(service_staff_keys[i] == staff_key){
 
 																staffName = v.first_name;
-																
-									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff); 
-															
+																 staffkey = v.key;
+									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff);
+									 		 					 
+									 		$('#selectStaff').change(function(event){
+									 		 	
+									 			target = event.target;
+									 			
+									 		 		$('#datePicker').datepicker({
+									 								
+									 		 						onSelect : function(string, text){
+									 		 						
+									 		 							$('#staffAvailability').show();			
+									 		 							 date = $(this).datepicker( 'getDate' );
+									 		 							 
+
+									 		 							if(date.getDate() < 10){
+									 		 								
+									 		 								
+									 		 								dateFormat = "0" + date.getDate()  +'/' + "0" +  (date.getMonth() +1) + '/' + date.getFullYear();
+									 		 							    console.log("date format " +dateFormat);
+									 		 							
+									 		 							}else {
+									 		 								 dateFormat =   date.getDate()  +'/' + "0" +  (date.getMonth() +1) + '/' + date.getFullYear();
+									 		 								 console.log("date format " +dateFormat);
+									 		 							}
+									 		 							
+									 		 							
+									 		 							
+									 		 							var inputValues ={
+									 		 									
+									 		 									'dateStr':dateFormat,
+									 		 									'resourceKey':staffkey,
+									 		 									'duration':serviceDuration,
+									 		 									'timeZone':'Asia/calcuta'
+									 		 									
+									 		 							}
+									 		 							
+									 		 //Making ajax call to get the time slots 							
+									 		 	
+									 		 	$.ajax({
+									 		 			
+									 		 		   type  : "POST",
+										        	   url  :'/slots',
+										        	   dataType :'json',
+										        	   data : JSON.stringify(staffkeys),
+										        	   contentType: 'application/json',
+										        	   success : function(slotResponse){
+										        		   console.log('slotResponse');
+										        		   
+										        	   }, 
+										        	   failure : function(response){
+										        		   console.log("failure response for slot " + response);
+										        	   }
+									 		 	});		
+									 		 							
+									 		 				}
+									 		 							 
+									 		});
+									 		 					
+									 		 					
+									 		})	;
+									 		 				
+									 		 					 
 															}									
 														}
 														
@@ -129,6 +189,12 @@ var serviceStaffPair=[];
  			}else{
  				return;
  			}
+ 			
+ 			
+ 			
+ 	
+ 			
+ 			
  		});
 
  		 			 

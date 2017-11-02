@@ -36,7 +36,6 @@ console.log("the result value is " + result);
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
-  
   	
   	 <div id='datepicker'>
     <input type="text" id="selectDate" placeholder = "Click here to select date">
