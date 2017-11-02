@@ -64,11 +64,16 @@ var serviceStaffPair=[];
  		$('#selectService').change(function(event){
  			
  			$('#selectStaff').removeAttr('disabled');
- 			$('#loader').show();
+ 	 		$('#loader').show();
  			
  			$this = $(event.target);
  			
  			service_name = ($this).val();
+ 			
+ 			$('selectStaff').removeAttr('disabled');
+ 			$('#loader').show();
+ 		var service_staff_keys = [];
+
 						 $.ajax({
 								
 							    type        :  'GET',
@@ -111,29 +116,16 @@ var serviceStaffPair=[];
 									 			
 									 			console.log()
 									 		 		$('#datePicker').datepicker({
-									 								
+									 		 						dateFormat: "mm-dd-yyyy" ,
 									 		 						onSelect : function(string, text){
 									 		 						
-									 		 							$('#staffAvailability').show();			
+									 		 							$('#displaySlots').show();			
 									 		 							 date = $(this).datepicker( 'getDate' );
 									 		 							 
 
-									 		 							if(date.getDate() < 10){
-									 		 								
-									 		 								
-									 		 								dateFormat = "0" + date.getDate()  +'/' + "0" +  (date.getMonth() +1) + '/' + date.getFullYear();
-									 		 							    console.log("date format " +dateFormat);
-									 		 							
-									 		 							}else {
-									 		 								 dateFormat =   date.getDate()  +'/' + "0" +  (date.getMonth() +1) + '/' + date.getFullYear();
-									 		 								 console.log("date format " +dateFormat);
-									 		 							}
-									 		 							
-									 		 							
-									 		 							
 									 		 							var inputValues ={
 									 		 									
-									 		 									'dateStr':dateFormat,
+									 		 									'dateStr':date,
 									 		 									'resourceKey':staffkey,
 									 		 									'duration':serviceDuration,
 									 		 									'timeZone':'Asia/calcuta'
