@@ -1,8 +1,7 @@
-
-
 	
 	$('#loader').hide();
-var mapOptions = {
+ 
+	var mapOptions = {
 	zoom: 8,
 	center: new google.maps.LatLng(-45.512794, -122.679565),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -10,7 +9,9 @@ var mapOptions = {
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
 	var marker = new google.maps.Marker({
-	position: new google.maps.LatLng(13.0826802, 80.2707184),
+	
+		position: new google.maps.LatLng(13.0826802, 80.2707184),
+	
 	map: map
 });
 
@@ -84,7 +85,6 @@ var serviceStaffPair=[];
 												
 									           staffResponse = JSON.stringify(data);
 												$.each(serviceStaffPair, function(Key,value){
-													
 													if(value.serviceName == service_name ){
 														
 														service_staff_keys = value.staffKeys;
@@ -108,11 +108,8 @@ var serviceStaffPair=[];
 																staffName = v.first_name;
 																
 									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff); 
-
-																
 															
 															}									
-
 														}
 														
 													});
