@@ -1,18 +1,17 @@
 $(document).ready(function(){
-		
 	
 	$('#loader').hide();
  
 	var mapOptions = {
 	zoom: 8,
-	center: new google.maps.LatLng(-45.512794, -122.679565),
+	center: new google.maps.LatLng(13.0827, 80.2707),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
 	var marker = new google.maps.Marker({
 	
-		position: new google.maps.LatLng(-45.512794, -122.679565),
+		position: new google.maps.LatLng(13.0827, 80.2707),
 	
 	map: map
 });
@@ -120,35 +119,35 @@ var serviceStaffPair=[];
 									 			console.log("the staff select for the target is " +staff_name);
 									 		 		
 									 			$('#datePicker').datepicker({
-									 		 						
-									 		 			           dateFormat: "mm-dd-yyyy" ,
-									 		 						
+									 		 					
+									 		 			     
 									 		 			          onSelect : function(string, text){
 									 		 						
 									 		 							$('#displaySlots').show();			
 									 		 							 date = $(this).datepicker( 'getDate' );
-									 		 							 
+									 		 							  
+									 		 							 console.log('inside the datepicker ' + date);
 
-									 		 							var inputValues ={
+									 		 							var inputValues = {
 									 		 									
 									 		 									'dateStr':date,
 									 		 									'resourceKey':staffkey,
 									 		 									'duration':serviceDuration,
-									 		 									'timeZone':'Asia/Calcutta'
+									 		 									'timezone':'Asia/Calcutta'
 									 		 									
-									 		 							}
+									 		 							};
 									 		 							
 									 		 //Making ajax call to get the time slots 							
 									 		 	
 									 		 	$.ajax({
 									 		 			
-									 		 		   type  : 'POST',
+									 		 		   type  : 'GET',
 										        	   url  :'/bookingpage/slots',
 										        	   dataType :'json',
 										        	   data : JSON.stringify(inputValues),
 										        	   contentType: 'application/json',
 										        	   success : function(slotResponse){
-										        		   console.log('slotResponse');
+										        		   console.log('inside the success call function' + slotResponse);
 										        		   
 										        	   }, 
 										        	   failure : function(response){

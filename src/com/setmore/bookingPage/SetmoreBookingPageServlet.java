@@ -51,7 +51,7 @@ public class SetmoreBookingPageServlet  {
 	
 	}
 	
-	@RequestMapping(value="/slots",method = RequestMethod.POST)
+	@RequestMapping(value="/slots",method = RequestMethod.GET)
 	@ResponseBody
 	public String getSlots(@RequestBody String inputValues) throws Exception{
 		System.out.println("the input values " + inputValues);
