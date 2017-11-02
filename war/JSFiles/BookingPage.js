@@ -1,5 +1,42 @@
 $(document).ready(function(){
 		
+	$.ajax({
+		type     : "GET",
+		url      : "/bookingpage/companydetails",
+		dataType : "json",
+		success  : function(res){
+			console.log("companydetails " + JSON.stringify(res));
+			$.each(res, function(key,value){
+				data = value.data;
+			});
+				console.log("data " + data);
+				$.each(data , function(x,y){
+					
+					var companyDetails = y.companyDetails;
+					console.log("company details " + companyDetails);
+					$.each(companyDetails , function(k,v){
+						region = v.region; //state
+						postal_code = v.postal_code;
+						locality = v.locality; //city
+						timeZone = v.timeZone;
+						street_address = v.street_address;
+						country = v.country; // 3 characers eg. ind
+						currency = v.currency; // eg. INR
+						
+						console.log(region);
+						console.log(postal_code);
+						console.log(locality);
+						console.log(timeZone);
+						console.log(street_address);
+						console.log(country);
+						console.log(currency);
+						
+					});
+					
+				});
+				
+			
+		
 	
 	$('#loader').hide();
  
@@ -13,8 +50,7 @@ $(document).ready(function(){
 	var marker = new google.maps.Marker({
 	
 		position: new google.maps.LatLng(-45.512794, -122.679565),
-	
-	map: map
+		map: map
 });
 
 	console.log("Hi this is test");
@@ -72,7 +108,8 @@ var serviceStaffPair=[];
  			
  			$('selectStaff').removeAttr('disabled');
  			$('#loader').show();
- 		var service_staff_keys = [];
+ 		service_staff_keys = [];
+ 		$('#selectStaff').empty().append('<option value="0"> select Staff </option>');
 
 						 $.ajax({
 								
@@ -180,6 +217,12 @@ var serviceStaffPair=[];
 						 
  		});
 
+ 		
+		},
+		failure  : function(){
+			
+		}
+	});
  			
 });
 

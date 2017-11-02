@@ -19,7 +19,7 @@ public class SetmoreBookingPageServlet  {
    
 	
 	@RequestMapping(value="/{id}")
-	public ModelAndView getCompanyDetails(@PathVariable(value="id") String companyKey) throws Exception{
+	public ModelAndView getService(@PathVariable(value="id") String companyKey) throws Exception{
 		
 		String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";
 		
@@ -42,9 +42,9 @@ public class SetmoreBookingPageServlet  {
 	public String getStaff() throws Exception{
 		
 		URLFetchClass classObj = new URLFetchClass();
-		String accessToken = classObj.getAccessToken(companyKey1);
-		String staffUrl   = "https://developer.setmore.com/api/v1/bookingapi/staffs";
-		String staffs    = classObj.fetchDetails(staffUrl,accessToken);
+		String accessToken     = classObj.getAccessToken(companyKey1);
+		String staffUrl        = "https://developer.setmore.com/api/v1/bookingapi/staffs";
+		String staffs          = classObj.fetchDetails(staffUrl,accessToken);
 
 		return staffs;	
 	
@@ -56,4 +56,19 @@ public class SetmoreBookingPageServlet  {
 		System.out.println("the input values " + inputValues);
 		return "";
 	}
+	
+	@RequestMapping(value="/companydetails", method = RequestMethod.GET)
+	@ResponseBody
+	public String getCompanyDetails() throws Exception {
+		
+		URLFetchClass classObj     = new URLFetchClass();
+		String accessToken         = classObj.getAccessToken(companyKey1);
+		String companyDetailsURL   = "https://developer.setmore.com/api/v1/bookingapi/company/" + companyKey1;
+		String companyDetails      = classObj.fetchDetails(companyDetailsURL,accessToken);
+		
+		return companyDetails;
+	}
+	
+	
+	
 }

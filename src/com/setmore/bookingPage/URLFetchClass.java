@@ -72,7 +72,7 @@ public class URLFetchClass {
 		
 		String response="";
 		
-		System.out.println("the value of token inseide the get service " + Token);
+		System.out.println("the value of token inside the get service " + Token);
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		

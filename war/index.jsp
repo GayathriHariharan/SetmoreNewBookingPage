@@ -36,7 +36,6 @@ console.log("the result value is " + result);
   	   
   	    <div id='loader'></div>
   	    <select id='selectStaff' disabled>
-  	    <option disabled selected value> Select Staff </option>
   	     </select>
   	    
   		<div id='staffList' class = 'staffListClass'></div>
