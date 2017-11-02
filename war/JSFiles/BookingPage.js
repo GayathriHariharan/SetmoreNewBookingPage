@@ -1,4 +1,5 @@
 $(document).ready(function(){
+<<<<<<< HEAD
 		
 	$.ajax({
 		type     : "GET",
@@ -36,21 +37,24 @@ $(document).ready(function(){
 				});
 				
 			
-		
+	
 	
 	$('#loader').hide();
  
 	var mapOptions = {
 	zoom: 8,
-	center: new google.maps.LatLng(-45.512794, -122.679565),
+	center: new google.maps.LatLng(13.0827, 80.2707),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	
 	var marker = new google.maps.Marker({
 	
-		position: new google.maps.LatLng(-45.512794, -122.679565),
-		map: map
+
+		position: new google.maps.LatLng(13.0827, 80.2707),
+	
+	map: map
+
 });
 
 	console.log("Hi this is test");
@@ -77,7 +81,7 @@ var serviceStaffPair=[];
  		 					staffKeys 		= v.staff_keys;
  		 
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
- 		 					
+ 		 					console.log('the service duration ' + serviceDuration);
  		 					//creating dropdown
  		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
  		 					 
@@ -108,8 +112,9 @@ var serviceStaffPair=[];
  			
  			$('selectStaff').removeAttr('disabled');
  			$('#loader').show();
+
  		service_staff_keys = [];
- 		$('#selectStaff').empty().append('<option value="0"> select Staff </option>');
+ 		
 
 						 $.ajax({
 								
@@ -119,6 +124,7 @@ var serviceStaffPair=[];
 								success     :  function(data){
 									         
 									         $('#loader').hide();
+									         console.log("the staff response " + data);
 												
 									           staffResponse = JSON.stringify(data);
 												
@@ -138,6 +144,7 @@ var serviceStaffPair=[];
 													$.each(staffs, function(k,v){
 														
 														staff_key  = v.key;
+														console.log("the staff key " + staff_key);
 														
 														for(var i=0; i<service_staff_keys.length; i++){
 															
@@ -147,39 +154,42 @@ var serviceStaffPair=[];
 																 staffkey = v.key;
 									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff);
 									 		 					 
-									 $('#selectStaff').change(function(event){
+							 $('#selectStaff').change(function(event){
 									 		 	
-									 			target = $(event.target);
-									 			
-									 			console.log()
-									 		 		$('#datePicker').datepicker({
-									 		 						dateFormat: "mm-dd-yyyy" ,
-									 		 						onSelect : function(string, text){
+									 			$target = $(event.target);
+									 			staff_name = $target.val();
+									 			console.log("the staff select for the target is " +staff_name);
+									 		 		
+									 			$('#datePicker').datepicker({
+									 		 					
+									 		 			     
+									 		 			          onSelect : function(string, text){
 									 		 						
 									 		 							$('#displaySlots').show();			
 									 		 							 date = $(this).datepicker( 'getDate' );
-									 		 							 
+									 		 							  
+									 		 							 console.log('inside the datepicker ' + date);
 
-									 		 							var inputValues ={
+									 		 							var inputValues = {
 									 		 									
 									 		 									'dateStr':date,
 									 		 									'resourceKey':staffkey,
 									 		 									'duration':serviceDuration,
-									 		 									'timeZone':'Asia/calcuta'
+									 		 									'timezone':'Asia/Calcutta'
 									 		 									
-									 		 							}
+									 		 							};
 									 		 							
 									 		 //Making ajax call to get the time slots 							
 									 		 	
 									 		 	$.ajax({
 									 		 			
-									 		 		   type  : "POST",
-										        	   url  :'/slots',
+									 		 		   type  : 'GET',
+										        	   url  :'/bookingpage/slots',
 										        	   dataType :'json',
-										        	   data : JSON.stringify(staffkeys),
+										        	   data : JSON.stringify(inputValues),
 										        	   contentType: 'application/json',
 										        	   success : function(slotResponse){
-										        		   console.log('slotResponse');
+										        		   console.log('inside the success call function' + slotResponse);
 										        		   
 										        	   }, 
 										        	   failure : function(response){

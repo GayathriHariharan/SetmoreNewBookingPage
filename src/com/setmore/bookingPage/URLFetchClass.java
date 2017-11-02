@@ -94,4 +94,33 @@ public class URLFetchClass {
 
 	}
 	
+	
+	public String getSlots(String Token,String inputValues, String companyKey) throws Exception{
+		
+		String response = "";
+		URL urlValue = new URL("https://staging.setmore.com/slots/v1/" + inputValues);
+		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
+		connection.setRequestMethod("POST");
+		connection.setRequestProperty("Authoriztion", "BEARER " + Token);
+		connection.setRequestProperty("Content-Type", "application/json");	 
+
+		BufferedReader in = new BufferedReader(
+		        new InputStreamReader(connection.getInputStream()));
+		
+			String inputLine;
+
+			while ((inputLine = in.readLine()) != null) {
+				response += inputLine;
+			
+			System.out.println("response is " + response);
+				
+			}
+	
+		
+		
+		return response;
+	}
+	
+	
+	
 }

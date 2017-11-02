@@ -27,7 +27,7 @@ body{
 	    width: calc(100% - 50px);
         padding: 5px;
 }
-#datepicker{
+#datePicker{
 	 margin-top: 100px;
     display: inline-block;
     vertical-align: top;
