@@ -1,8 +1,10 @@
 
 $(document).ready(function(){
+	
+	$('#loader').hide();
 var mapOptions = {
 	zoom: 8,
-	center: new google.maps.LatLng(13.0826802, 80.2707184),
+	center: new google.maps.LatLng(-45.512794, -122.679565),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -11,8 +13,6 @@ var mapOptions = {
 	position: new google.maps.LatLng(13.0826802, 80.2707184),
 	map: map
 });
-
-		
 
 
 var serviceStaffPair=[];
@@ -45,7 +45,6 @@ var serviceStaffPair=[];
  		 					 
  		 				});
  		 				
-
  		 		});
  		 		
  		 		serviceSelect.appendTo(serviceDiv);
@@ -56,7 +55,7 @@ var serviceStaffPair=[];
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
  	 	
- 	 	$(document).on('click',selectedNode,function(event){
+ 	$(document).on('click',selectedNode,function(event){
  				
  			
  			target = event.target;
@@ -72,15 +71,18 @@ var serviceStaffPair=[];
 						
 						 service_name = $(this).text();
 						 console.log('service name ' + service_name);
-						 
+						
+						 $('#loader').show();
 						 $.ajax({
 								
 							    type        :  'GET',
 								url         :  '/bookingpage/staff',
 								dataType    :  'json',
 								success     :  function(data){
-									
-												staffResponse = JSON.stringify(data);
+									         
+									         $('#loader').hide();
+												
+									           staffResponse = JSON.stringify(data);
 												$.each(serviceStaffPair, function(Key,value){
 													
 													if(value.serviceName == service_name ){
@@ -95,7 +97,6 @@ var serviceStaffPair=[];
 													
 													staffs = value.staffs;
 												
-													
 													$.each(staffs, function(k,v){
 														
 														staff_key  = v.key;
@@ -121,7 +122,7 @@ var serviceStaffPair=[];
 										},
 								
 								failure     :  function(data){
-									
+									           $('#loader').hide();
 									           console.log('Failure function: ' + data);
 									           
 										}

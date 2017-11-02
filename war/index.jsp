@@ -29,6 +29,8 @@ console.log("the result value is " + result);
   	</div>
   	
   	<div id='staffContainer' class ='dropdownContainerS'>
+  	   
+  	    <div id='loader'></div>
   	    <select id='selectStaff' disabled> </select>
   	    
   		<div id='staffList' class = 'staffListClass'></div>

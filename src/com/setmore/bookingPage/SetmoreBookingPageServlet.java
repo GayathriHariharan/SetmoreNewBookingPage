@@ -20,6 +20,7 @@ public class SetmoreBookingPageServlet  {
 	public ModelAndView getCompanyDetails(@PathVariable(value="id") String companyKey) throws Exception{
 		
 		String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";
+		
 		URLFetchClass classObj = new URLFetchClass();
 		this.companyKey1 = companyKey;
 		
