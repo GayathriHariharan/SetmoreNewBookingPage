@@ -1,3 +1,5 @@
+	$(document).ready(function(){
+		
 	
 	$('#loader').hide();
  
@@ -10,12 +12,11 @@
 	
 	var marker = new google.maps.Marker({
 	
-		position: new google.maps.LatLng(13.0826802, 80.2707184),
+		position: new google.maps.LatLng(-45.512794, -122.679565),
 	
 	map: map
 });
 
-	console.log("this is for test");
 
 var serviceStaffPair=[];
 	
@@ -50,6 +51,9 @@ var serviceStaffPair=[];
  		 		});
  		 		
  		 		serviceSelect.appendTo(serviceDiv);
+ 		 		
+ 		 		var selectedService = $("#selectService option:selected").val();
+ 		 		console.log(selectedService);
  		 	
  		 		 var selectStaff = $('#selectStaff');
  	 		 	 var serviceDiv  = document.getElementById('staffList');
@@ -57,24 +61,19 @@ var serviceStaffPair=[];
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
  	 	
- 	$(document).on('click',selectedNode,function(event){
  				
+ 	 		 	$('#selectService').change(function(e){
+ 	 		 	
+ 	 		 	 $this = $(e.target);
  			
- 			target = event.target;
- 			console.log('target ' +target.innerHTML);
- 			
- 			if(target.nodeName =='OPTION'){
- 			
+ 	 		 	service_name = $(this).val();
+ 	 		 	
  				
  		 			 $('#selectStaff').removeAttr('disabled');
  		 			
-						 $('#serviceDiv').hide();
-						 $('#staffDiv').show();
-						
-						 service_name = $(this).text();
-						 console.log('service name ' + service_name);
-						
 						 $('#loader').show();
+						 
+						 
 						 $.ajax({
 								
 							    type        :  'GET',
@@ -127,9 +126,8 @@ var serviceStaffPair=[];
 							 
 								
 							});
- 			}else{
- 				return;
- 			}
- 		});
+ 			
 
- 		 			 
+ 	 		 	});
+	});
+ 	 		 	
