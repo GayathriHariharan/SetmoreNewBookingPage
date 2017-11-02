@@ -41,7 +41,7 @@ var serviceStaffPair=[];
  		 					staffKeys 		= v.staff_keys;
  		 
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
- 		 					
+ 		 					console.log('the service duration ' + serviceDuration);
  		 					//creating dropdown
  		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
  		 					 
@@ -72,7 +72,8 @@ var serviceStaffPair=[];
  			
  			$('selectStaff').removeAttr('disabled');
  			$('#loader').show();
- 		var service_staff_keys = [];
+ 	
+ 			var service_staff_keys = [];
 
 						 $.ajax({
 								
@@ -82,6 +83,7 @@ var serviceStaffPair=[];
 								success     :  function(data){
 									         
 									         $('#loader').hide();
+									         console.log("the staff response " + data);
 												
 									           staffResponse = JSON.stringify(data);
 												
@@ -101,6 +103,7 @@ var serviceStaffPair=[];
 													$.each(staffs, function(k,v){
 														
 														staff_key  = v.key;
+														console.log("the staff key " + staff_key);
 														
 														for(var i=0; i<service_staff_keys.length; i++){
 															
@@ -110,14 +113,17 @@ var serviceStaffPair=[];
 																 staffkey = v.key;
 									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff);
 									 		 					 
-									 $('#selectStaff').change(function(event){
+							 $('#selectStaff').change(function(event){
 									 		 	
-									 			target = $(event.target);
-									 			
-									 			console.log()
-									 		 		$('#datePicker').datepicker({
-									 		 						dateFormat: "mm-dd-yyyy" ,
-									 		 						onSelect : function(string, text){
+									 			$target = $(event.target);
+									 			staff_name = $target.val();
+									 			console.log("the staff select for the target is " +staff_name);
+									 		 		
+									 			$('#datePicker').datepicker({
+									 		 						
+									 		 			           dateFormat: "mm-dd-yyyy" ,
+									 		 						
+									 		 			          onSelect : function(string, text){
 									 		 						
 									 		 							$('#displaySlots').show();			
 									 		 							 date = $(this).datepicker( 'getDate' );
@@ -128,7 +134,7 @@ var serviceStaffPair=[];
 									 		 									'dateStr':date,
 									 		 									'resourceKey':staffkey,
 									 		 									'duration':serviceDuration,
-									 		 									'timeZone':'Asia/calcuta'
+									 		 									'timeZone':'Asia/Calcutta'
 									 		 									
 									 		 							}
 									 		 							
@@ -136,10 +142,10 @@ var serviceStaffPair=[];
 									 		 	
 									 		 	$.ajax({
 									 		 			
-									 		 		   type  : "POST",
-										        	   url  :'/slots',
+									 		 		   type  : 'POST',
+										        	   url  :'/bookingpage/slots',
 										        	   dataType :'json',
-										        	   data : JSON.stringify(staffkeys),
+										        	   data : JSON.stringify(inputValues),
 										        	   contentType: 'application/json',
 										        	   success : function(slotResponse){
 										        		   console.log('slotResponse');

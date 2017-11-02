@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,8 +53,13 @@ public class SetmoreBookingPageServlet  {
 	
 	@RequestMapping(value="/slots",method = RequestMethod.POST)
 	@ResponseBody
-	public String getSlots(@RequestParam String inputValues){
+	public String getSlots(@RequestBody String inputValues) throws Exception{
 		System.out.println("the input values " + inputValues);
-		return "";
+
+		URLFetchClass classObj = new URLFetchClass();
+		String accessToken     = classObj.getAccessToken(companyKey1);	
+		String slots           = classObj.getSlots(accessToken,inputValues,companyKey1);
+        System.out.println("the slots are " + slots);
+		return slots ;
 	}
 }
