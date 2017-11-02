@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.setmore.bookingPage.URLFetchClass;
 @Controller
+@RequestMapping("/bookingpage")
 public class SetmoreBookingPageServlet  {
 	
 	ModelAndView model;
 	String companyKey1 ;
    
 	
-	@RequestMapping(value="/bookingpage/{id}")
+	@RequestMapping(value="/{id}")
 	public ModelAndView getCompanyDetails(@PathVariable(value="id") String companyKey) throws Exception{
 		
 		String serviceUrl = "https://developer.setmore.com/api/v1/bookingapi/services";

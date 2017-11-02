@@ -15,7 +15,9 @@
 
 result = ${services};
 console.log("the result value is " + result);
+
 </script>
+
 <body>
  <div id='map-canvas'></div>
  <div id='container'>
