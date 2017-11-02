@@ -22,18 +22,17 @@ var serviceStaffPair=[];
 		 this.staffKeys   = staffKeys;
 	 }
    		var serviceSelect = $('#selectService');
-		
-   		var serviceDiv = document.getElementById('serviceList');
-	
-		serviceSelect.prepend('<option disabled selected value>Select service </option>');
+   		var serviceDiv = document.getElementById('serviceContainer');
+   		
+		serviceSelect.prepend('<option disabled selected value> Select service </option>');
 		
  		 		$.each(result, function(key,value){
 
  		 			var service = value.services;
- 		 				$.each(service,function(k,v){	
- 		 					
+ 		 				
+ 		 			$.each(service,function(k,v){	
 
- 		 					serviceName     = v.service_name;	
+ 		 				    serviceName     = v.service_name;	
  		 					serviceDuration = v.duration;
  		 					serviceCost     = v.cost;
  		 					serviceKey		= v.key;
@@ -42,27 +41,26 @@ var serviceStaffPair=[];
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
  		 					
  		 					//creating dropdown
- 		 					
- 		 					 $('<option />', {value: serviceName, text: serviceName}).appendTo(serviceSelect); 
- 		 					
+ 		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
  		 					 
-
  		 				});
  		 				
 
  		 		});
  		 		
  		 		serviceSelect.appendTo(serviceDiv);
- 		 		
  		 	
  		 		 var selectStaff = $('#selectStaff');
  	 		 	 var serviceDiv  = document.getElementById('staffList');
- 		 		
- 		 $(document).on('click', function(event){
+ 		 	
+ 	 		 	var selectService = document.getElementById("selectService"),
+ 	 		    selectedNode = selectService.options[selectService.selectedIndex];
+ 	 	
+ 	 	$(document).on('click',selectedNode,function(event){
+ 				
  			
  			target = event.target;
- 			
- 			console.log('target ' + JSON.stringify(target));
+ 			console.log('target ' +target.innerHTML);
  			
  			if(target.nodeName =='OPTION'){
  			
@@ -133,7 +131,7 @@ var serviceStaffPair=[];
  			}else{
  				return;
  			}
-					 });
+ 		});
 
  		 		
 });	

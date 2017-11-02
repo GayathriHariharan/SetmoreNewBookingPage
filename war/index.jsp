@@ -23,13 +23,14 @@ console.log("the result value is " + result);
  
  <div id ='serviceContainer' class='dropdownContainer'>
 	
-	 <select id='selectService'></select>
+	  <select id='selectService'></select>
 	  <div id='serviceList' class ='serviceListClass'></div>
 	  
   	</div>
   	
   	<div id='staffContainer' class ='dropdownContainerS'>
-  	    <select id='selectStaff' disabled></select>
+  	    <select id='selectStaff' disabled> </select>
+  	    
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
@@ -55,6 +56,6 @@ console.log("the result value is " + result);
 	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <link rel = "stylesheet" type="text/css" href = "/DesignFiles/design.css" /> 
-	  <script src="/JSFiles/BookingPage.js"></script>  
+	  <script src="/JSFiles/BookingPage.js?id=1"></script>  
 </body>
 </html>
