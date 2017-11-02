@@ -44,10 +44,6 @@ console.log("the result value is " + result);
     </div>
     
     
-    <div id = "submitValue">
-    <input type = "button" value = "GET SLOTS">
-    </div>
-    
     <div id="displaySlots">
     </div>
   	

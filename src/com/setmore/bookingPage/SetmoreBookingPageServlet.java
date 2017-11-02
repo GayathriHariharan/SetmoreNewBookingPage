@@ -51,7 +51,7 @@ public class SetmoreBookingPageServlet  {
 	
 	@RequestMapping(value="/slots",method = RequestMethod.POST)
 	@ResponseBody
-	public String getSlots(@Requestparam){
+	public String getSlots(@Requestparam ){
 		return "";
 	}
 }
