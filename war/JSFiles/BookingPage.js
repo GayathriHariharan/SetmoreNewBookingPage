@@ -61,15 +61,7 @@ var serviceStaffPair=[];
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
  	 	
- 				
- 	 		$('#selectService').change(function(e){
- 	 		 	
- 	 		 	 $this = $(e.target);
- 			
- 				
- 		 			 $('#selectStaff').removeAttr('disabled');
- 		 			
-						 $('#loader').show();
+ 		
 
 						 $.ajax({
 								
@@ -83,7 +75,8 @@ var serviceStaffPair=[];
 									           staffResponse = JSON.stringify(data);
 												
 									           $.each(serviceStaffPair, function(Key,value){
-													if(value.serviceName == service_name ){	
+													
+									        	   if(value.serviceName == service_name ){	
 														service_staff_keys = value.staffKeys;
 														
 														}
