@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+
 	
 	$('#loader').hide();
 var mapOptions = {
@@ -134,6 +134,4 @@ var serviceStaffPair=[];
  			}
  		});
 
- 		 		
-});	
  		 			 
