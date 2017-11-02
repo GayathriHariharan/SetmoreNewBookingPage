@@ -62,6 +62,13 @@ var serviceStaffPair=[];
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
  	 	
+ 		$('#selectService').change(function(event){
+ 			
+ 			$('selectStaff').removeAttr('disabled');
+ 			$('#loader').show();
+ 			$this = $(e.target);
+ 			
+ 			service_name = ($this).val();
  		
 
 						 $.ajax({
@@ -180,6 +187,9 @@ var serviceStaffPair=[];
 							 
 								
 							});
+						 
+						 
+ 		});
 
 
  			
