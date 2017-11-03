@@ -28,9 +28,14 @@ body{
         padding: 5px;
 }
 #datePicker{
-	 margin-top: 100px;
-    display: inline-block;
+	
+    height: 25%;
+    weight: 35%;
     vertical-align: top;
+    right: 80%;
+    left: 3%;
+    position: absolute;
+    top: 25%;
 }
 #submitValue{
 	display: inline-block;
@@ -51,6 +56,8 @@ body{
    border-right-color:rgba(0,0,0, 0.15);
    -webkit-animation: preloader4 0.8s linear infinite;
    animation: loader 0.8s linear infinite;
+   position:fixed;
+   top:20%;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -64,7 +71,9 @@ body{
 @-webkit-keyframes loader {
    from {-webkit-transform: rotate(0deg);}
    to {-webkit-transform: rotate(360deg);}
+}.ui-datepicker table {
+    width: 100%;
+    font-size: 13px;
+    border-collapse: collapse;
+    margin: 0 0 .4em;
 }
-
-
-
