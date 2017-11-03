@@ -51,10 +51,11 @@ public class SetmoreBookingPageServlet  {
 	
 	}
 	
-	@RequestMapping(value="/slots",method = RequestMethod.GET)
+	@RequestMapping(value="/slots",method = RequestMethod.POST)
 	@ResponseBody
 	public String getSlots(@RequestBody String inputValues) throws Exception{
-		System.out.println("the input values " + inputValues);
+		
+		System.out.println("the input values are" + inputValues);
 
 		URLFetchClass classObj = new URLFetchClass();
 		String accessToken     = classObj.getAccessToken(companyKey1);	

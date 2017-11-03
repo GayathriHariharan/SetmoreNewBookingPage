@@ -1,5 +1,9 @@
 $(document).ready(function(){
-		
+	
+	
+	$('#loader').hide();
+	
+	
 	$.ajax({
 		type     : "GET",
 		url      : "/bookingpage/companydetails",
@@ -12,22 +16,17 @@ $(document).ready(function(){
 			
 			
 	
-	
-	$('#loader').hide();
- 
+
 	var mapOptions = {
 	zoom: 8,
 	center: new google.maps.LatLng(13.0827, 80.2707),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
-	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-	
+	var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);	
 	var marker = new google.maps.Marker({
-	
 
 		position: new google.maps.LatLng(13.0827, 80.2707),
-	
-	map: map
+	    map: map
 
 });
 
@@ -72,7 +71,6 @@ var serviceStaffPair=[];
  		 	
  		 		 var selectStaff = $('#selectStaff');
  	 		 	 var serviceDiv  = document.getElementById('staffList');
- 	 		 	
  		 	
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
@@ -91,7 +89,6 @@ var serviceStaffPair=[];
 
  		service_staff_keys = [];
  		
-
 						 $.ajax({
 								
 							    type        :  'GET',
@@ -132,26 +129,26 @@ var serviceStaffPair=[];
 									 		 					 
 							 $('#selectStaff').change(function(event){
 									 		 	
-									 			$target = $(event.target);
+									 			$target    = $(event.target);
 									 			staff_name = $target.val();
 									 			console.log("the staff select for the target is " +staff_name);
 									 		 		
 									 			$('#datePicker').datepicker({
 									 		 					
-									 		 			     
 									 		 			          onSelect : function(string, text){
 									 		 						
 									 		 							$('#displaySlots').show();			
-									 		 							 date = $(this).datepicker( 'getDate' );
+									 		 							 var date = $(this).datepicker('getDate');
 									 		 							  
-									 		 							 console.log('inside the datepicker ' + date);
-
-									 		 							var inputValues = {
+									 		 							 dateFormat = 'MM/DD/YYYY';
+								
+									 		 							 console.log("inside the datepicker", date + " " , dateFormat);
+									 		 							 var inputValues = {
 									 		 									
-									 		 									'dateStr':date,
+									 		 									'dateStr':'11/08/2017',
 									 		 									'resourceKey':staffkey,
 									 		 									'duration':serviceDuration,
-									 		 									'timezone':'Asia/Calcutta'
+									 		 									'timezone':'America/Los_Angeles'
 									 		 									
 									 		 							};
 									 		 							
@@ -159,8 +156,8 @@ var serviceStaffPair=[];
 									 		 	
 									 		 	$.ajax({
 									 		 			
-									 		 		   type  : 'GET',
-										        	   url  :'/bookingpage/slots',
+									 		 		   type  : 'POST',
+										        	   url   :'/bookingpage/slots',
 										        	   dataType :'json',
 										        	   data : JSON.stringify(inputValues),
 										        	   contentType: 'application/json',
@@ -171,14 +168,12 @@ var serviceStaffPair=[];
 										        	   failure : function(response){
 										        		   console.log("failure response for slot " + response);
 										        	   }
+									 		 	
 									 		 	});		
-									 		 							
-									 		 				}
-									 		 							 
-									 		});
+									  }						 
+								});
 									 		 					
-									 		 					
-									 		});
+						  });
 									 		 				
 															}									
 														}
@@ -187,9 +182,6 @@ var serviceStaffPair=[];
 													
 												 });		
 				                                
-				                                
-				                                
-												
 										},
 								
 								failure     :  function(data){
@@ -198,7 +190,6 @@ var serviceStaffPair=[];
 									           
 										}
 							 
-								
 							});
 						 
  		});

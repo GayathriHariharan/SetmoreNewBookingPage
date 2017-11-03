@@ -32,7 +32,7 @@ public class URLFetchClass {
         	   HttpURLConnection con = (HttpURLConnection)url.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");
-    
+               con.setConnectTimeout(9000);
         	   
        	       BufferedReader in = new BufferedReader(
                 	   new InputStreamReader(con.getInputStream()));
@@ -63,6 +63,8 @@ public class URLFetchClass {
 
            	    } 
              }
+            	      System.out.println("inside the access token" + accessToken);
+            	      
         	   
         	   return accessToken;
        }
@@ -79,6 +81,7 @@ public class URLFetchClass {
 		con.setRequestMethod("GET");		
         con.setRequestProperty("Content-Type", "application/json");	 
         con.setRequestProperty("Authorization", "BEARER "+Token);
+        con.setConnectTimeout(9000);
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -96,14 +99,25 @@ public class URLFetchClass {
 	
 	
 	public String getSlots(String Token,String inputValues, String companyKey) throws Exception{
+	
+		System.out.println("insode the get slots method");
 		
 		String response = "";
-		URL urlValue = new URL("https://staging.setmore.com/slots/v1/" + inputValues);
+		URL urlValue = new URL("https://my.setmore.com/slots/v1/" + companyKey);
+		
 		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
 		connection.setRequestMethod("POST");
-		connection.setRequestProperty("Authoriztion", "BEARER " + Token);
+		connection.setRequestProperty("Authorization", "BEARER " + Token);
 		connection.setRequestProperty("Content-Type", "application/json");	 
-
+        connection.setDoOutput(true);
+		
+		 DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+		    wr.write(inputValues.getBytes());
+			wr.flush();
+			wr.close();
+		
+		
+		System.out.println("after hitting the get slots " + urlValue);
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(connection.getInputStream()));
 		
@@ -115,8 +129,6 @@ public class URLFetchClass {
 			System.out.println("response is " + response);
 				
 			}
-	
-		
 		
 		return response;
 	}
