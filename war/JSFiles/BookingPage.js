@@ -1,5 +1,4 @@
 $(document).ready(function(){
-<<<<<<< HEAD
 		
 	$.ajax({
 		type     : "GET",
@@ -7,35 +6,10 @@ $(document).ready(function(){
 		dataType : "json",
 		success  : function(res){
 			console.log("companydetails " + JSON.stringify(res));
-			$.each(res, function(key,value){
-				data = value.data;
-			});
-				console.log("data " + data);
-				$.each(data , function(x,y){
-					
-					var companyDetails = y.companyDetails;
-					console.log("company details " + companyDetails);
-					$.each(companyDetails , function(k,v){
-						region = v.region; //state
-						postal_code = v.postal_code;
-						locality = v.locality; //city
-						timeZone = v.timeZone;
-						street_address = v.street_address;
-						country = v.country; // 3 characers eg. ind
-						currency = v.currency; // eg. INR
-						
-						console.log(region);
-						console.log(postal_code);
-						console.log(locality);
-						console.log(timeZone);
-						console.log(street_address);
-						console.log(country);
-						console.log(currency);
-						
-					});
-					
-				});
-				
+			
+
+			
+			
 			
 	
 	
@@ -68,6 +42,8 @@ var serviceStaffPair=[];
    		var serviceSelect = $('#selectService');
    		var serviceDiv = document.getElementById('serviceContainer');
    		
+   		console.log("service result :  "+ JSON.stringify(result));
+   		
  		 		$.each(result, function(key,value){
 
  		 			var service = value.services;
@@ -81,7 +57,7 @@ var serviceStaffPair=[];
  		 					staffKeys 		= v.staff_keys;
  		 
  		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
- 		 					console.log('the service duration ' + serviceDuration);
+
  		 					//creating dropdown
  		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
  		 					 
@@ -124,7 +100,7 @@ var serviceStaffPair=[];
 								success     :  function(data){
 									         
 									         $('#loader').hide();
-									         console.log("the staff response " + data);
+									         console.log("staff result " + JSON.stringify(data));
 												
 									           staffResponse = JSON.stringify(data);
 												
