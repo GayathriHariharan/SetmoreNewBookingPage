@@ -37,7 +37,7 @@ console.log("the result value is " + result);
 	  
   	</div>
   	
-  	<div id='staffContainer' class ='dropdownContainerS'>
+  	<div id='staffContainer' class ='dropdownContainer'>
   	   
   	    <div id='loader'></div>
   	    <select id='selectStaff' disabled>
@@ -50,6 +50,7 @@ console.log("the result value is " + result);
   	 <div id='datePicker'></div>
     
     <div id="displaySlots">
+    Here your slots are displayed
     </div>
   	
   	</div>

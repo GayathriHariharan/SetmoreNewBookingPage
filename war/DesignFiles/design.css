@@ -37,11 +37,9 @@ body{
     position: absolute;
     top: 25%;
 }
-#submitValue{
-	display: inline-block;
-    vertical-align: top;
-    margin-top: 100px;
-    margin-left: 10px;
+#displaySlots{
+	top: 50%;
+	background-color: blue;
 }
 #loader{	
    width:20px;

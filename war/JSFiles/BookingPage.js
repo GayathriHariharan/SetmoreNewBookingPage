@@ -9,16 +9,42 @@ $(document).ready(function(){
 		url      : "/bookingpage/companydetails",
 		dataType : "json",
 		success  : function(res){
-			console.log("companydetails " + JSON.stringify(res));
+			console.log();
+			$.each(res, function(k,v){
+				company_details = v.companyDetails;
+			});
 			
-
+			region = company_details.region;
+			postal_code = company_details.postal_code;
+			locality = company_details.locality;
+			timeZone = company_details.timeZone;
+			street_address = company_details.street_address;
+			country = company_details.country;
+			currency = company_details.currency;
 			
+			address = street_address + "," + locality + "," + country;
+			console.log(address);
 			
+			/*
 			
+			var geocoder = new google.maps.Geocoder();
+		
+			geocoder.geocode( { 'address': address}, function(results, status) {
+			  if (status == google.maps.GeocoderStatus.OK)
+			  {
+			      
+			      latitude = results[0].geometry.location.lat();
+			      longtitude =  results[0].geometry.location.lng();
+			  }
+			});
+			
+			console.log("Latitude = " + latitude);
+			console.log("Longtitude = " + longtitude);
+			*/
 	
 
 	var mapOptions = {
-	zoom: 8,
+	zoom: 12,
 	center: new google.maps.LatLng(13.0827, 80.2707),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
@@ -125,48 +151,51 @@ var serviceStaffPair=[];
 
 																staffName = v.first_name;
 																 staffkey = v.key;
-									 		 					 $('<option />', {value: staffName, text: staffName}).appendTo(selectStaff);
+									 		 					 $('<option />', {value: staffkey, text: staffName}).appendTo(selectStaff);
 									 		 					 
 							 $('#selectStaff').change(function(event){
 									 		 	
 									 			$target    = $(event.target);
-									 			staff_name = $target.val();
-									 			console.log("the staff select for the target is " +staff_name);
+									 			staff_key = $target.val();
+									 			console.log("the staff key selected for the target is " +staff_key);
 									 		 		
+									 			// $('#datePicker').datepicker({ "dateFormat" : "mm/dd/yyyy" });
+									 			
 									 			$('#datePicker').datepicker({
-									 		 					
-									 		 			          onSelect : function(string, text){
-									 		 						
+									 				 			  
+									 		 			          onSelect : function() {
+									 		 						console.log("Inside datepicker");
 									 		 							$('#displaySlots').show();			
 									 		 							 var date = $(this).datepicker('getDate');
 									 		 							  
-									 		 							 dateFormat = 'MM/DD/YYYY';
+									 		 							// dateFormat = 'MM/DD/YYYY';
 								
-									 		 							 console.log("inside the datepicker", date + " " , dateFormat);
+									 		 							 console.log("inside the datepicker, date = " + date);
 									 		 							 var inputValues = {
 									 		 									
 									 		 									'dateStr':'11/08/2017',
-									 		 									'resourceKey':staffkey,
-									 		 									'duration':serviceDuration,
-									 		 									'timezone':'America/Los_Angeles'
+									 		 									'resourceKey': staff_key,
+									 		 									'duration':'60',
+									 		 									'timezone':'Asia/Calcutta'
 									 		 									
 									 		 							};
 									 		 							
 									 		 //Making ajax call to get the time slots 							
 									 		 	
 									 		 	$.ajax({
-									 		 			
-									 		 		   type  : 'POST',
-										        	   url   :'/bookingpage/slots',
-										        	   dataType :'json',
+									 		 		url   :'/bookingpage/slots',   
+									 		 		type  : 'POST',
+									 		 		contentType: 'application/json',
+										        	   dataType :'application/json',
 										        	   data : JSON.stringify(inputValues),
-										        	   contentType: 'application/json',
+										        	   
 										        	   success : function(slotResponse){
 										        		   console.log('inside the success call function' + slotResponse);
 										        		   
 										        	   }, 
-										        	   failure : function(response){
-										        		   console.log("failure response for slot " + response);
+										        	   
+										        	   error : function(xhr, status, error){
+										        		   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
 										        	   }
 									 		 	
 									 		 	});		

@@ -59,7 +59,7 @@ public class SetmoreBookingPageServlet  {
 
 		URLFetchClass classObj = new URLFetchClass();
 		String accessToken     = classObj.getAccessToken(companyKey1);	
-		String slots           = classObj.getSlots(accessToken,inputValues,companyKey1);
+		String slots           = classObj.getTimeSlots(accessToken,inputValues,companyKey1);
         System.out.println("the slots are " + slots);
 		return slots ;
 	}

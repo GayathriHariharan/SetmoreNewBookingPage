@@ -98,9 +98,9 @@ public class URLFetchClass {
 	}
 	
 	
-	public String getSlots(String Token,String inputValues, String companyKey) throws Exception{
+	public String getTimeSlots(String Token,String inputValues, String companyKey) throws Exception{
 	
-		System.out.println("insode the get slots method");
+		System.out.println("inside the get slots method");
 		
 		String response = "";
 		URL urlValue = new URL("https://my.setmore.com/slots/v1/" + companyKey);
