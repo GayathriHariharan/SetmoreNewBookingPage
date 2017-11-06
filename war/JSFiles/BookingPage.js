@@ -56,7 +56,6 @@ $(document).ready(function(){
 
 });
 
-	console.log("Hi this is test");
 
 var serviceStaffPair=[];
 	
@@ -66,8 +65,7 @@ var serviceStaffPair=[];
 	 }
    		var serviceSelect = $('#selectService');
    		var serviceDiv = document.getElementById('serviceContainer');
-   		
-   		console.log("service result :  "+ JSON.stringify(result));
+   	   		console.log("service result :  "+ JSON.stringify(result));
    		
  		 		$.each(result, function(key,value){
 
@@ -162,21 +160,21 @@ var serviceStaffPair=[];
 									 			// $('#datePicker').datepicker({ "dateFormat" : "mm/dd/yyyy" });
 									 			
 									 			$('#datePicker').datepicker({
-									 				 			  
+									 				 
+									 				format : 'mm/dd/yyyy',
 									 		 			          onSelect : function() {
 									 		 						console.log("Inside datepicker");
 									 		 							$('#displaySlots').show();			
 									 		 							 var date = $(this).datepicker('getDate');
-									 		 							  
-									 		 							// dateFormat = 'MM/DD/YYYY';
-								
-									 		 							 console.log("inside the datepicker, date = " + date);
+									 		 							 date = $(this).datepicker('setDate',date);
+								                                          
+									 		 							 console.log("inside the datepicker, date = " ,date);
 									 		 							 var inputValues = {
 									 		 									
 									 		 									'dateStr':'11/08/2017',
 									 		 									'resourceKey': staff_key,
 									 		 									'duration':'60',
-									 		 									'timezone':'Asia/Calcutta'
+									 		 									'timezone':timeZone
 									 		 									
 									 		 							};
 									 		 							
@@ -185,12 +183,20 @@ var serviceStaffPair=[];
 									 		 	$.ajax({
 									 		 		url   :'/bookingpage/slots',   
 									 		 		type  : 'POST',
-									 		 		contentType: 'application/json',
-										        	   dataType :'application/json',
+										        	   contentType :'application/json',
 										        	   data : JSON.stringify(inputValues),
 										        	   
-										        	   success : function(slotResponse){
-										        		   console.log('inside the success call function' + slotResponse);
+										        	   success : function(result){
+										        		   console.log('inside the success call function' + result);
+										        		   
+										        		   var slotResponse = JSON.parse(result);
+										        		   let msg = slotResponse.msg;
+										        		  for(var index in msg.length){
+										        		
+										        			
+										        			
+										        		}
+										        		   
 										        		   
 										        	   }, 
 										        	   
