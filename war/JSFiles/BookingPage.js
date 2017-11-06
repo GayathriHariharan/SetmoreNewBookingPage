@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	
+	console.log("test");
 	$('#loader').hide();
 	
 	
