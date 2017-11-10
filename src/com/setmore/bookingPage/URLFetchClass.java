@@ -107,7 +107,7 @@ public class URLFetchClass {
 		
 		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
 		connection.setRequestMethod("POST");
-		connection.setRequestProperty("Authorization", "BEARER " + Token);
+		// connection.setRequestProperty("Authorization", "BEARER " + Token);
 		connection.setRequestProperty("Content-Type", "application/json");	 
         connection.setDoOutput(true);
 		

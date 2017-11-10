@@ -9,7 +9,7 @@ $(document).ready(function(){
 		url      : "/bookingpage/companydetails",
 		dataType : "json",
 		success  : function(res){
-			console.log();
+			console.log(JSON.stringify(res));
 			$.each(res, function(k,v){
 				company_details = v.companyDetails;
 			});
@@ -19,11 +19,19 @@ $(document).ready(function(){
 			locality = company_details.locality;
 			timeZone = company_details.timeZone;
 			street_address = company_details.street_address;
+			company_name = company_details.companyName;
 			country = company_details.country;
 			currency = company_details.currency;
 			
 			address = street_address + "," + locality + "," + country;
 			console.log(address);
+			
+			console.log("company name : " + company_name);
+			
+			/*
+			$('#companyName').val(company_name);
+			$('#companyName').show();
+			*/
 			
 			/*
 			
@@ -59,13 +67,17 @@ $(document).ready(function(){
 
 var serviceStaffPair=[];
 	
-   function serviceStaff(serviceName,staffKeys){
-		 this.serviceName = serviceName;
-		 this.staffKeys   = staffKeys;
+   function serviceStaff(serviceName,serviceDuration,staffKeys){
+		 this.serviceName     = serviceName;
+		 this.serviceDuration = serviceDuration;
+		 this.staffKeys       = staffKeys;
 	 }
    		var serviceSelect = $('#selectService');
    		var serviceDiv = document.getElementById('serviceContainer');
    	   		console.log("service result :  "+ JSON.stringify(result));
+   	   		
+   	   		
+   	   		
    		
  		 		$.each(result, function(key,value){
 
@@ -79,7 +91,7 @@ var serviceStaffPair=[];
  		 					serviceKey		= v.key;
  		 					staffKeys 		= v.staff_keys;
  		 
- 		 					serviceStaffPair.push(new serviceStaff(serviceName,staffKeys));
+ 		 					serviceStaffPair.push(new serviceStaff(serviceName,serviceDuration,staffKeys));
 
  		 					//creating dropdown
  		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
@@ -90,11 +102,11 @@ var serviceStaffPair=[];
  		 		
  		 		serviceSelect.appendTo(serviceDiv);
  		 		
- 		 		var selectedService = $("#selectService option:selected").val();
- 		 		console.log(selectedService);
+ 		 		//var selectedService = $("#selectService option:selected").text();
+ 		 		//console.log(selectedService);
  		 	
  		 		 var selectStaff = $('#selectStaff');
- 	 		 	 var serviceDiv  = document.getElementById('staffList');
+ 	 		 	 var staffDiv  = document.getElementById('staffList');
  		 	
  	 		 	var selectService = document.getElementById("selectService"),
  	 		    selectedNode = selectService.options[selectService.selectedIndex];
@@ -103,13 +115,25 @@ var serviceStaffPair=[];
  			
  			$('#selectStaff').removeAttr('disabled');
  	 		$('#loader').show();
+ 	 		
+ 	 	//	$('#selectStaff').find("option:not(:first)").remove();
  			
+ 	 		
+ 	 		
+ 	 		$('#selectStaff').find("option").remove();
+ 	 		selectStaff.prepend('<option disabled selected value> Select staff </option>');
+ 	 		
+ 	 		
+ 	 		
+ 	 		
+ 	 		
  			$this = $(event.target);
  			
  			service_name = ($this).val();
  			
- 			$('selectStaff').removeAttr('disabled');
- 			$('#loader').show();
+ 			console.log("service selected = " + service_name);
+ 			
+ 	
 
  		service_staff_keys = [];
  		
@@ -120,7 +144,11 @@ var serviceStaffPair=[];
 								dataType    :  'json',
 								success     :  function(data){
 									         
+									
 									         $('#loader').hide();
+									         
+									  // selectStaff.prepend('<option disabled selected value> Select staff </option>');
+									         
 									         console.log("staff result " + JSON.stringify(data));
 												
 									           staffResponse = JSON.stringify(data);
@@ -129,7 +157,7 @@ var serviceStaffPair=[];
 													
 									        	   if(value.serviceName == service_name ){	
 														service_staff_keys = value.staffKeys;
-														
+														service_duration   = value.serviceDuration+"";
 														}
 													
 													});
@@ -161,23 +189,25 @@ var serviceStaffPair=[];
 									 			
 									 			$('#datePicker').datepicker({
 									 				 
-									 				format : 'mm/dd/yyyy',
+									 				dateFormat : 'mm/dd/yy',
 									 		 			          onSelect : function() {
 									 		 						console.log("Inside datepicker");
-									 		 							$('#displaySlots').show();			
-									 		 							 var date = $(this).datepicker('getDate');
-									 		 							 date = $(this).datepicker('setDate',date);
-								                                          
-									 		 							 console.log("inside the datepicker, date = " ,date);
+									 		 							$('#availableSlots').show();	
+									 		 							displaySlots = $('#availableSlots');
+									 		 							
+									 		 							 // var date = $(this).datepicker('getDate');
+									 		 							// date = $(this).datepicker('setDate',date);
+								                                          selected_date = $("#datePicker").val()+"";
+									 		 							 console.log("inside the datepicker, date = " , selected_date );
 									 		 							 var inputValues = {
 									 		 									
-									 		 									'dateStr':'11/08/2017',
+									 		 									'dateStr'    : selected_date,
 									 		 									'resourceKey': staff_key,
-									 		 									'duration':'60',
-									 		 									'timezone':timeZone
+									 		 									'duration'   : service_duration,
+									 		 									'timezone'   : timeZone
 									 		 									
 									 		 							};
-									 		 							
+									 		 							console.log(JSON.stringify(inputValues));
 									 		 //Making ajax call to get the time slots 							
 									 		 	
 									 		 	$.ajax({
@@ -190,12 +220,28 @@ var serviceStaffPair=[];
 										        		   console.log('inside the success call function' + result);
 										        		   
 										        		   var slotResponse = JSON.parse(result);
-										        		   let msg = slotResponse.msg;
-										        		  for(var index in msg.length){
-										        		
+										        		   console.log('slot response ' + slotResponse);
+										        		   
+
+										        		   let availableSlots = JSON.parse(slotResponse.msg);
+										        		 
+										        		   $.each(availableSlots , function(index,value){
+										        			  console.log(value);
+										        			  console.log( moment.tz(value,timeZone).format("hh:mm a") );
+										        			  
+										        			  slotValue =  moment.tz(value,timeZone).format("hh:mm a");
+										        			  
+										        			/*slotDiv =  document.createElement("div");
+										        			textNode = document.createTextNode(slotValue);
+										        			textNode.appendTo(slotDiv);
+										        			slotDiv.appendTo(displaySlots);
+										        			*/
+										        			  
 										        			
-										        			
-										        		}
+										        			  slot = $("<div>").text( moment.tz(value,timeZone).format("hh:mm a") );
+										        			  slot.appendTo(displaySlots);
+
+										        		   });
 										        		   
 										        		   
 										        	   }, 
