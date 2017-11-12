@@ -73,4 +73,12 @@ body{
     font-size: 13px;
     border-collapse: collapse;
     margin: 0 0 .4em;
+}#availableSlots{
+	width: 189px;
+    display: block;
+    position: absolute;
+    top: 209px;
+    left: 32px;
+}.slotsLi{
+	padding: 4px 4px 4px 4px;
 }

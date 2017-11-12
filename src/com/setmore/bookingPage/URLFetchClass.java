@@ -118,8 +118,7 @@ public class URLFetchClass {
 		
 		
 		System.out.println("after hitting the get slots " + urlValue);
-		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(connection.getInputStream()));
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		
 			String inputLine;
 
