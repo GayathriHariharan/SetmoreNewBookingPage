@@ -15,9 +15,8 @@ body{
     z-index: 0;
     position: absolute;
 }
-#container h1{
-	font-size: 30px;
-}
+
+
 #serviceContainer, #staffContainer{
 	display: inline-block;
     vertical-align: top;
@@ -29,7 +28,6 @@ body{
 }
 #datePicker{
 	
-    height: 25%;
     weight: 35%;
     vertical-align: top;
     right: 80%;
@@ -37,10 +35,11 @@ body{
     position: absolute;
     top: 25%;
 }
-#displaySlots{
-	top: 50%;
-	background-color: blue;
+
+#companyName {
+	font-size: 30px;
 }
+
 #loader{	
    width:20px;
    height:20px;

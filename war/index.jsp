@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +12,7 @@
 	 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  
   
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	  
 </head>
 
@@ -26,38 +26,47 @@ console.log("the result value is " + result);
 <body>
  <div id='map-canvas'></div>
  <div id='container'>
- <h1>CompanyName</h1>
+ 
+ 
+ <div id = "companyName">Company Name</div>
  
  <div id ='serviceContainer' class='dropdownContainer'>
 	
 	  <select id='selectService'> 
-	  <option disabled selected value> Select service </option>
+	  <option disabled selected > Select service </option>
 	  </select>
 	  <div id='serviceList' class ='serviceListClass'></div>
 	  
   	</div>
   	
-  	<div id='staffContainer' class ='dropdownContainer'>
+  	
+ <div id='staffContainer'    class ='dropdownContainer'>
   	   
   	    <div id='loader'></div>
   	    <select id='selectStaff' disabled>
+  	    <option disabled selected > Select staff </option>
   	     </select>
   	    
   		<div id='staffList' class = 'staffListClass'></div>
   	
   	</div>
   	
-  	 <div id='datePicker'></div>
+  	 <input type = "text" id='datePicker'></input>
     
-    <div id="displaySlots">
-    Here your slots are displayed
-    </div>
+ <div id="availableSlots">
+ 
+ 
+ 
+ </div>  
   	
   	</div>
   	 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	 
+	   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" type="text/javascript"></script>
+  <script src="https://momentjs.com/downloads/moment-timezone.js"></script>
+  <script src="https://momentjs.com/downloads/moment-timezone-with-data-2012-2022.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script> 
       <link rel = "stylesheet" type="text/css" href = "/DesignFiles/design.css" /> 
-    	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script src="/JSFiles/BookingPage.js?id=2"></script>  
 </body>
 </html>
