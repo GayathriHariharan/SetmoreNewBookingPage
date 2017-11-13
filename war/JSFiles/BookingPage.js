@@ -231,15 +231,10 @@ var serviceStaffPair=[];
 										        			  
 										        			  slotValue =  moment.tz(value,timeZone).format("hh:mm a");
 										        			  
-										        			/*slotDiv =  document.createElement("div");
-										        			textNode = document.createTextNode(slotValue);
-										        			textNode.appendTo(slotDiv);
-										        			slotDiv.appendTo(displaySlots);
-										        			*/
+										        			
 										        			  
 										        			
-										        			  slot = $("<div>").text( moment.tz(value,timeZone).format("hh:mm a") );
-										        			  slot.appendTo(displaySlots);
+										        			 
 
 										        		   });
 										        		   
