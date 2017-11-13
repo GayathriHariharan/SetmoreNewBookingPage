@@ -33,9 +33,9 @@ $(document).ready(function(){
 			$('#companyName').show();
 			*/
 			
-			/*
 			
-			var geocoder = new google.maps.Geocoder();
+			
+			geocoder = new google.maps.Geocoder();
 		
 			geocoder.geocode( { 'address': address}, function(results, status) {
 			  if (status == google.maps.GeocoderStatus.OK)
@@ -43,15 +43,38 @@ $(document).ready(function(){
 			      
 			      latitude = results[0].geometry.location.lat();
 			      longtitude =  results[0].geometry.location.lng();
+			      
+			      
+			      console.log("Latitude = " + latitude);
+				  console.log("Longtitude = " + longtitude);
+					
+					
+				  var mapOptions = {
+							zoom: 12,
+							center: new google.maps.LatLng(latitude,longtitude),
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+							}
+				  
+							var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);	
+				  
+							var marker = new google.maps.Marker({
+
+								position: new google.maps.LatLng(latitude,longtitude),
+							    map: map
+
+						});
+							
+							
+							
+			     
 			  }
 			});
 			
-			console.log("Latitude = " + latitude);
-			console.log("Longtitude = " + longtitude);
-			*/
+			
+			
 	
 
-	var mapOptions = {
+	/*var mapOptions = {
 	zoom: 12,
 	center: new google.maps.LatLng(13.0827, 80.2707),
 	mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -62,7 +85,7 @@ $(document).ready(function(){
 		position: new google.maps.LatLng(13.0827, 80.2707),
 	    map: map
 
-});
+});*/
 
 
 var serviceStaffPair=[];
