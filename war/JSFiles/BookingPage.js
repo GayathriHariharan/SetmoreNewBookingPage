@@ -116,16 +116,9 @@ var serviceStaffPair=[];
  			$('#selectStaff').removeAttr('disabled');
  	 		$('#loader').show();
  	 		
- 	 	//	$('#selectStaff').find("option:not(:first)").remove();
- 			
- 	 		
  	 		
  	 		$('#selectStaff').find("option").remove();
  	 		selectStaff.prepend('<option disabled selected value> Select staff </option>');
- 	 		
- 	 		
- 	 		
- 	 		
  	 		
  			$this = $(event.target);
  			
@@ -133,7 +126,6 @@ var serviceStaffPair=[];
  			
  			console.log("service selected = " + service_name);
  			
- 	
 
  		service_staff_keys = [];
  		
@@ -182,7 +174,7 @@ var serviceStaffPair=[];
 							 $('#selectStaff').change(function(event){
 									 		 	
 									 			$target    = $(event.target);
-									 			staff_key = $target.val();
+									 			staff_key  = $target.val();
 									 			console.log("the staff key selected for the target is " +staff_key);
 									 		 		
 									 			// $('#datePicker').datepicker({ "dateFormat" : "mm/dd/yyyy" });
@@ -195,8 +187,7 @@ var serviceStaffPair=[];
 									 		 							$('#availableSlots').show();	
 									 		 							displaySlots = $('#availableSlots');
 									 		 							
-									 		 							 // var date = $(this).datepicker('getDate');
-									 		 							// date = $(this).datepicker('setDate',date);
+									 		 							
 								                                          selected_date = $("#datePicker").val()+"";
 									 		 							 console.log("inside the datepicker, date = " , selected_date );
 									 		 							 var inputValues = {
@@ -229,12 +220,12 @@ var serviceStaffPair=[];
 										        			  console.log(value);
 										        			  console.log( moment.tz(value,timeZone).format("hh:mm a") );
 										        			  
-										        			  slotValue =  moment.tz(value,timeZone).format("hh:mm a");
-										        			  
 										        			
 										        			  
-										        			
-										        			 
+										        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
+										        			  slot.addClass('slotsLi');
+										        			  slotsUl = $('.slotsUl');
+										        			  slot.appendTo(slotsUl);
 
 										        		   });
 										        		   
@@ -250,7 +241,6 @@ var serviceStaffPair=[];
 								});
 									 		 					
 						  });
-									 		 				
 															}									
 														}
 														

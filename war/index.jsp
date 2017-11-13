@@ -52,20 +52,18 @@ console.log("the result value is " + result);
   	</div>
   	
   	 <input type = "text" id='datePicker'></input>
-    
- <div id="availableSlots">
- 
- 
- 
- </div>  
-  	
+    	
   	</div>
-  	 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" type="text/javascript"></script>
-  <script src="https://momentjs.com/downloads/moment-timezone.js"></script>
-  <script src="https://momentjs.com/downloads/moment-timezone-with-data-2012-2022.js"></script>
-<script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script> 
+  	<div id="availableSlots"><ul class ='slotsUl'> </ul> </div>  
+  	 
+  	 
+  	 
+  	  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" type="text/javascript"></script>
+      <script src="https://momentjs.com/downloads/moment-timezone.js"></script>
+      <script src="https://momentjs.com/downloads/moment-timezone-with-data-2012-2022.js"></script>
+      <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script> 
       <link rel = "stylesheet" type="text/css" href = "/DesignFiles/design.css" /> 
 	  <script src="/JSFiles/BookingPage.js?id=2"></script>  
 </body>
