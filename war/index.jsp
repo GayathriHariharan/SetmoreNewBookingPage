@@ -54,7 +54,7 @@ console.log("the result value is " + result);
   	 <input type = "text" id='datePicker'></input>
     	
   	</div>
-  	<div id="availableSlots"><ul class ='slotsUl'> </ul> </div>  
+  	<div id="availableSlots"><ul id ='slotsUl'> </ul> </div>  
   	 
   	 
   	 

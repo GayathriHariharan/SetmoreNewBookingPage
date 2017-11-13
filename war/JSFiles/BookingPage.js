@@ -184,6 +184,17 @@ var serviceStaffPair=[];
 									 				dateFormat : 'mm/dd/yy',
 									 		 			          onSelect : function() {
 									 		 						console.log("Inside datepicker");
+									 		 						
+									 		 						
+									 		 					  slotsUl = $('#slotsUl');
+											        			  
+											        			  if($("#slotsUl li").hasClass("slotsLi")){
+											        				  
+											        				  slotsUl.empty();
+											        				  
+											        			  }
+									 		 						
+									 		 						
 									 		 							$('#availableSlots').show();	
 									 		 							displaySlots = $('#availableSlots');
 									 		 							
@@ -222,9 +233,12 @@ var serviceStaffPair=[];
 										        			  
 										        			
 										        			  
+										        			  
+										        			  
+										        			  
 										        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
 										        			  slot.addClass('slotsLi');
-										        			  slotsUl = $('.slotsUl');
+										        			  
 										        			  slot.appendTo(slotsUl);
 
 										        		   });
