@@ -189,7 +189,7 @@ var serviceStaffPair=[];
 									 		 							
 									 		 							
 								                                          selected_date = $("#datePicker").val()+"";
-									 		 							 console.log("inside the datepicker, date = " , selected_date );
+									 		 							  console.log("inside the datepicker, date = " , selected_date );
 									 		 							 var inputValues = {
 									 		 									
 									 		 									'dateStr'    : selected_date,
