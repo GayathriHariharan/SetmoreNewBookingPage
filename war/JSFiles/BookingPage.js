@@ -318,7 +318,7 @@ $(document).ready(function(){
 			      
 			      console.log("Latitude = " + latitude);
 				  console.log("Longtitude = " + longtitude);
-					
+					console.log("test");
 					
 				  var mapOptions = {
 							zoom: 12,
