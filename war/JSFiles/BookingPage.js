@@ -403,5 +403,3 @@ var serviceStaffPair=[];
 	});
  			
 });
-
- 	 		 	
