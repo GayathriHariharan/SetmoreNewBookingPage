@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  
   
-<style>
+<!-- <style>
 .heading 
 {
     max-width: 25.5rem;
@@ -111,7 +111,7 @@
     position: absolute;
 }
 </style>
-      
+ -->      
 </head>
 
      <script>
@@ -123,54 +123,49 @@
 
 <body>
 
-<section class="booking-page">
  <div id="map-canvas"></div>
-  <div class="heading top">
        
-    </div>
- <div class="Company-details">
-    <div class="company-banner">
-        <div class="company-image" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipOScr2DgGuIYpJ0O7U-yTCbGW5N68M7syrQ4se3=k');"></div>
-        <div class="company-name">
-            <div class="company-title">
-            <div id = "companyName">Company Name</div>
-            </div>
-             <div class="company-address">
-                <a class="companyplace" href="https://maps.google.com/?cid=3184590829463530202" target="_blank">Company Address</a>
-            </div>
-        </div>
-    </div>
-</div>
-    
+ 
  <div id='container'>
  
- <div id ='serviceContainer' class='dropdownContainer'>
+ 
+  <div id="company-details"> 
+ 
+    <div id="company-name"></div>
+    <div id="company-address"></div>
+ 
+  </div>
+ 
+ 
+  <div id ='serviceContainer'>
     
-      <select id='selectService'> 
-      <option disabled selected > Select service </option>
-      </select>
-      <div id='serviceList' class ='serviceListClass'></div>
+     <select id='selectService'> </select>
+     <!--  <div id='serviceList' class ='serviceListClass'></div> -->
       
-    </div>
+  </div>
     
     
- <div id='staffContainer'    class ='dropdownContainer'>
+  <div id='staffContainer'>
        
-        <div id='loader'></div>
-        <select id='selectStaff' disabled>
-        <option disabled selected > Select staff </option>
-         </select>
+     <div id='loader'></div>
+     <select id='selectStaff'>
+       <option value = "all" > All staffs </option>
+     </select>
         
-        <div id='staffList' class = 'staffListClass'></div>
+      <!--   <div id='staffList' class = 'staffListClass'></div> -->
     
-    </div>
+  </div>
+  
     
-     <input type = "text" id='datePicker'></input>
+  <input type ='text' id='datePicker'></input>
         
-    </div>
-    <div id="availableSlots"><ul class ='slotsUl'> </ul> </div>  
+        
+  <div id="availableSlots"><ul id ='slotsUl'> </ul> </div>        
+        
+  
+</div>      
+    
      
- </section>      
      
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

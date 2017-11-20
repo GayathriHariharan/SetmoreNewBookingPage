@@ -64,6 +64,23 @@ public class SetmoreBookingPageServlet  {
 		return slots ;
 	}
 	
+	
+	@RequestMapping(value="/allstaffslots",method = RequestMethod.POST)
+	@ResponseBody
+	public String getAllStaffSlots(@RequestBody String inputValues) throws Exception{
+		
+		System.out.println("the input values are" + inputValues);
+
+		URLFetchClass classObj = new URLFetchClass();
+		String accessToken     = classObj.getAccessToken(companyKey1);	
+		String slots           = classObj.getTimeSlotsofAllTheStaffs(accessToken,inputValues,companyKey1);
+        System.out.println("slots of all the staffs " + slots);
+		return slots ;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/companydetails", method = RequestMethod.GET)
 	@ResponseBody
 	public String getCompanyDetails() throws Exception {

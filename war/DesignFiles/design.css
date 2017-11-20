@@ -1,4 +1,4 @@
-body{
+/* body{
 	margin: 0;
 }
 #container{
@@ -75,8 +75,96 @@ ul {
 	width: 189px;
     display: block;
     position: absolute;
-    top: 209px;
+    bottom: 20%;
     left: 32px;
 }.slotsLi{
 	padding: 4px 4px 4px 4px;
+} */
+
+
+body{
+	margin: 0;
+}
+#container{
+	   height: 100%;
+       width: 25%;
+       background-color: white;
+       font-size: 0;
+       text-align: center;
+       overflow-y:scroll;
+}#map-canvas{
+	height: 100%;
+    width: 75%;
+    right: 0;
+    z-index: 0;
+    position: absolute;
+}
+#company-details{
+	font-size: 30px;
+	
+}
+#serviceContainer, #staffContainer{
+	display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    top: 15%;
+}
+#serviceContainer select, #staffContainer select{
+	    width: calc(100% - 50px);
+}
+#datePicker{
+	
+   /*  height: 25%;
+    weight: 35%;
+    vertical-align: top;
+    right: 80%;
+    left: 3%;
+    position: absolute;
+    top: 25%; */
+    
+    weight: 35%;
+    vertical-align: top;
+    right: 80%;
+    left: 2%;
+    position: absolute;
+    top: 20%;
+    
+}
+#availableSlots{
+	top: 50%;
+	background-color: blue;
+}
+#loader{	
+   width:20px;
+   height:20px;
+   display:inline-block;
+   padding:0px;
+   border-radius:100%;
+   border:2px solid;
+   border-top-color:rgba(0,0,0, 0.65);
+   border-bottom-color:rgba(0,0,0, 0.15);
+   border-left-color:rgba(0,0,0, 0.65);
+   border-right-color:rgba(0,0,0, 0.15);
+   -webkit-animation: preloader4 0.8s linear infinite;
+   animation: loader 0.8s linear infinite;
+   position:fixed;
+   top:20%;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes loader {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+}
+@-webkit-keyframes loader {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(360deg);}
+}.ui-datepicker table {
+    width: 100%;
+    font-size: 13px;
+    border-collapse: collapse;
+    margin: 0 0 .4em;
 }
