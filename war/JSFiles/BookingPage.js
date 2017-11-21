@@ -20,22 +20,22 @@ $(document).ready(function(){
 	   
 	   
  ///////////////////////////
+	   
 	   setDateField();
 	   companyDetails();
-	   
 	   
  //////////////////////////
 	   
 		function setDateField(){
 			
-		$('#datePicker').datepicker('setDate', new Date());
-		console.log($('#datePicker').val());
 		$('#datePicker').datepicker({
 			 
 				dateFormat : 'mm/dd/yy',
 				onSelect   : displaySlots
 		 			        	  
 		});
+		$('#datePicker').datepicker('setDate', new Date());
+		console.log($('#datePicker').val());
 		
 		}
 		
@@ -98,19 +98,14 @@ $(document).ready(function(){
 				dataType    :  'json',
 				success     :  function(data){
 					         
-					
 					         $('#loader').hide();
 					         
-					         
-					         console.log("staff result " + JSON.stringify(data));
-								
 					           staffResponse = JSON.stringify(data);
 								
 					           var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
 					    	   
 					    	   var service_staff_keys = staffKeysAndServiceDuration[0];
 					           
-					           console.log("service_staff_keys = " + service_staff_keys);
 					           
                                 $.each(data, function(key,value){
 									
@@ -121,7 +116,6 @@ $(document).ready(function(){
 										staffDetails.push(new staffKeyAndName(v.key,v.first_name));
 										
 										staff_key  = v.key;
-										console.log("all the staff key " + staff_key);
 										
 										for(var i=0; i<service_staff_keys.length; i++){
 											
@@ -196,14 +190,11 @@ $(document).ready(function(){
 		        	data : JSON.stringify(inputValues),
 		        	   
 		        	   success : function(result){
-		        		   console.log('inside the success call function of get all staff slots' + result);
 		        		   
 		        		   var slotResponse = JSON.parse(result);
-		        		   console.log('slot response ' + slotResponse);
 		        		   
-
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
-		        		 console.log("available slots = " + availableSlots);
+		        		   
 		        		   $.each(availableSlots , function(key,value){
 		        			  console.log(value);
 		        			  
@@ -222,16 +213,9 @@ $(document).ready(function(){
 		        			  
 		        			  
 		        			  //Looping through each staff slots
-		        			  //console.log(eachStaffName + "'s available slots are = " );
 		        			  $.each(value , function(ind,val){
 		        				  console.log( moment.tz(val,timeZone).format("hh:mm a") );
 		        			  })
-		        			  
-		        		//	  console.log( moment.tz(value,timeZone).format("hh:mm a") );
-		        			  
-		        			
-		        			  
-		        			  
 		        			  
 		        			  
 		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
@@ -262,23 +246,14 @@ $(document).ready(function(){
 		        	data : JSON.stringify(inputValues),
 		        	   
 		        	   success : function(result){
-		        		   console.log('inside the success call function of get single staf slots' + result);
 		        		   
 		        		   var slotResponse = JSON.parse(result);
-		        		   console.log('slot response ' + slotResponse);
-		        		   
-
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		 
 		        		   $.each(availableSlots , function(index,value){
 		        			  
-		        			  console.log( moment.tz(value,timeZone).format("hh:mm a") );
-		        			  
-		        			
-		        			  
-		        			  
-		        			  
-		        			  
+		        			   console.log( moment.tz(value,timeZone).format("hh:mm a"));
+		        			   
 		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
 		        			  slot.addClass('slotsLi');
 		        			  
@@ -290,7 +265,7 @@ $(document).ready(function(){
 		        	   }, 
 		        	   
 		        	   error : function(xhr, status, error){
-		        		   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
+		        		   	   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
 		        	   }
 	 		 	
 	 		 	});
@@ -327,19 +302,12 @@ $(document).ready(function(){
 			currency = company_details.currency;
 			
 			address = street_address + "," + locality + "," + country;
-			console.log(address);
-			
-			console.log("company name : " + company_name);
-			
 			
 			$('#company-name').text(company_name);
 			$('#company-name').show();
 			
-			
-			
 			$('#company-address').text(address);
 			$('#company-address').show();
-			
 			
 			
 			
@@ -353,10 +321,6 @@ $(document).ready(function(){
 			      longtitude =  results[0].geometry.location.lng();
 			      
 			      
-			      console.log("Latitude = " + latitude);
-				  console.log("Longtitude = " + longtitude);
-					
-					
 				  var mapOptions = {
 							zoom: 12,
 							center: new google.maps.LatLng(latitude,longtitude),
@@ -371,25 +335,23 @@ $(document).ready(function(){
 							    map: map
 
 						});
-							
-							
-							
 			     
 			  }
 			});
 			
 			populateServiceDropdown();
 			populateStaffDropdown();
-			//setDateField();
 			displaySlots();
 			
 		},
 		failure  : function(){
-			console.log("inside failure function");
+				   console.log("inside failure function");
 		}
 	});
 		
 	}
+   
+   
 ///////////////////////////
 	
    var getStaffKeysAndServiceDuration = function(){
