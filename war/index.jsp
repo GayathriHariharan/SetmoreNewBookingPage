@@ -63,7 +63,7 @@
   
 </div>      
     
-  <div id="availableSlots"><ul id ='slotsUl'> </ul> </div>        
+  <div id="availableSlots"><ul id ='slotsUl'> </ul> <div id = 'print'></div></div>        
      
   
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

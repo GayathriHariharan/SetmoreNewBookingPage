@@ -18,7 +18,6 @@ $(document).ready(function(){
 		   this.staffName = staffName;
 	   }
 	
-//////////////////////////	   
 	   
 function makeLiEmpty(){
 	  		var slotUl = $('#slotsUl');	
@@ -27,13 +26,12 @@ function makeLiEmpty(){
 	  		}
 		}
 
-/////////////////////////
+
 	   
 	   setDateField();
 	   companyDetails();
 	   
- //////////////////////////
-	   
+ 
 		function setDateField(){
 			
 		$('#datePicker').datepicker({
@@ -48,8 +46,7 @@ function makeLiEmpty(){
 		}
 		
 		
-//////////////////////////
-	   
+//Function to display the service name in drop down
 		
    function populateServiceDropdown(){
 	   
@@ -88,9 +85,7 @@ function makeLiEmpty(){
 	   
    }
    
-   
- /////////////////////////////	
- 		 		
+ //Function to show the staff list
  		 	
    function populateStaffDropdown(){
 	   
@@ -101,7 +96,7 @@ function makeLiEmpty(){
       
  		service_name = $("#selectService option:selected").val();
 		console.log("service selected = " + service_name);
-		makeLiEmpty();
+		//makeLiEmpty();
 			
 			$.ajax({
 				
@@ -152,8 +147,6 @@ function makeLiEmpty(){
 												           
 									}
 
-			
- 		
 			});
 			
    }
@@ -206,25 +199,31 @@ function makeLiEmpty(){
 		        		   
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		   
+		        		   
 		        		   $.each(availableSlots , function(key,value){
 		        			 
 		        			   console.log(value);
 		        			  
-		        			  eachStaffKey = key;
-		        			  console.log(key);
-		        			  
-		        			  $.each(staffDetails, function(index,value){
-		        				  $.each(value,function(k,v){
+		        			   eachStaffkey = key;
+		        			   console.log(key);
+		        			   $('#print').html(eachStaffKey);
+		        			 
+		        			   $.each(staffDetails, function(index,value){
+		        				 
+		        				
+		        				   $.each(value,function(k,v){
+		        					   console.log(" the value of staff key " + v + " the staff key " + v.staffKey + " the each staff name " + eachStaffkey)
 		        					  if(v.staffKey == eachStaffKey){
 		        						  eachStaffName = v.staffName;
 		        						  console.log(eachStaffName);
+		        					  }else{
+		        						console.log (" inside the else");  
 		        					  }
 		        					  
 		        				  });
 		        			  });
 		        			  
-		        			  console.log("tsting all staff time slots " +  moment.tz(value,timeZone).format("hh:mm a") );
-		        			  
+		        			
 		        			  //Looping through each staff slots
 		        			  
 		        			  for (var key in value) {
@@ -232,18 +231,16 @@ function makeLiEmpty(){
 		        				    if (value.hasOwnProperty(key)) {           
 		        				        console.log(value[key]);
 		        				        var timeZoneVal  = value[key];
+		        				        
 		        				        slot = $("<li>").text( moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
-		  		        			   slot.addClass('slotsLi');
-		  		        			   slot.appendTo(slotsUl);
+		  		        			    slot.addClass('slotsLi');
+		  		        			    slot.appendTo(slotsUl);
+		  		        			   
 		        				    }
 		        				  
 		        				}
 		        			  
 		        			  
-		        			
-		        			 
-		        			
-
 		        		   });
 		        		   
 		        		   
@@ -298,7 +295,7 @@ function makeLiEmpty(){
    
    
    
- ////////////////////////////
+ //Function to get the company details
    
    
    function companyDetails(){
