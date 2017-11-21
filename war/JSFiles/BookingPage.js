@@ -19,10 +19,10 @@ $(document).ready(function(){
 				company_details = v.companyDetails;
 			});
 			
-			region = company_details.region;
+			region      = company_details.region;
 			postal_code = company_details.postal_code;
-			locality = company_details.locality;
-			timeZone = company_details.timeZone;
+			locality    = company_details.locality;
+			timeZone    = company_details.timeZone;
 			street_address = company_details.street_address;
 			company_name = company_details.companyName;
 			country = company_details.country;
@@ -51,8 +51,8 @@ $(document).ready(function(){
 			  if (status == google.maps.GeocoderStatus.OK)
 			  {
 			      
-			      latitude = results[0].geometry.location.lat();
-			      longtitude =  results[0].geometry.location.lng();
+			      latitude   =    results[0].geometry.location.lat();
+			      longtitude =    results[0].geometry.location.lng();
 			      
 			      
 			      console.log("Latitude = " + latitude);
@@ -132,12 +132,7 @@ var serviceStaffPair=[];
  		 		serviceSelect.appendTo(serviceDiv);
  		 		
  		 		
- 		 	
- 		 		 var selectStaff = $('#selectStaff');
- 	 		 	 var staffDiv  = document.getElementById('staffList');
- 		 	
- 	 		 	var selectService = document.getElementById("selectService"),
- 	 		    selectedNode = selectService.options[selectService.selectedIndex];
+ 
  	 	
  		$('#selectService').change(function(event){
  			
@@ -186,7 +181,6 @@ var serviceStaffPair=[];
 									           console.log("service_staff_keys = " + service_staff_keys);
 									           
 									           
-									           
 
 				                                $.each(data, function(key,value){
 													
@@ -227,24 +221,17 @@ var serviceStaffPair=[];
 									 		 			          onSelect : function() {
 									 		 						console.log("Inside datepicker");
 									 		 						
-									 		 						
 									 		 					  slotsUl = $('#slotsUl');
 											        			  
 											        			  if($("#slotsUl li").hasClass("slotsLi")){
-											        				  
 											        				  slotsUl.empty();
-											        				  
 											        			  }
-									 		 						
 									 		 						
 									 		 							$('#availableSlots').show();	
 									 		 							displaySlots = $('#availableSlots');
 									 		 							
-									 		 							
 								                                          selected_date = $("#datePicker").val()+"";
-									 		 							 console.log("inside the datepicker, date = " , selected_date );
-									 		 							 
-									 		 							 
+									 		 							  console.log("inside the datepicker, date = " , selected_date );
 									 		 							 
 									 		 							 
 									 		 							 var inputValues = {
@@ -274,9 +261,8 @@ var serviceStaffPair=[];
 										        		   var slotResponse = JSON.parse(result);
 										        		   console.log('slot response ' + slotResponse);
 										        		   
-
 										        		   let availableSlots = JSON.parse(slotResponse.msg);
-										        		 console.log("available slots = " + availableSlots);
+										        		   console.log("available slots = " + availableSlots);
 										        		   $.each(availableSlots , function(key,value){
 										        			  console.log(value);
 										        			  
@@ -302,14 +288,9 @@ var serviceStaffPair=[];
 										        			  
 										        		//	  console.log( moment.tz(value,timeZone).format("hh:mm a") );
 										        			  
-										        			
-										        			  
-										        			  
-										        			  
 										        			  
 										        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
 										        			  slot.addClass('slotsLi');
-										        			  
 										        			  slot.appendTo(slotsUl);
 
 										        		   });
@@ -319,6 +300,7 @@ var serviceStaffPair=[];
 										        	   
 										        	   error : function(xhr, status, error){
 										        		   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
+										        		   
 										        	   }
 									 		 	
 									 		 	});		

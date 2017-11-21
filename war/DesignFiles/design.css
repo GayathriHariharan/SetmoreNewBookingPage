@@ -167,4 +167,9 @@ body{
     font-size: 13px;
     border-collapse: collapse;
     margin: 0 0 .4em;
+}#slotsUl
+{
+	position: absolute;
+    top: 266px;
+    left: 26px;
 }
