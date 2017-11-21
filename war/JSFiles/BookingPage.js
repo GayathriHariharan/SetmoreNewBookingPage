@@ -204,21 +204,24 @@ function makeLiEmpty(){
 		        		   
 		        		   $.each(availableSlots , function(key,value){
 		        			 
-		        			   eachStaffkey = key;
+		        			   eachStaffKey = key;
 		        			   console.log(key);
 		        			  
-		        			 
 		        			  $.each(staffDetails, function(index,value){
 		        				 
 		     
 		        					  if(value.staffKey == eachStaffKey){
 		        						  eachStaffName = value.staffName;
+		        						
 		        					  }
 		        					  
 		        			  });
 		        			  
-		        			  $('#print').html(eachStaffName);
-		        			  //Looping through each staff slots
+		        			  var staffName = $("<li>").text(eachStaffName);
+		        			  staffName.appendTo(slotsUl);
+		        			 
+		        		
+		        			//Looping through each staff slots
 		        			  
 		        			  for (var key in value) {
 		        				    
