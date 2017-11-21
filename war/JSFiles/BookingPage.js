@@ -25,7 +25,7 @@ function makeLiEmpty(){
 	  		if($('#slotsUl li').hasClass('slotsLi')){
 			slotUl.empty();
 	  		}
-		}
+	}
 
 /////////////////////////
 	   
@@ -141,6 +141,8 @@ function makeLiEmpty(){
 										
 									});
 									
+									console.log("staffDetails = " + staffDetails);
+									
 								 });	
                                 
                                 
@@ -203,7 +205,7 @@ function makeLiEmpty(){
 		        	   success : function(result){
 		        		   
 		        		   var slotResponse = JSON.parse(result);
-		        		   
+		        		   console.log("slotResponse = " + slotResponse);
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		   
 		        		   $.each(availableSlots , function(key,value){
@@ -213,15 +215,20 @@ function makeLiEmpty(){
 		        			  eachStaffKey = key;
 		        			  console.log(key);
 		        			  
+
+		        			  console.log("staffDetails = " + staffDetails);
 		        			  $.each(staffDetails, function(index,value){
-		        				  $.each(value,function(k,v){
-		        					  if(v.staffKey == eachStaffKey){
-		        						  eachStaffName = v.staffName;
+		        				 
+		        				  console.log("value.staffKey = " + value.staffKey);
+		        				  console.log("value.staffName = " + value.staffName);
+		        					 
+		        					  if(value.staffKey == eachStaffKey){
+		        						  eachStaffName = value.staffName;
 		        						  console.log(eachStaffName);
 		        					  }
 		        					  
-		        				  });
 		        			  });
+		        			  
 		        			  
 		        			  console.log("tsting all staff time slots " +  moment.tz(value,timeZone).format("hh:mm a") );
 		        			  
@@ -393,8 +400,27 @@ function makeLiEmpty(){
    };
    
    
-///////////////////////////   
+ ///////////////////////////
+  /* 
+   function getStaffNameUsingStaffKey(){
+	   staffDetails = getStaffDetails;
+	   console.log("staffDetails = " + staffDetails);
+		  $.each(staffDetails, function(index,value){
+			  console.log("value = " + JSON.stringify(value)); 
+			  $.each(JSON.stringify(value),function(k,v){
+				  console.log(k);
+				  console.log(v);
+				  if(v.staffKey == eachStaffKey){
+					  eachStaffName = v.staffName;
+					  console.log(eachStaffName);
+				  }
+				  
+			  });
+		  });
+   }
    
+///////////////////////////   
+*/   
    $('#selectStaff').change(displaySlots);
    
    $('#selectService').change(function(){
