@@ -127,7 +127,7 @@ body{
     right: 80%;
     left: 2%;
     position: absolute;
-    top: 20%;
+    top: 20%;war/index.jsp
     
 }
 #availableSlots{
@@ -150,7 +150,7 @@ body{
    top:20%;
 }
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
+  0% { -webkit-transform: rotate(0deg); 
   100% { -webkit-transform: rotate(360deg); }
 }
 
