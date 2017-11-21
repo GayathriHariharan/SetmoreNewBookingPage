@@ -129,6 +129,8 @@ $(document).ready(function(){
 										
 									});
 									
+									 console.log("Staff details = " + staffDetails);
+									 
 								 });	
                                 
                                 
@@ -189,9 +191,9 @@ $(document).ready(function(){
 		        	contentType :'application/json',
 		        	data : JSON.stringify(inputValues),
 		        	   
-		        	   success : function(result){
+		        	   success : function(allStaffSlots){
 		        		   
-		        		   var slotResponse = JSON.parse(result);
+		        		   var slotResponse = JSON.parse(allStaffSlots);
 		        		   
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		   
@@ -200,6 +202,8 @@ $(document).ready(function(){
 		        			  
 		        			  eachStaffKey = key;
 		        			  console.log(key);
+		        			  
+		        			  console.log("Staff details = " + staffDetails);
 		        			  
 		        			  $.each(staffDetails, function(index,value){
 		        				  $.each(value,function(k,v){
@@ -245,14 +249,14 @@ $(document).ready(function(){
 		        	contentType :'application/json',
 		        	data : JSON.stringify(inputValues),
 		        	   
-		        	   success : function(result){
+		        	   success : function(selectedStaffSlots){
 		        		   
-		        		   var slotResponse = JSON.parse(result);
+		        		   var slotResponse = JSON.parse(selectedStaffSlots);
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		 
 		        		   $.each(availableSlots , function(index,value){
 		        			  
-		        			   console.log( moment.tz(value,timeZone).format("hh:mm a"));
+		        			  console.log( moment.tz(value,timeZone).format("hh:mm a"));
 		        			   
 		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
 		        			  slot.addClass('slotsLi');
@@ -376,7 +380,10 @@ $(document).ready(function(){
    
    $('#selectStaff').change(displaySlots);
    
-   $('#selectService').change(populateStaffDropdown);
+   $('#selectService').change(function(){
+	   populateStaffDropdown();
+	   displaySlots();
+   });
    
 /////////////////////////////
    
