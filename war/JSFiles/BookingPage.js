@@ -199,10 +199,18 @@ function makeLiEmpty(){
 		        		   
 		        		   var slotResponse = JSON.parse(result);
 		        		   console.log("slotResponse = " + slotResponse);
+		        		 
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
-		        		   
-		        		   
-		        		   $.each(availableSlots , function(key,value){
+		        		  
+		        		   if($.isEmptyObject(availableSlots)){
+		        			   console.log("there is no slots available");
+		        			   let noSlots = $("<li>").text("there are no slots available");
+		        			   noSlots.appendTo(slotsUl);
+		        		   }
+		        		   else{
+		        			 
+		        		  
+		        			   $.each(availableSlots , function(key,value){
 		        			 
 		        			   eachStaffKey = key;
 		        			   console.log(key);
@@ -239,7 +247,7 @@ function makeLiEmpty(){
 		        			  
 		        			  
 		        		   });
-		        		   
+		        		   }   
 		        		   
 		        	   }, 
 		        	   
@@ -262,8 +270,16 @@ function makeLiEmpty(){
 		        	   
 		        	   success : function(result){
 		        		   
+		        		   console.log("The slot response " + result);
 		        		   var slotResponse = JSON.parse(result);
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
+		        		   
+		        		   if(availableSlots == null){
+		        			   console.log("there is no slots available");
+		        			 
+		        			   let noSlots = $("<li>").text("there are no slots available");
+		        			   noSlots.appendTo(slotsUl);
+		        		   }else{
 		        		 
 		        		   $.each(availableSlots , function(index,value){
 		        			  
@@ -276,7 +292,7 @@ function makeLiEmpty(){
 
 		        		   });
 		        		   
-		        		   
+		        		   }
 		        	   }, 
 		        	   
 		        	   error : function(xhr, status, error){
@@ -325,7 +341,6 @@ function makeLiEmpty(){
 			$('#company-address').show();
 			
 			
-			
 			geocoder = new google.maps.Geocoder();
 		
 			geocoder.geocode( { 'address': address}, function(results, status) {
@@ -367,7 +382,6 @@ function makeLiEmpty(){
 	}
    
    
-///////////////////////////
 	
    var getStaffKeysAndServiceDuration = function(){
 	   
@@ -387,27 +401,7 @@ function makeLiEmpty(){
    };
    
    
- ///////////////////////////
-  /* 
-   function getStaffNameUsingStaffKey(){
-	   staffDetails = getStaffDetails;
-	   console.log("staffDetails = " + staffDetails);
-		  $.each(staffDetails, function(index,value){
-			  console.log("value = " + JSON.stringify(value)); 
-			  $.each(JSON.stringify(value),function(k,v){
-				  console.log(k);
-				  console.log(v);
-				  if(v.staffKey == eachStaffKey){
-					  eachStaffName = v.staffName;
-					  console.log(eachStaffName);
-				  }
-				  
-			  });
-		  });
-   }
-   
-///////////////////////////   
-*/   
+ 
    $('#selectStaff').change(displaySlots);
    
    $('#selectService').change(function(){
@@ -415,7 +409,6 @@ function makeLiEmpty(){
 	   displaySlots();
    });
    
-/////////////////////////////
    
    
 }); 
