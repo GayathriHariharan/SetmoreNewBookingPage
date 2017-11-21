@@ -17,9 +17,17 @@ $(document).ready(function(){
 		   this.staffKey  = staffKey;
 		   this.staffName = staffName;
 	   }
+	
+//////////////////////////	   
 	   
-	   
- ///////////////////////////
+function makeLiEmpty(){
+	  		var slotUl = $('#slotsUl');	
+	  		if($('#slotsUl li').hasClass('slotsLi')){
+			slotUl.empty();
+	  		}
+		}
+
+/////////////////////////
 	   
 	   setDateField();
 	   companyDetails();
@@ -45,10 +53,13 @@ $(document).ready(function(){
 		
    function populateServiceDropdown(){
 	   
-	   var serviceSelect = $('#selectService');
+	    var serviceSelect = $('#selectService');
   		var serviceDiv = document.getElementById('serviceContainer');
+  		
+  
+  		
   	   		console.log("service result :  "+ JSON.stringify(result));
-  	   		
+
   		
 		 		$.each(result, function(key,value){
 
@@ -83,13 +94,14 @@ $(document).ready(function(){
  		 	
    function populateStaffDropdown(){
 	   
+	   
 	   $('#loader').show();
  		
  		$('#selectStaff').find('option[value!="all"]').remove();
- 		
+      
  		service_name = $("#selectService option:selected").val();
 		console.log("service selected = " + service_name);
-			
+		makeLiEmpty();
 			
 			$.ajax({
 				
@@ -129,8 +141,6 @@ $(document).ready(function(){
 										
 									});
 									
-									 console.log("Staff details = " + staffDetails);
-									 
 								 });	
                                 
                                 
@@ -149,9 +159,6 @@ $(document).ready(function(){
    }
    
    
- /////////////////////////////
-   
-  
    
    function displaySlots(){
 	   
@@ -170,6 +177,8 @@ $(document).ready(function(){
 		}
 	   
 		console.log("the staff key selected for the target is " +staff_key);
+		
+		makeLiEmpty();
 	   
 		 var inputValues = {
 					
@@ -191,19 +200,18 @@ $(document).ready(function(){
 		        	contentType :'application/json',
 		        	data : JSON.stringify(inputValues),
 		        	   
-		        	   success : function(allStaffSlots){
+		        	   success : function(result){
 		        		   
-		        		   var slotResponse = JSON.parse(allStaffSlots);
+		        		   var slotResponse = JSON.parse(result);
 		        		   
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		   
 		        		   $.each(availableSlots , function(key,value){
-		        			  console.log(value);
+		        			 
+		        			   console.log(value);
 		        			  
 		        			  eachStaffKey = key;
 		        			  console.log(key);
-		        			  
-		        			  console.log("Staff details = " + staffDetails);
 		        			  
 		        			  $.each(staffDetails, function(index,value){
 		        				  $.each(value,function(k,v){
@@ -215,17 +223,26 @@ $(document).ready(function(){
 		        				  });
 		        			  });
 		        			  
+		        			  console.log("tsting all staff time slots " +  moment.tz(value,timeZone).format("hh:mm a") );
 		        			  
 		        			  //Looping through each staff slots
-		        			  $.each(value , function(ind,val){
-		        				  console.log( moment.tz(val,timeZone).format("hh:mm a") );
-		        			  })
+		        			  
+		        			  for (var key in value) {
+		        				    
+		        				    if (value.hasOwnProperty(key)) {           
+		        				        console.log(value[key]);
+		        				        var timeZoneVal  = value[key];
+		        				        slot = $("<li>").text( moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
+		  		        			   slot.addClass('slotsLi');
+		  		        			   slot.appendTo(slotsUl);
+		        				    }
+		        				  
+		        				}
 		        			  
 		        			  
-		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
-		        			  slot.addClass('slotsLi');
-		        			  
-		        			  slot.appendTo(slotsUl);
+		        			
+		        			 
+		        			
 
 		        		   });
 		        		   
@@ -249,14 +266,14 @@ $(document).ready(function(){
 		        	contentType :'application/json',
 		        	data : JSON.stringify(inputValues),
 		        	   
-		        	   success : function(selectedStaffSlots){
+		        	   success : function(result){
 		        		   
-		        		   var slotResponse = JSON.parse(selectedStaffSlots);
+		        		   var slotResponse = JSON.parse(result);
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		 
 		        		   $.each(availableSlots , function(index,value){
 		        			  
-		        			  console.log( moment.tz(value,timeZone).format("hh:mm a"));
+		        			   console.log( moment.tz(value,timeZone).format("hh:mm a"));
 		        			   
 		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
 		        			  slot.addClass('slotsLi');
