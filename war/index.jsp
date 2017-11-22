@@ -12,6 +12,8 @@
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
      
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     
+      
       
 </head>
 
@@ -27,18 +29,37 @@
  <div id="map-canvas"></div>
        
  
- <div id='container'>
  
  
-  <div id="company-details"> 
  
-    <div id="company-name"></div>
-    <div id="company-address"></div>
- 
+   <div id="company-details"> 
+ 	<img class="company-image" src="https://lh3.googleusercontent.com/p/AF1QipOScr2DgGuIYpJ0O7U-yTCbGW5N68M7syrQ4se3=k" style="
+    width: 16%;
+    height: 22%;
+    padding-top: 6.5%;
+    position: fixed;
+    top:55px;
+    right: 67%;"></div>
+    <div id="company-name" style="    
+    position: fixed;
+    padding-top: 18%;
+    margin-left: 34%;
+    font-size: 33px;"></div>
+    <div id="company-address"style="
+        font-size: 16px;
+    position: fixed;
+    margin-left: 34%;
+    padding-top: 20%;
+    "></div>
   </div>
  
- 
+ <div style="    
+    padding-top: 22%;
+    margin-left: 17%;
+    display: inline-table;
+    width: 21%;">
   <div id ='serviceContainer'>
+  
     
      <select id='selectService'> </select>
      <!--  <div id='serviceList' class ='serviceListClass'></div> -->
@@ -52,20 +73,20 @@
      <select id='selectStaff'>
        <option value = "all" > All staffs </option>
      </select>
-        
+     </div>    
     
-  </div>
+    <input type ='text' id='datePicker' ></input>
+ 
+
+    
   
-    
-  <input type ='text' id='datePicker'></input>
         
          
   
 </div>      
-    
-  <div id="availableSlots"><ul id ='slotsUl'> </ul> </div>        
-     
-  
+   
+  <div id="availableSlots"><ul id ='slotsUl' style="list-style: none;"> </ul> <div id = 'print'></div></div>        
+
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" type="text/javascript"></script>

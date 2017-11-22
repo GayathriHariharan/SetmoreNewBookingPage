@@ -23,6 +23,8 @@ function makeLiEmpty(){
 	  		var slotUl = $('#slotsUl');	
 	  		if($('#slotsUl li').hasClass('slotsLi')){
 			slotUl.empty();
+	  		}else if($('#slotsUl li').hasClass('noSlots')){
+	  			slotUl.empty();
 	  		}
 	}
 
@@ -203,9 +205,10 @@ function makeLiEmpty(){
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		  
 		        		   if($.isEmptyObject(availableSlots)){
-		        			   console.log("there is no slots available");
-		        			   let noSlots = $("<li>").text("there are no slots available");
+		        			   console.log("There is no slots available");
+		        			   let noSlots = $("<li>").text("There are no slots available");
 		        			   noSlots.appendTo(slotsUl);
+		        			   noSlots.addClass('noSlots');
 		        		   }
 		        		   else{
 		        			 
@@ -225,8 +228,9 @@ function makeLiEmpty(){
 		        					  
 		        			  });
 		        			  
-		        			  var staffName = $("<li>").text(eachStaffName);
+		        			  var staffName = $("<ul>").text(eachStaffName);
 		        			  staffName.appendTo(slotsUl);
+		        			  staffName.addClass('staffAllLi');
 		        			 
 		        		
 		        			//Looping through each staff slots
