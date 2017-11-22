@@ -72,8 +72,8 @@ optionClassName{
   margin-top: 30%;
   float: left;
   padding: 10px;
-  margin-left: 8px;
-  width: 186px;
+  margin-left: 5%;
+  width: 90%;
   background: #fff;
   color: $input-text-color;
   font: inherit;
@@ -93,7 +93,7 @@ optionClassName{
   float: left;
   padding: 10px;
   margin-left: 8px;
-  width: 355px;
+  width: 85%;
   background: #fff;
   color: $input-text-color;
   font: inherit;
@@ -113,7 +113,7 @@ top: 15%;
 }
 #slotsUl {
 position: absolute;
-top: 251px;
+top: 44%;
 list-style: none;
     width: 85%;
     height: 80%;

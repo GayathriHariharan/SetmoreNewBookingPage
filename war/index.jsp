@@ -39,19 +39,24 @@
     padding-top: 6.5%;
     position: fixed;
     top:55px;
-    right: 67%;"></div>
+    right: 67%;">
     <div id="company-name" style="    
     position: fixed;
     padding-top: 18%;
     margin-left: 34%;
-    font-size: 33px;"></div>
-    <div id="company-address"style="
-        font-size: 16px;
+    font-size: 1.75rem;"></div>
+    
+      <div id="company-address"style="
+        font-size: 0.85rem;
     position: fixed;
     margin-left: 34%;
     padding-top: 20%;
     "></div>
-  </div>
+    
+    
+    </div>
+  
+ 
  
  <div style="    
     padding-top: 22%;
