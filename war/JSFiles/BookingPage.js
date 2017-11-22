@@ -162,6 +162,8 @@ function makeLiEmpty(){
 	   var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
 	   
 	   var service_duration = staffKeysAndServiceDuration[1];
+	   $('#loader').show();
+
 	   
 	   if(($("#selectStaff option:selected").val()) == "all"){
 		   console.log("important service_staff_keys = " + staffKeysAndServiceDuration[0]);
@@ -196,7 +198,8 @@ function makeLiEmpty(){
 		        	data : JSON.stringify(inputValues),
 		        	   
 		        	   success : function(result){
-		        		   
+		        		   $('#loader').hide();
+
 		        		   var slotResponse = JSON.parse(result);
 		        		   console.log("slotResponse = " + slotResponse);
 		        		 
@@ -253,6 +256,8 @@ function makeLiEmpty(){
 		        	   
 		        	   error : function(xhr, status, error){
 		        		   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
+		        		   $('#loader').hide();
+
 		        	   }
 	 		 	
 	 		 	});
@@ -269,7 +274,8 @@ function makeLiEmpty(){
 		        	data : JSON.stringify(inputValues),
 		        	   
 		        	   success : function(result){
-		        		   
+		        		   $('#loader').hide();
+
 		        		   console.log("The slot response " + result);
 		        		   var slotResponse = JSON.parse(result);
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
@@ -278,7 +284,9 @@ function makeLiEmpty(){
 		        			   console.log("there is no slots available");
 		        			 
 		        			   let noSlots = $("<li>").text("there are no slots available");
+		        			   noSlots.addClass('noSlotsli');
 		        			   noSlots.appendTo(slotsUl);
+		        			   
 		        		   }else{
 		        		 
 		        		   $.each(availableSlots , function(index,value){
@@ -297,6 +305,8 @@ function makeLiEmpty(){
 		        	   
 		        	   error : function(xhr, status, error){
 		        		   	   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
+		        		   	$('#loader').hide();
+
 		        	   }
 	 		 	
 	 		 	});
@@ -312,7 +322,8 @@ function makeLiEmpty(){
    
    
    function companyDetails(){
-		$.ajax({
+		
+	   $.ajax({
 	
 		type     : "GET",
 		url      : "/bookingpage/companydetails",
@@ -347,7 +358,7 @@ function makeLiEmpty(){
 			  if (status == google.maps.GeocoderStatus.OK)
 			  {
 			      
-			      latitude = results[0].geometry.location.lat();
+			      latitude   =  results[0].geometry.location.lat();
 			      longtitude =  results[0].geometry.location.lng();
 			      
 			      
@@ -367,7 +378,7 @@ function makeLiEmpty(){
 						});
 			     
 			  }
-			});
+			})
 			
 			populateServiceDropdown();
 			populateStaffDropdown();
