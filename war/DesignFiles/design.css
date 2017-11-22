@@ -1,89 +1,44 @@
-/* body{
-	margin: 0;
-}
-#container{
-	   height: 100%;
-       width: 25%;
-       background-color: white;
-       font-size: 0;
-       text-align: center;
-       overflow-y:scroll;
-}
 
-#serviceContainer, #staffContainer{
-	display: inline-block;
-    vertical-align: top;
-    width: 50%;
-}
-#serviceContainer select, #staffContainer select{
-	    width: calc(100% - 50px);
-        padding: 5px;
-}
+.stylish span {position:relative;}
+.stylish select {position:absolute;left:0px;display:none}
 
-#datePicker {
-    weight: 35%;
-    vertical-align: top;
-    right: 80%;
-    left: 2%;
-    position: absolute;
-    top: 70%;
+/* beauty */
+.stylish input {
+    width:250px;
+    padding:5px;
 }
-
-#companyName {
-    font-size: 30px;
-    padding: 0px 0px 8px 0px;
+.stylish select {
+    min-width:260px;
+    margin-top:1px;
+    border-top:none;
 }
-
-ul {
-  list-style-type: none;
+.stylish select option {
+    padding:12px 0px 10px 24px;
+    box-shadow:32px -25px 50px -40px black inset;
 }
-
-#loader{	
-   width:20px;
-   height:20px;
-   display:inline-block;
-   padding:0px;
-   border-radius:100%;
-   border:2px solid;
-   border-top-color:rgba(0,0,0, 0.65);
-   border-bottom-color:rgba(0,0,0, 0.15);
-   border-left-color:rgba(0,0,0, 0.65);
-   border-right-color:rgba(0,0,0, 0.15);
-   -webkit-animation: preloader4 0.8s linear infinite;
-   animation: loader 0.8s linear infinite;
-   position:fixed;
-   top:20%;
+.stylish select optgroup {
+    padding:15px 20px 7px 0px;
+    text-align:center;
+    font:15px candara,sans-serif;
+    text-shadow:1px 3px 5px black;
+    font-weight:bold;
+    color:white;
+    background:radial-gradient(ellipse at 50% -40px, white, #003853);
 }
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes loader {
-   from {transform: rotate(0deg);}
-   to {transform: rotate(360deg);}
-}
-@-webkit-keyframes loader {
-   from {-webkit-transform: rotate(0deg);}
-   to {-webkit-transform: rotate(360deg);}
-}.ui-datepicker table {
-    width: 100%;
-    font-size: 13px;
-    border-collapse: collapse;
-    margin: 0 0 .4em;
-}#availableSlots{
-	width: 189px;
-    display: block;
-    position: absolute;
-    bottom: 20%;
-    left: 32px;
-}.slotsLi{
-	padding: 4px 4px 4px 4px;
-} */
-
 
 body{
 	margin: 0;
+	font-family: "Lato";
+}
+optionClassName{
+	    padding: 15px 20px 7px 0px;
+    text-align: center;
+    font: 15px candara,sans-serif;
+    text-shadow: 1px 3px 5px black;
+    font-weight: bold;
+    color: white;
+    background: radial-gradient(ellipse at 50% -40px, white, #003853);
+	
 }
 #container{
 	   height: 100%;
@@ -93,11 +48,11 @@ body{
        text-align: center;
        overflow-y:scroll;
 }#map-canvas{
-	height: 100%;
-    width: 75%;
+	height: 35%;
+    width: 100%;
     right: 0;
     z-index: 0;
-    position: absolute;
+    position: fixed !important;
 }
 #company-details{
 	font-size: 30px;
@@ -110,28 +65,94 @@ body{
     top: 15%;
 }
 #serviceContainer select, #staffContainer select{
-	    width: calc(100% - 50px);
+	     border-color: #d3d3d3;
+  background: #f8f8f8;
+  width: 37%;
+  box-shadow: 5px 7px 15px 0 rgba(23,55,87,.1), 0 1px 5px 0 rgba(0,0,0,.05);
+  margin-top: 30%;
+  float: left;
+  padding: 10px;
+  margin-left: 8px;
+  width: 186px;
+  background: #fff;
+  color: $input-text-color;
+  font: inherit;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+  border: 0;
+  outline: 0;
+      height: 50px;
+  padding: 22px 18px;
 }
 #datePicker{
 	
-   /*  height: 25%;
-    weight: 35%;
-    vertical-align: top;
-    right: 80%;
-    left: 3%;
-    position: absolute;
-    top: 25%; */
-    
-    weight: 35%;
-    vertical-align: top;
-    right: 80%;
-    left: 2%;
-    position: absolute;
-    top: 20%;war/index.jsp
-    
+     border-color: #d3d3d3;
+  background: #f8f8f8;
+  width: 37%;
+  box-shadow: 5px 7px 15px 0 rgba(23,55,87,.1), 0 1px 5px 0 rgba(0,0,0,.05);
+  margin-top: 12%;
+  float: left;
+  padding: 10px;
+  margin-left: 8px;
+  width: 355px;
+  background: #fff;
+  color: $input-text-color;
+  font: inherit;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+  border: 0;
+  outline: 0;
+  padding: 22px 18px;
 }
 #availableSlots{
 	top: 50%;
+	width: 60%;
+display: block;
+position: absolute;
+bottom: 20%;
+left: 40%;
+top: 15%;
+}
+#slotsUl {
+position: absolute;
+top: 251px;
+list-style: none;
+    width: 85%;
+    height: 80%;
+    overflow: scroll;
+}
+.noSlots{
+    font-size: 21px;
+    text-align: center;
+    padding-top: 12%;
+}
+.ScrollStyle
+{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.slotsLi {
+padding: 18px 12px 15px 4px;
+float: left;
+color: red;
+}
+.slotsLi{
+background: #FFFFFF;
+    box-shadow: 0 4px 9px 0 rgba(0,0,0,0.14);
+    border-radius: 11.59px;
+    font-family: Lato-Bold;
+    font-size: 14px;
+    color: #006CED;
+    
+    width: 11%;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+.staffAllLi{
+	
+	width:10%;
+	    padding-left: 0;
+    font-size: 21px;
 }
 #loader{	
    width:20px;
@@ -147,8 +168,10 @@ body{
    -webkit-animation: preloader4 0.8s linear infinite;
    animation: loader 0.8s linear infinite;
    position:fixed;
-   top:20%;
+    top: 70%;
+    left: 66%;
 }
+
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); 
   100% { -webkit-transform: rotate(360deg); }
@@ -166,9 +189,6 @@ body{
     font-size: 13px;
     border-collapse: collapse;
     margin: 0 0 .4em;
-}#slotsUl
-{
-	position: absolute;
-    top: 266px;
-    left: 26px;
 }
+
+
