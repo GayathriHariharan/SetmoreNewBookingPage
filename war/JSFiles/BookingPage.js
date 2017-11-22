@@ -208,12 +208,15 @@ function makeLiEmpty(){
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		  
 		        		   if($.isEmptyObject(availableSlots)){
+		        			   
+		        			   var date = $("#datePicker").datepicker('getDate');
+		        			      if (date) {
+		        			            date.setDate(date.getDate() + 1);
+		        			      }
+		        			      $("#datePicker").datepicker('setDate', date);
+		        			      displaySlots();
 
-		        			   console.log("there is no slots available");
-		        			   let noSlots = $("<li>").text("No slot available on this date.");
-
-		        			   noSlots.appendTo(slotsUl);
-		        			   noSlots.addClass('noSlots');
+		        			 
 		        		   }
 		        		   else{
 		        			 
@@ -287,11 +290,13 @@ function makeLiEmpty(){
 		        		   
 		        		   if(availableSlots == null){
 		        			 
-		        			 
-		        			   let noSlots = $("<li>").text("No slot available on this date.");
-
-		        			   noSlots.appendTo(slotsUl);
-		        			   noSlots.addClass('noSlots');
+		        			   var date = $("#datePicker").datepicker('getDate');
+		        			      if (date) {
+		        			            date.setDate(date.getDate() + 1);
+		        			      }
+		        			      $("#datePicker").datepicker('setDate', date);
+		        			      displaySlots();
+		        			      
 		        			   
 		        		   }else{
 		        		 
