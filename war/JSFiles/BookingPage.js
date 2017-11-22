@@ -22,7 +22,7 @@ $(document).ready(function(){
 function makeLiEmpty(){
 	  		var slotUl = $('#slotsUl');	
 	  		if($('#slotsUl li').hasClass('slotsLi')){
-			slotUl.empty();
+			    slotUl.empty();
 	  		}else if($('#slotsUl li').hasClass('noSlots')){
 	  			slotUl.empty();
 	  		}
@@ -286,11 +286,12 @@ function makeLiEmpty(){
 		        		   let availableSlots = JSON.parse(slotResponse.msg);
 		        		   
 		        		   if(availableSlots == null){
-		        			   console.log("there is no slots available");
 		        			 
-		        			   let noSlots = $("<li>").text("there are no slots available");
-		        			   noSlots.addClass('noSlotsli');
+		        			 
+		        			   let noSlots = $("<li>").text("No slot available on this date.");
+
 		        			   noSlots.appendTo(slotsUl);
+		        			   noSlots.addClass('noSlots');
 		        			   
 		        		   }else{
 		        		 
