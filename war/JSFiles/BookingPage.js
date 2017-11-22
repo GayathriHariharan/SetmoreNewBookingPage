@@ -187,7 +187,7 @@ function makeLiEmpty(){
 			
 			if( $("#selectStaff option:selected").val() == "all"){
 				
-				//Making ajax call to get the time slots for all staffs
+				//Making AJAX call to get the time slots for all staffs
 				
 				$.ajax({
 	 		 		url   :'/bookingpage/allstaffslots',   
@@ -204,7 +204,7 @@ function makeLiEmpty(){
 		        		  
 		        		   if($.isEmptyObject(availableSlots)){
 		        			   console.log("there is no slots available");
-		        			   let noSlots = $("<li>").text("there are no slots available");
+		        			   let noSlots = $("<li>").text("No slot available on this date.");
 		        			   noSlots.appendTo(slotsUl);
 		        		   }
 		        		   else{
@@ -216,7 +216,6 @@ function makeLiEmpty(){
 		        			   console.log(key);
 		        			  
 		        			  $.each(staffDetails, function(index,value){
-		        				 
 		     
 		        					  if(value.staffKey == eachStaffKey){
 		        						  eachStaffName = value.staffName;
@@ -337,19 +336,18 @@ function makeLiEmpty(){
 			$('#company-name').text(company_name);
 			$('#company-name').show();
 			
-			$('#company-address').text(address);
-			$('#company-address').show();
-			
 			
 			geocoder = new google.maps.Geocoder();
 		
 			geocoder.geocode( { 'address': address}, function(results, status) {
 			  if (status == google.maps.GeocoderStatus.OK)
 			  {
+				  
+				  $('#company-address').text(address);
+				  $('#company-address').show();
 			      
 			      latitude = results[0].geometry.location.lat();
 			      longtitude =  results[0].geometry.location.lng();
-			      
 			      
 				  var mapOptions = {
 							zoom: 12,
@@ -366,6 +364,16 @@ function makeLiEmpty(){
 
 						});
 			     
+			  }else{
+				  var mapOptions = {
+							zoom: 2,
+							center: new google.maps.LatLng(0,0),
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+							}
+				  
+							var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);	
+				  
+							
 			  }
 			});
 			
