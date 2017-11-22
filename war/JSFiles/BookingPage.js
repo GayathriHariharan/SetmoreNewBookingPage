@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	
 	var serviceStaffPair=[];
-	
+	var eachStaffName;
 	   function serviceStaff(serviceName,serviceDuration,staffKeys){
 			 this.serviceName     = serviceName;
 			 this.serviceDuration = serviceDuration;
