@@ -58,7 +58,8 @@ public class SetmoreBookingPageServlet  {
 
 		URLFetchClass classObj = new URLFetchClass();
 		String accessToken     = classObj.getAccessToken(companyKey1);	
-		String slots           = classObj.getTimeSlots(accessToken,inputValues,companyKey1);
+		String slotUrl          = "https://my.setmore.com/slots/v1/" + companyKey1;
+		String slots           = classObj.fetchAndWriteDetails(accessToken,inputValues,slotUrl);
         System.out.println("the slots are " + slots);
 		return slots ;
 	}
@@ -72,7 +73,8 @@ public class SetmoreBookingPageServlet  {
 
 		URLFetchClass classObj = new URLFetchClass();
 		String accessToken     = classObj.getAccessToken(companyKey1);	
-		String slots           = classObj.getTimeSlotsofAllTheStaffs(accessToken,inputValues,companyKey1);
+		String url             = "https://my.setmore.com/slots/v1/staffs/" + companyKey1;
+		String slots           = classObj.fetchAndWriteDetails(accessToken,inputValues,url);
         System.out.println("slots of all the staffs " + slots);
 		return slots ;
 	}
@@ -90,6 +92,18 @@ public class SetmoreBookingPageServlet  {
 		String companyDetails      = classObj.fetchDetails(companyDetailsURL,accessToken);
 		
 		return companyDetails;
+	}
+	
+	@RequestMapping(value="/createContact",method = RequestMethod.POST)
+	@ResponseBody
+	public String getCustomerKey(@RequestBody String inputValues) throws Exception{
+		
+		URLFetchClass classObj     = new URLFetchClass();
+		String accessToken         = classObj.getAccessToken(companyKey1);
+		String customerUrl   = "https://developer.setmore.com/api/v1/bookingapi/customer/create" + companyKey1;
+		String companyDetails      = classObj.fetchAndWriteDetails(accessToken, inputValues, customerUrl);
+		
+		return "";
 	}
 	
 	
