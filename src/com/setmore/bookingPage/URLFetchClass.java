@@ -98,12 +98,12 @@ public class URLFetchClass {
 	}
 	
 	
-	public String getTimeSlots(String Token,String inputValues, String companyKey) throws Exception{
+	public String fetchAndWriteDetails(String Token,String inputValues,String url) throws Exception{
 	
 		System.out.println("inside the get slots method");
 		
 		String response = "";
-		URL urlValue = new URL("https://my.setmore.com/slots/v1/" + companyKey);
+		URL urlValue = new URL(url);
 		
 		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
 		connection.setRequestMethod("POST");
@@ -116,7 +116,7 @@ public class URLFetchClass {
 			wr.close();
 		
 		
-		System.out.println("after hitting the get slots " + urlValue);
+		//System.out.println("after hitting the get slots " + urlValue);
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		
 			String inputLine;
@@ -132,38 +132,11 @@ public class URLFetchClass {
 	}
 	
 	
-	public String getTimeSlotsofAllTheStaffs(String Token,String inputValues, String companyKey) throws Exception{
-		
-		System.out.println("inside the get slots method");
-		
-		String response = "";
-		URL urlValue = new URL("https://my.setmore.com/slots/v1/staffs/" + companyKey);
-		
-		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
-		connection.setRequestMethod("POST");
-		connection.setRequestProperty("Content-Type", "application/json");	 
-        connection.setDoOutput(true);
-		
-		 DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-		    wr.write(inputValues.getBytes());
-			wr.flush();
-			wr.close();
-		
-		
-		System.out.println("after hitting the get all slots " + urlValue);
-		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-		
-			String inputLine;
+	
+	
+	
+	
 
-			while ((inputLine = in.readLine()) != null) {
-				response += inputLine;
-			
-			System.out.println("response is " + response);
-				
-			}
-		
-		return response;
-	}
 	
 	
 	

@@ -30,6 +30,7 @@ function makeLiEmpty(){
 
 
 	   
+
 	   setDateField();
 	   companyDetails();
 	   
@@ -113,7 +114,7 @@ function makeLiEmpty(){
 								
 					           var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
 					    	   
-					    	   var service_staff_keys = staffKeysAndServiceDuration[0];
+					    	   var service_staff_keys  = staffKeysAndServiceDuration[0];
 					           
 					           
                                 $.each(data, function(key,value){
@@ -323,11 +324,39 @@ function makeLiEmpty(){
 	 		 	});
 				
 			}
-
 		
    }
+  /* 
+   $('.slotsUl .slotsLi').click(function({
+	   
+	   var slotsValue = $('.slotsLi').text();
+	   console.log('the slots value ' + slotsValue);
+	   
+	   
+   }));*/
    
    
+   //Function to get the customer key
+   
+   function createContact (){
+   
+   
+   $.ajax({
+		
+		type     : "POST",
+		url      : "/bookingpage/createContact",
+		dataType : "json",
+		success  : function(response){
+			
+			},
+	    error : function(response){
+	    	
+	    }
+			
+   
+		});
+   
+   }
    
  //Function to get the company details
    
@@ -414,6 +443,9 @@ function makeLiEmpty(){
    
    
 	
+   
+   
+   
    var getStaffKeysAndServiceDuration = function(){
 	   
 	   var service_staff_keys;
