@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	
 	var serviceStaffPair=[];
-	var eachStaffName;
+	
 	   function serviceStaff(serviceName,serviceDuration,staffKeys){
 			 this.serviceName     = serviceName;
 			 this.serviceDuration = serviceDuration;
@@ -159,6 +159,7 @@ function makeLiEmpty(){
    
    function displaySlots(){
 	   
+	   var eachStaffName;
 	   selected_date = $("#datePicker").val()+"";
 	   
 	   var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
