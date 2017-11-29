@@ -249,7 +249,7 @@ function makeLiEmpty(){
 		        				        console.log(value[key]);
 		        				        var timeZoneVal  = value[key];
 		        				        
-		        				        slot = $("<li>").text( moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
+		        				        slot = $("<li>").text(moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
 		  		        			    slot.addClass('slotsLi');
 		  		        			    slot.appendTo(slotsUl);
 		  		        			   
@@ -305,7 +305,7 @@ function makeLiEmpty(){
 		        			  
 		        			   console.log( moment.tz(value,timeZone).format("hh:mm a"));
 		        			   
-		        			  slot = $("<li>").text( moment.tz(value,timeZone).format("hh:mm a"));
+		        			  slot = $("<li>").text(moment.tz(value,timeZone).format("hh:mm a"));
 		        			  slot.addClass('slotsLi');
 		        			  
 		        			  slot.appendTo(slotsUl);
