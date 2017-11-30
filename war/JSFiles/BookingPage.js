@@ -1,10 +1,10 @@
 $(document).ready(function(){
 	
 	$('#loader').hide();
-	
+	$('#customerForm').hide();
 	
 	var serviceStaffPair=[];
-	
+
 	   function serviceStaff(serviceName,serviceDuration,staffKeys){
 			 this.serviceName     = serviceName;
 			 this.serviceDuration = serviceDuration;
@@ -27,9 +27,6 @@ function makeLiEmpty(){
 	  			slotUl.empty();
 	  		}
 	}
-
-
-	   
 
 	   setDateField();
 	   companyDetails();
@@ -125,14 +122,14 @@ function makeLiEmpty(){
 									$.each(staffs, function(k,v){
 										
 										staffDetails.push(new staffKeyAndName(v.key,v.first_name));
-										
+										console.log("staffDetails after pushing " + staffDetails);
 										staff_key  = v.key;
 										
 										for(var i=0; i<service_staff_keys.length; i++){
 											
 											if(service_staff_keys[i] == staff_key){
 
-												staffName = v.first_name;
+												 staffName = v.first_name;
 												 staffkey = v.key;
 					 		 					 $('<option />', {value: staffkey, text: staffName}).appendTo($('#selectStaff'));
 											}									
@@ -203,6 +200,7 @@ function makeLiEmpty(){
 		        	data : JSON.stringify(inputValues),
 		        	   
 		        	   success : function(result){
+		        		
 		        		   $('#loader').hide();
 
 		        		   var slotResponse = JSON.parse(result);
@@ -232,17 +230,17 @@ function makeLiEmpty(){
 		        			  $.each(staffDetails, function(index,value){
 		     
 		        					  if(value.staffKey == eachStaffKey){
-		        						  eachStaffName = value.staffName;
-		        						
+		        						  var eachStaffName = value.staffName;
+		        						  var staffName = $("<ul>").text(eachStaffName);
+		    		        			  staffName.appendTo(slotsUl);
+		    		        			  staffName.addClass('staffAllLi');
+		    				        		console.log('the staff name iss' +JSON.stringify(eachStaffName));
+
 		        					  }
 		        					  
 		        			  });
 		        			  
-		        			  var staffName = $("<ul>").text(eachStaffName);
-		        			  staffName.appendTo(slotsUl);
-		        			  staffName.addClass('staffAllLi');
-		        			 
-		        		
+		        			
 		        			//Looping through each staff slots
 		        			  
 		        			  for (var key in value) {
@@ -328,16 +326,14 @@ function makeLiEmpty(){
 			}
 		
    }
-  /* 
-   $('.slotsUl .slotsLi').click(function({
-	   
-	   var slotsValue = $('.slotsLi').text();
-	   console.log('the slots value ' + slotsValue);
-	   
-	   
-   }));*/
    
    
+   $('ul.slotsUl.slotsLi').on('click',function(){
+	   
+	  $('#customerForm').show();
+	  $('.slotsLi').text();
+	  console.log('the value of slots li under the click function is ' + $('.slotsLi').text() );
+   });
    //Function to get the customer key
    
    function createContact (){
