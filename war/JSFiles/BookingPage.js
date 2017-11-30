@@ -249,9 +249,10 @@ function makeLiEmpty(){
 		        				        console.log(value[key]);
 		        				        var timeZoneVal  = value[key];
 		        				        
-		        				        slot = $("<li>").text(moment.tz(timeZoneVal,timeZone).format("hh:mm a")).val(timeZoneVal);
-		  		        			    slot.addClass('slotsLi');
-		  		        			    slot.appendTo(slotsUl);
+		  		        			  slot = $('<li></li>').addClass('slotsLi');
+				        			  slot.text(moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
+				        			  slot.attr('id',timeZoneVal);
+				        			  slot.appendTo(slotsUl);
 		  		        			   
 		        				    }
 		        				  
@@ -305,9 +306,9 @@ function makeLiEmpty(){
 		        			  
 		        			   console.log( moment.tz(value,timeZone).format("hh:mm a"));
 		        			   
-		        			  slot = $("<li>").text(moment.tz(value,timeZone).format("hh:mm a")).val(value);
-		        			  slot.addClass('slotsLi');
-		        			  
+		        			  slot = $('<li></li>').addClass('slotsLi');
+		        			  slot.text(moment.tz(value,timeZone).format("hh:mm a"));
+		        			  slot.attr('id',value);
 		        			  slot.appendTo(slotsUl);
 
 		        		   });
@@ -333,7 +334,7 @@ function makeLiEmpty(){
 	   $('#availableSlots').hide();
 	   $('#customerForm').show();
 
-	  console.log('the value of slots li under the click function is ' + $(this).val());
+	  console.log('the value of slots li under the click function is ' + $(this).attr('id') );
 	  
    });
    
@@ -356,7 +357,6 @@ function makeLiEmpty(){
 	   createContact(inputValues);
    });
    
->>>>>>> dd139ff769eb91b7c4ea4974750c1a96ced01742
    //Function to get the customer key
    
    function createContact (inputValues){
