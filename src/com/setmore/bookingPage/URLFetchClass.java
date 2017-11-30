@@ -19,16 +19,18 @@ public class URLFetchClass {
           
            public String getAccessToken(String companyKey) throws Exception{
         	   
+        	   
+        	   
         	   URL url                   =  new URL("https://developer.setmore.com/api/v1/admin/contact/" + companyKey);  
         	   String accessToken        = "";
         	   String inputLine;
         	   String response = "";
         	   
-        	   HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        	   
+        	  HttpURLConnection con = (HttpURLConnection)url.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");
-               con.setConnectTimeout(15000);
-        	   
+               
        	       BufferedReader in = new BufferedReader(
                 	   new InputStreamReader(con.getInputStream()));
        	      
@@ -59,8 +61,8 @@ public class URLFetchClass {
 
            	    } 
              }
-            	      System.out.println("inside the access token" + accessToken);
-            	      
+            	      System.out.println("inside the access token " + accessToken);
+        	   
         	   
         	   return accessToken;
        }
@@ -77,7 +79,7 @@ public class URLFetchClass {
 		con.setRequestMethod("GET");		
         con.setRequestProperty("Content-Type", "application/json");	 
         con.setRequestProperty("Authorization", "BEARER "+Token);
-        con.setConnectTimeout(9000);
+        con.setConnectTimeout(15000);
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -99,7 +101,8 @@ public class URLFetchClass {
 		String response = "";
 		URL urlValue = new URL(url);
 		
-		HttpURLConnection connection  = (HttpURLConnection) urlValue.openConnection();
+		HttpURLConnection connection  = (HttpURLConnection)urlValue.openConnection();
+		connection.setRequestProperty("Authorization", "BEARER "+Token);
 		connection.setRequestMethod("POST");
 		connection.setRequestProperty("Content-Type", "application/json");	 
         connection.setDoOutput(true);

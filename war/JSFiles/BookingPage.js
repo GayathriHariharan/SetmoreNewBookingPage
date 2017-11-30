@@ -345,12 +345,14 @@ function makeLiEmpty(){
 	   var email     = $('#email').val();
 	  
 	   var inputValues = {
-			      "first_name":firstName,      
-		          "last_name": lastName,    
-		          "email_id":email
+			     
+			      'first_name':firstName+"",      
+		          'last_name': lastName+"",    
+		          'email_id':email+""
 			   
 	   }
 	   
+	   console.log("the input values for create custoomer " + JSON.stringify(inputValues));
 	   createContact(inputValues);
    });
    
@@ -363,15 +365,28 @@ function makeLiEmpty(){
 		
 		type     : "POST",
 		url      : "/bookingpage/createContact",
-		dataType : "json",
-		data     : JSON.stringify(inputValues),
+		contentType :"application/json",
+		data     :JSON.stringify(inputValues),
 		success  : function(response){
+			
+			var customer_response = JSON.parse(response);
 			console.log("customer created " + JSON.stringify(response));
 			
-			$.each(response,function(key,value){
+			$.each(customer_response,function(key,value){  
+				 
+				if(key =='data'){
+				 var customer =  value.customer;
+			 
+				$.each(customer,function(k,v){ 
 				
-				
-			});
+			    if( k =='key')
+				var customerKey = v ; 
+				console.log(JSON.stringify(customerKey))
+				});
+				 
+				 }
+
+				});
 			
 			 $('#loader').hide();
 			},
