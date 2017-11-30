@@ -29,10 +29,11 @@ public class URLFetchClass {
         	   String accessToken        = "";
         	   String inputLine;
         	   String response = "";
+        	   
         	   HttpURLConnection con = (HttpURLConnection)url.openConnection();
         	   con.setRequestMethod("GET");
         	   con.setRequestProperty("Content-Type", "application/json");
-               con.setConnectTimeout(9000);
+               con.setConnectTimeout(15000);
         	   
        	       BufferedReader in = new BufferedReader(
                 	   new InputStreamReader(con.getInputStream()));
@@ -49,8 +50,9 @@ public class URLFetchClass {
 
             	      for(Map.Entry<String, Object> entry : hashmap.entrySet()){
            	    	
-           	    	String key = entry.getKey();
-	           	    	if(key.equals("data")){
+           	    	  String key = entry.getKey();
+	           	    	
+           	    	 if(key.equals("data")){
 	
 	           	    	Map<String,Object> data = (Map<String, Object>) entry.getValue();
 	           	    	for(Map.Entry<String, Object> accessTokenVal : data.entrySet()){
@@ -100,8 +102,6 @@ public class URLFetchClass {
 	
 	public String fetchAndWriteDetails(String Token,String inputValues,String url) throws Exception{
 	
-		System.out.println("inside the get slots method");
-		
 		String response = "";
 		URL urlValue = new URL(url);
 		
@@ -116,7 +116,7 @@ public class URLFetchClass {
 			wr.close();
 		
 		
-		//System.out.println("after hitting the get slots " + urlValue);
+	
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		
 			String inputLine;
@@ -127,16 +127,10 @@ public class URLFetchClass {
 			System.out.println("response is " + response);
 				
 			}
-		
+			System.out.println("Response  " + response);
 		return response;
 	}
 	
-	
-	
-	
-	
-	
-
 	
 	
 	

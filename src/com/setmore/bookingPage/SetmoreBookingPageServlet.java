@@ -101,10 +101,10 @@ public class SetmoreBookingPageServlet  {
 		
 		URLFetchClass classObj     = new URLFetchClass();
 		String accessToken         = classObj.getAccessToken(companyKey1);
-		String customerUrl   = "https://developer.setmore.com/api/v1/bookingapi/customer/create" + companyKey1;
+		String customerUrl         = "https://developer.setmore.com/api/v1/bookingapi/customer/create";
 		String companyDetails      = classObj.fetchAndWriteDetails(accessToken, inputValues, customerUrl);
 		
-		return "";
+		return companyDetails;
 	}
 	
 	

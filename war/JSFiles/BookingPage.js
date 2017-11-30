@@ -315,7 +315,7 @@ function makeLiEmpty(){
 		        	   
 		        	   error : function(xhr, status, error){
 		        		   	   console.log("inside error function " + error + "  and the status is " + status + "  and the xhr is " + xhr);
-		        		   	$('#loader').hide();
+		        		   	   $('#loader').hide();
 
 		        	   }
 	 		 	
@@ -326,15 +326,35 @@ function makeLiEmpty(){
    }
    
    
-   $('ul.slotsUl.slotsLi').on('click',function(){
+   $('#slotsUl').on('click','li',function(){
 	   
 	  $('#customerForm').show();
-	  $('.slotsLi').text();
-	  console.log('the value of slots li under the click function is ' + $('.slotsLi').text() );
+	  $('#availableSlots').hide();
+	  console.log('the value of slots li under the click function is ' + $(this).text());
    });
+   
+   $('#customerSubmit').on('click',function(){
+	   
+	   $('#customerForm').hide();
+	   $('#loader').show();
+	   
+	   var firstName = $('#firstName').val();
+	   var lastName  = $('#lastName').val();
+	   var email     = $('#email').val();
+	  
+	   var inputValues = {
+			      "first_name":firstName,      
+		          "last_name": lastName,    
+		          "email_id":email
+			   
+	   }
+	   
+	   createContact(inputValues);
+   });
+   
    //Function to get the customer key
    
-   function createContact (){
+   function createContact (inputValues){
    
    
    $.ajax({
@@ -342,11 +362,20 @@ function makeLiEmpty(){
 		type     : "POST",
 		url      : "/bookingpage/createContact",
 		dataType : "json",
+		data     : JSON.stringify(inputValues),
 		success  : function(response){
+			console.log("customer created " + JSON.stringify(response));
 			
+			$.each(response,function(key,value){
+				
+				
+			});
+			
+			 $('#loader').hide();
 			},
 	    error : function(response){
-	    	
+	    	console.log('customer not created and throws error ' + JSON.stringify(response))
+	    	 $('#loader').hide();
 	    }
 			
    
