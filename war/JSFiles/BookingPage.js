@@ -358,7 +358,6 @@ function makeLiEmpty(){
 	   createContact(inputValues);
    });
    
->>>>>>> dd139ff769eb91b7c4ea4974750c1a96ced01742
    //Function to get the customer key
    
    function createContact (inputValues){
