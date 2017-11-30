@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#customerForm').hide();
 	
 	var serviceStaffPair=[];
-	//var eachStaffName;
+
 	   function serviceStaff(serviceName,serviceDuration,staffKeys){
 			 this.serviceName     = serviceName;
 			 this.serviceDuration = serviceDuration;
@@ -74,6 +74,7 @@ function makeLiEmpty(){
 
 		 					//creating dropdown
 		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
+		 					 
 		 					 
 		 				});
 		 				
@@ -157,6 +158,7 @@ function makeLiEmpty(){
    
    function displaySlots(){
 	   
+	   var eachStaffName;
 	   selected_date = $("#datePicker").val()+"";
 	   
 	   var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
