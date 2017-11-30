@@ -78,6 +78,7 @@ function makeLiEmpty(){
 		 					//creating dropdown
 		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
 		 					 
+		 					 
 		 				});
 		 				
 		 		});
