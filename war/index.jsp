@@ -82,7 +82,12 @@
     
     <input type ='text' id='datePicker' ></input>
  
+<div id ='customerForm' >
 
+First Name : <input type="text" id='firstName'>
+Last  Name :<input type ="text" id ='lastName'>
+Email address :<input type = "password" id = "password">
+</div>
     
   
         
