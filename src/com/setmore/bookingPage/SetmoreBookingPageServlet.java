@@ -102,7 +102,7 @@ public class SetmoreBookingPageServlet  {
 		String accessToken         = classObj.getAccessToken(companyKey1);
 		String customerUrl         = "https://developer.setmore.com/api/v1/bookingapi/customer/create";
 		String companyDetails      = classObj.fetchAndWriteDetails(accessToken, inputValues, customerUrl);
-		
+		System.out.println("customer creation input value " + inputValues);
 		return companyDetails;
 	}
 	
