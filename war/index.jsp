@@ -86,7 +86,8 @@
 
 First Name : <input type="text" id='firstName'>
 Last  Name :<input type ="text" id ='lastName'>
-Email address :<input type = "password" id = "password">
+Email address :<input type = "text" id = "email">
+<input type="button" value ="confirm Booking" id='customerSubmit'>
 </div>
     
   
