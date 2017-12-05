@@ -191,4 +191,6 @@ background: #FFFFFF;
     margin: 0 0 .4em;
 }
 
-
+ul{
+	list-style-type : none;
+}

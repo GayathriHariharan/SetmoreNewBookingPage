@@ -2,6 +2,12 @@ $(document).ready(function(){
 	
 	$('#loader').hide();
 	$('#customerForm').hide();
+	$('#appointmentConfirmation').hide();
+	
+	var customerKey;
+	var service_duration;
+	var startTime;
+	var endTime;
 	
 	var serviceStaffPair=[];
 
@@ -20,7 +26,7 @@ $(document).ready(function(){
 	
 	   
 function makeLiEmpty(){
-	  		var slotUl = $('#slotsUl');	
+	  		slotUl = $('#slotsUl');	
 	  		if($('#slotsUl li').hasClass('slotsLi')){
 			    slotUl.empty();
 	  		}else if($('#slotsUl li').hasClass('noSlots')){
@@ -73,7 +79,7 @@ function makeLiEmpty(){
 		 					serviceStaffPair.push(new serviceStaff(serviceName,serviceDuration,staffKeys));
 
 		 					//creating dropdown
-		 					 $('<option />', {value: serviceName, text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
+		 					 $('<option />', {id: serviceDuration , value: serviceKey , text: serviceName , class :'optionClassName'}).appendTo(serviceSelect);
 		 					 
 		 					 
 		 				});
@@ -95,9 +101,8 @@ function makeLiEmpty(){
  		
  		$('#selectStaff').find('option[value!="all"]').remove();
       
- 		service_name = $("#selectService option:selected").val();
+ 		service_name = $("#selectService option:selected").text();
 		console.log("service selected = " + service_name);
-		//makeLiEmpty();
 			
 			$.ajax({
 				
@@ -154,7 +159,7 @@ function makeLiEmpty(){
 			
    }
    
-   
+   //function to display the slots
    
    function displaySlots(){
 	   
@@ -163,7 +168,7 @@ function makeLiEmpty(){
 	   
 	   var staffKeysAndServiceDuration = getStaffKeysAndServiceDuration();
 	   
-	   var service_duration = staffKeysAndServiceDuration[1];
+	   service_duration = $("#selectService option:selected").attr('id');
 	   $('#loader').show();
 
 	   
@@ -221,6 +226,7 @@ function makeLiEmpty(){
 		        		   }
 		        		   else{
 		        			 
+		        			   var staffname;
 		        		  
 		        			   $.each(availableSlots , function(key,value){
 		        			 
@@ -231,9 +237,11 @@ function makeLiEmpty(){
 		     
 		        					  if(value.staffKey == eachStaffKey){
 		        						  var eachStaffName = value.staffName;
-		        						  var staffName = $("<ul>").text(eachStaffName);
-		    		        			  staffName.appendTo(slotsUl);
-		    		        			  staffName.addClass('staffAllLi');
+		        						  staffname = $("<ul>").text(eachStaffName);
+		        						  staffname.appendTo(slotUl);
+		    		        			  staffname.addClass('staffAllLi');
+		    		        			  staffname.attr('id',eachStaffKey);
+		    		        			  staffname.attr("style","list-style: none;");
 		    				        		console.log('the staff name iss' +JSON.stringify(eachStaffName));
 
 		        					  }
@@ -252,7 +260,7 @@ function makeLiEmpty(){
 		  		        			  slot = $('<li></li>').addClass('slotsLi');
 				        			  slot.text(moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
 				        			  slot.attr('id',timeZoneVal);
-				        			  slot.appendTo(slotsUl);
+				        			  slot.appendTo(staffname);
 		  		        			   
 		        				    }
 		        				  
@@ -329,19 +337,14 @@ function makeLiEmpty(){
    }
    
    
-   $('#slotsUl').on('click','li',function(){
-	  
-	   $('#availableSlots').hide();
-	   $('#customerForm').show();
-
-	  console.log('the value of slots li under the click function is ' + $(this).attr('id') );
-	  
-   });
+  
    
-   $('#customerSubmit').on('click',function(){
-	   
-	   $('#customerForm').hide();
+   //Function to create/get the customer key
+   
+   function createContact (inputValues){
+   
 	   $('#loader').show();
+	   $('#customerForm').hide();
 	   
 	   var firstName = $('#firstName').val();
 	   var lastName  = $('#lastName').val();
@@ -353,18 +356,9 @@ function makeLiEmpty(){
 		          'last_name': lastName+"",    
 		          'email_id':email+""
 			   
-	   }
-	   
-	   console.log("the input values for create custoomer " + JSON.stringify(inputValues));
-	   createContact(inputValues);
-   });
+	   };
    
-   //Function to get the customer key
-   
-   function createContact (inputValues){
-   
-   
-   $.ajax({
+	   $.ajax({
 		
 		type     : "POST",
 		url      : "/bookingpage/createContact",
@@ -382,16 +376,19 @@ function makeLiEmpty(){
 			 
 				$.each(customer,function(k,v){ 
 				
-			    if( k =='key')
-				var customerKey = v ; 
-				console.log(JSON.stringify(customerKey))
+			    if( k =='key'){
+				customerKey = v+"" ; 
+				console.log(customerKey);
+			    }
 				});
 				 
 				 }
 
 				});
+			$('#loader').hide();
+			confirmAppointmentDetails();
+			 
 			
-			 $('#loader').hide();
 			},
 	    error : function(response){
 	    	console.log('customer not created and throws error ' + JSON.stringify(response))
@@ -402,6 +399,92 @@ function makeLiEmpty(){
 		});
    
    }
+   
+   
+   //function to confirm appointment details
+   
+   function confirmAppointmentDetails(){
+	   
+	   $('#serviceName').text($("#selectService option:selected").text());
+	   
+	   
+	   if( $("#selectStaff option:selected").val() != "all"){
+		   $('#staffName').text($("#selectStaff option:selected").text());
+	   }else{
+		   $('#staffName').text(selectedStaffName);
+	   }
+	   
+	   $('#appointmentTime').text(moment.tz(parseInt(startTime),timeZone).format("YYYY-MM-DD hh:mm a"));
+	   
+	   $('#yourInfo').text( $('#firstName').val() + "\n" + $('#lastName').val() + "\n" + $('#email').val() );
+	   
+	   $('#appointmentConfirmation').show();
+	   
+   }
+   
+   //function to book appointment
+   
+   function bookAppointment(){
+	   
+
+	   var servicekey = $("#selectService option:selected").val()+"";
+	   console.log("servicekey = " + servicekey);
+	   
+	   console.log("customer key = " + customerKey);
+	   
+	   
+	   if( $("#selectStaff option:selected").val() != "all"){
+		   staff_key_value = $("#selectStaff option:selected").val()+"";
+	   }else{
+		   staff_key_value = selectedStaffKey;
+	   }
+	   
+	   console.log("staff key = "+ staff_key_value );
+	   console.log("ser duration = " + service_duration);
+	   endTime = parseInt(startTime)+parseInt((service_duration*60*1000));
+	   console.log("start time of the appt is = " + startTime );
+	   console.log("End time of the appt is = " + endTime );
+	   /*
+	   var x = new Date(parseInt(startTime));
+	   console.log("x = " + x);
+	   var startTimeValue = x.toISOString();
+	   console.log("startTimeValue = " + startTimeValue);
+	   
+	   var y = new Date(parseInt(endTime));
+	   console.log("y = " + y);
+	   var endTimeValue = y.toISOString();
+	   console.log("endTimeValue = " + endTimeValue);
+	   */
+	   startTimeValue = (moment.tz(parseInt(startTime),timeZone).format("YYYY-MM-DDTHH:mm:ss.sssZ"));
+	   console.log("start time of the appt is : " + startTimeValue );
+	   
+	   endTimeValue = (moment.tz(parseInt(endTime),timeZone).format("YYYY-MM-DDTHH:mm:ss.sssZ"));
+	   console.log("end time of the appt is : " + endTimeValue );
+	   
+	   var inputValues = {
+		          "staff_key" : staff_key_value,      
+		          "service_key" : servicekey,      
+		          "customer_key" : customerKey,  
+		          "start_time" : startTimeValue,     
+		          "end_time"  : endTimeValue
+		      };
+	   
+	   
+	   $.ajax({
+		   	type     : "POST",
+			url      : "/bookingpage/bookAppointment",
+			contentType :"application/json",
+			data     :JSON.stringify(inputValues),
+			success  : function(){
+				
+			},
+			error    : function(){
+				
+			}
+	   });
+	   
+   }
+   
    
  //Function to get the company details
    
@@ -486,10 +569,7 @@ function makeLiEmpty(){
 		
 	}
    
-   
 	
-   
-   
    
    var getStaffKeysAndServiceDuration = function(){
 	   
@@ -512,11 +592,31 @@ function makeLiEmpty(){
  
    $('#selectStaff').change(displaySlots);
    
+   
    $('#selectService').change(function(){
 	   populateStaffDropdown();
 	   displaySlots();
    });
    
+   
+   $('#slotsUl').on('click','li',function(){
+	   $('#availableSlots').hide();
+	  startTime = $(this).attr('id');
+	  if($("#selectStaff option:selected").val() == "all"){
+		  selectedStaffKey = $(this).parent().attr('id');
+		  selectedStaffName = $(this).parent().attr('text');
+	  }
+	   $('#customerForm').show();
+	  console.log('the value of slots li under the click function is ' + startTime );
+   });
+   
+   $('#customerSubmit').on('click',function(){
+	   createContact();
+   });
+   
+   $('#bookAppointment').on('click',function(){
+   bookAppointment();
+   });
    
    
 }); 
