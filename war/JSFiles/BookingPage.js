@@ -345,6 +345,14 @@ function makeLiEmpty(){
 	   var firstName = $('#firstName').val();
 	   var lastName  = $('#lastName').val();
 	   var email     = $('#email').val();
+	   
+	   
+	   if(firstName == "" || null){
+		var li =    $("<li>").text("please enter your first name");
+	    
+	   }else if(email == " " ||null){
+		   var li =    $("<li>").text("please enter your email address");
+	   }
 	  
 	   var inputValues = {
 			     
