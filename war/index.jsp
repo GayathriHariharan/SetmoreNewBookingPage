@@ -77,21 +77,32 @@
     
     <input type ='text' id='datePicker' ></input>
  
-<div id ='customerForm' >
+	<div id ='customerForm' >
 
-First Name : <input type="text" id='firstName' required>
-Last  Name :<input type ="text" id ='lastName'>
-Email address :<input type = "text" id = "email" required>
-<input type="button" value ="confirm Booking" id='customerSubmit'>
-</div>
+
+		First Name : <input type="text" id='firstName'><br>
+		Last  Name :<input type ="text" id ='lastName'><br>
+		Email address :<input type = "text" id = "email"><br>
+		<input type="button" value ="Continue" id='customerSubmit'>
+		
+	</div>
     
-  
+    
+ 	<div id = "appointmentConfirmation" >
+ 	
+  		Service Name : <label id="serviceName"></label><br>
+  		Staff Name: <label id="staffName"></label><br>
+  		Appointment time: <label id="appointmentTime"></label><br>
+ 		Your Info: <label id="yourInfo"></label><br>
+ 		<input type="button" value ="confirm Booking" id='bookAppointment'><br>
+ 		
+  	</div>
         
          
   
 </div>      
    
-  <div id="availableSlots"><ul id ='slotsUl' style="list-style: none;"> </ul> <div id = 'print'></div></div>        
+  	<div id="availableSlots"><ul id ='slotsUl' style="list-style: none;"> </ul> <div id = 'print'></div></div>        
 
       <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
