@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	
+	console.log("test");
 	$('#loader').hide();
 	$('#customerForm').hide();
 	$('#appointmentConfirmation').hide();
