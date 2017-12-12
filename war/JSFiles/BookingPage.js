@@ -10,6 +10,7 @@ $(document).ready(function(){
 	var endTime;
 	
 	var serviceStaffPair=[];
+	
 
 	   function serviceStaff(serviceName,serviceDuration,staffKeys){
 			 this.serviceName     = serviceName;
@@ -27,6 +28,7 @@ $(document).ready(function(){
 	   
 function makeLiEmpty(){
 	  		slotUl = $('#slotsUl');	
+	  		
 	  		if($('#slotsUl li').hasClass('slotsLi')){
 			    slotUl.empty();
 	  		}else if($('#slotsUl li').hasClass('noSlots')){
@@ -109,6 +111,7 @@ function makeLiEmpty(){
 			    type        :  'GET',
 				url         :  '/bookingpage/staff',
 				dataType    :  'json',
+				async		:	false,
 				success     :  function(data){
 					         
 					         $('#loader').hide();
@@ -119,15 +122,16 @@ function makeLiEmpty(){
 					    	   
 					    	   var service_staff_keys  = staffKeysAndServiceDuration[0];
 					           
-					           
-                                $.each(data, function(key,value){
+					    	  
+                              
+					    	   $.each(data, function(key,value){
 									
 									staffs = value.staffs;
 								
 									$.each(staffs, function(k,v){
 										
 										staffDetails.push(new staffKeyAndName(v.key,v.first_name));
-										console.log("staffDetails after pushing " + staffDetails);
+										
 										staff_key  = v.key;
 										
 										for(var i=0; i<service_staff_keys.length; i++){
@@ -142,8 +146,8 @@ function makeLiEmpty(){
 										
 									});
 									
-									console.log("staffDetails = " + staffDetails);
-									
+								
+									console.log("staffDetails after pushing " + staffDetails);
 								 });	
                                 
                                 
@@ -226,22 +230,31 @@ function makeLiEmpty(){
 		        		   }
 		        		   else{
 		        			 
-		        			   var staffname;
+		        			  
 		        		  
 		        			   $.each(availableSlots , function(key,value){
 		        			 
 		        			   eachStaffKey = key;
 		        			   console.log(key);
-		        			  
-		        			  $.each(staffDetails, function(index,value){
+		        			   var staffname = $('<ul></ul>').addClass('staffNameUl');
+		        			   console.log("the staff details iside else " +staffDetails );
+		        			 
+		        			   $.each(staffDetails, function(index,v){
 		     
-		        					  if(value.staffKey == eachStaffKey){
-		        						  var eachStaffName = value.staffName;
-		        						  staffname = $("<ul>").text(eachStaffName);
+		        				   console.log(" the vallue of v is " + v);
+		        					  if(v.staffKey == eachStaffKey){
+		        						  
+		        						  var eachStaffName = v.staffName;
+		        						  var slotUl  = $('#slotsUl');	
+		  
+		        						  var li = $('<li></li>').addClass('staffLi');
+		        						  li.text(eachStaffName);
+		        						  //staffname.text(eachStaffName);
+		        						  li.appendTo(staffname);
 		        						  staffname.appendTo(slotUl);
-		    		        			  staffname.addClass('staffAllLi');
+		    		        			
 		    		        			  staffname.attr('id',eachStaffKey);
-		    		        			  staffname.attr("style","list-style: none;");
+		    		        			 // staffname.attr("style","list-style: none;");
 		    				        		console.log('the staff name iss' +JSON.stringify(eachStaffName));
 
 		        					  }
@@ -256,11 +269,16 @@ function makeLiEmpty(){
 		        				    if (value.hasOwnProperty(key)) {           
 		        				        console.log(value[key]);
 		        				        var timeZoneVal  = value[key];
-		        				        
-		  		        			  slot = $('<li></li>').addClass('slotsLi');
+		        				        var slotUl  = $('#slotsUl');	
+		  		        			var  slot = $('<li></li>').addClass('slotsLi');
+		  		        			
 				        			  slot.text(moment.tz(timeZoneVal,timeZone).format("hh:mm a"));
 				        			  slot.attr('id',timeZoneVal);
 				        			  slot.appendTo(staffname);
+				        			  staffname.appendTo(slotUl);
+				        			  
+				        			 
+				        			  
 		  		        			   
 		        				    }
 		        				  
@@ -349,6 +367,14 @@ function makeLiEmpty(){
 	   var firstName = $('#firstName').val();
 	   var lastName  = $('#lastName').val();
 	   var email     = $('#email').val();
+	   
+	   
+	   if(firstName == "" || null){
+		var li =    $("<li>").text("please enter your first name");
+	    
+	   }else if(email == " " ||null){
+		   var li =    $("<li>").text("please enter your email address");
+	   }
 	  
 	   var inputValues = {
 			     

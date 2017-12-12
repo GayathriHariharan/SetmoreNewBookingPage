@@ -13,8 +13,6 @@
      
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
      
-      
-      
 </head>
 
      <script>
@@ -28,9 +26,6 @@
 
  <div id="map-canvas"></div>
        
- 
- 
- 
  
    <div id="company-details"> 
  	<img class="company-image" src="https://lh3.googleusercontent.com/p/AF1QipOScr2DgGuIYpJ0O7U-yTCbGW5N68M7syrQ4se3=k" style="
@@ -84,9 +79,10 @@
  
 	<div id ='customerForm' >
 
-		First Name : <input type="text" id='firstName'><br>
-		Last  Name :<input type ="text" id ='lastName'><br>
-		Email address :<input type = "text" id = "email"><br>
+
+		<div id= "firstNameDiv" >First Name : <input type="text" id='firstName' required><br></div>
+		<div id ='lastNameDiv '>Last  Name :<input type ="text" id ='lastName' required><br></div>
+		<div id='emailDiv'>Email address :<input type = "text" id = "email" required><br>
 		<input type="button" value ="Continue" id='customerSubmit'>
 		
 	</div>
