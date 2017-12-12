@@ -80,9 +80,9 @@
 	<div id ='customerForm' >
 
 
-		First Name : <input type="text" id='firstName'><br>
-		Last  Name :<input type ="text" id ='lastName'><br>
-		Email address :<input type = "text" id = "email"><br>
+		<div id= "firstNameDiv" >First Name : <input type="text" id='firstName' required><br></div>
+		<div id ='lastNameDiv '>Last  Name :<input type ="text" id ='lastName' required><br></div>
+		<div id='emailDiv'>Email address :<input type = "text" id = "email" required><br>
 		<input type="button" value ="Continue" id='customerSubmit'>
 		
 	</div>

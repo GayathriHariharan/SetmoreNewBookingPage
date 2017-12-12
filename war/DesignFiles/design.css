@@ -135,6 +135,10 @@ padding: 18px 12px 15px 4px;
 float: left;
 color: red;
 }
+.staffNameUl
+{
+	height: 50%;
+}
 .slotsLi{
 background: #FFFFFF;
     box-shadow: 0 4px 9px 0 rgba(0,0,0,0.14);
@@ -147,6 +151,7 @@ background: #FFFFFF;
     text-align: center;
     padding: 10px;
     margin: 10px;
+    list-style-type: none;
 }
 .staffAllLi{
 	
@@ -191,6 +196,15 @@ background: #FFFFFF;
     margin: 0 0 .4em;
 }
 
-ul{
-	list-style-type : none;
+#customerForm{
+	position: absolute;
+    right: 229px;
+    top: 438px;
 }
+.staffLi {
+    width: 10%;
+    text-align: center;
+    padding: 10px;
+    list-style-type: none;
+}
+
