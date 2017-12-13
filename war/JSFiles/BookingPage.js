@@ -231,8 +231,6 @@ function makeLiEmpty(){
 		        		   }
 		        		   else{
 		        			 
-		        			  
-		        		  
 		        			   $.each(availableSlots , function(key,value){
 		        			 
 		        			   eachStaffKey = key;
@@ -250,12 +248,10 @@ function makeLiEmpty(){
 		  
 		        						  var li = $('<li></li>').addClass('staffLi');
 		        						  li.text(eachStaffName);
-		        						  //staffname.text(eachStaffName);
 		        						  li.appendTo(staffname);
 		        						  staffname.appendTo(slotUl);
 		    		        			
 		    		        			  staffname.attr('id',eachStaffKey);
-		    		        			 // staffname.attr("style","list-style: none;");
 		    				        		console.log('the staff name iss' +JSON.stringify(eachStaffName));
 
 		        					  }
@@ -277,9 +273,6 @@ function makeLiEmpty(){
 				        			  slot.attr('id',timeZoneVal);
 				        			  slot.appendTo(staffname);
 				        			  staffname.appendTo(slotUl);
-				        			  
-				        			 
-				        			  
 		  		        			   
 		        				    }
 		        				  
@@ -355,8 +348,6 @@ function makeLiEmpty(){
 		
    }
    
-   
-  
    
    //Function to create/get the customer key
    
@@ -458,8 +449,6 @@ function makeLiEmpty(){
 	   console.log("servicekey = " + servicekey);
 	   
 	   console.log("customer key = " + customerKey);
-	   
-	   
 	   if( $("#selectStaff option:selected").val() != "all"){
 		   staff_key_value = $("#selectStaff option:selected").val()+"";
 	   }else{
