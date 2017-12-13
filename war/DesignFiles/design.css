@@ -159,6 +159,75 @@ background: #FFFFFF;
 	    padding-left: 0;
     font-size: 21px;
 }
+#customerSubmit{
+	
+	color: white;
+    width: 200px;
+    border-radius: 4px;
+    padding: 14px;
+    margin-top: 4px;
+    cursor: pointer;
+    font-size: 19px;
+    background-color: rgb(17, 195, 188);
+}#customerForm{
+	width: 75%;
+    position: absolute;
+    left: 820px;
+    top: 317px;
+    height: 75%;
+}
+#customerHeader{
+	    position: absolute;
+    bottom: 491px;
+    font-size: larger;
+    left: -78px;
+}
+#firstNameDiv{
+	position: relative;
+    height: 50px;
+    font-family: sans-serif;
+    font-size: large;
+}
+#firstName{
+	height: 26px;
+    width: 208px;  
+}
+#lastNameDiv{
+	
+	position: relative;
+    height: 50px;
+    font-family: sans-serif;
+    font-size: large;
+}
+#lastName{
+	height: 26px;
+    width: 211px;
+}#emailDiv{
+	position: relative;
+    height: 50px;
+    font-family: sans-serif;
+    font-size: large;
+}
+#email{
+	height: 26px;
+    width: 208px;
+}
+#appointmentConfirmation{
+	position: absolute;
+    left: 818px;
+    top: 346px;
+}
+#bookAppointment{
+	color: white;
+    width: 200px;
+    border-radius: 4px;
+    padding: 14px;
+    margin-top: 43px;
+    cursor: pointer;
+    font-size: 19px;
+    background-color: rgb(17, 195, 188)
+}
+
 #loader{	
    width:20px;
    height:20px;
@@ -201,7 +270,7 @@ background: #FFFFFF;
     right: 229px;
     top: 438px;
 }
-.staffLi {
+.staffLi{
     width: 10%;
     text-align: center;
     padding: 10px;

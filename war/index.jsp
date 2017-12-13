@@ -78,11 +78,11 @@
     <input type ='text' id='datePicker' ></input>
  
 	<div id ='customerForm' >
+        <div id='customerHeader'> Enter your Information</div>
 
-
-		<div id= "firstNameDiv" >First Name : <input type="text" id='firstName' required><br></div>
-		<div id ='lastNameDiv '>Last  Name :<input type ="text" id ='lastName' required><br></div>
-		<div id='emailDiv'>Email address :<input type = "text" id = "email" required><br>
+		<div id= "firstNameDiv" >First Name*  : <input type="text" id='firstName' ><br></div>
+		<div id ='lastNameDiv'>  Last  Name   : <input type ="text" id ='lastName' ><br></div>
+		<div id='emailDiv'>    Email address* : <input type = "text" id = "email" ><br></div>
 		<input type="button" value ="Continue" id='customerSubmit'>
 		
 	</div>

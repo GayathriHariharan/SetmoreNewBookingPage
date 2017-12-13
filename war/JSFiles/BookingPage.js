@@ -8,6 +8,7 @@ $(document).ready(function(){
 	var service_duration;
 	var startTime;
 	var endTime;
+	var selectedStaffName;
 	
 	var serviceStaffPair=[];
 	
@@ -235,7 +236,7 @@ function makeLiEmpty(){
 		        			   eachStaffKey = key;
 		        			   console.log(key);
 		        			   var staffname = $('<ul></ul>').addClass('staffNameUl');
-		        			   console.log("the staff details iside else " +staffDetails );
+		        			 
 		        			 
 		        			   $.each(staffDetails, function(index,v){
 		     
@@ -251,6 +252,7 @@ function makeLiEmpty(){
 		        						  staffname.appendTo(slotUl);
 		    		        			
 		    		        			  staffname.attr('id',eachStaffKey);
+		    		        			  staffname.attr('name',eachStaffName);
 		    				        		console.log('the staff name iss' +JSON.stringify(eachStaffName));
 
 		        					  }
@@ -418,6 +420,20 @@ function makeLiEmpty(){
    }
    
    
+   $('#slotsUl').on('click','li',function(){
+	   $('#availableSlots').hide();
+	  startTime = $(this).attr('id');
+	  if($("#selectStaff option:selected").val() == "all"){
+		  selectedStaffKey = $(this).parent().attr('id');
+		  
+		  selectedStaffName = $(this).parent().attr('name');
+		  console.log('the selected staffname ' + selectedStaffName);
+	  }
+	   $('#customerForm').show();
+	  console.log('the value of slots li under the click function is ' + startTime );
+   });
+   
+   
    //function to confirm appointment details
    
    function confirmAppointmentDetails(){
@@ -427,13 +443,15 @@ function makeLiEmpty(){
 	   
 	   if( $("#selectStaff option:selected").val() != "all"){
 		   $('#staffName').text($("#selectStaff option:selected").text());
+		  
 	   }else{
 		   $('#staffName').text(selectedStaffName);
+		   console.log("the selected staff name " +selectedStaffName );
 	   }
 	   
 	   $('#appointmentTime').text(moment.tz(parseInt(startTime),timeZone).format("YYYY-MM-DD hh:mm a"));
 	   
-	   $('#yourInfo').text( $('#firstName').val() + "\n" + $('#lastName').val() + "\n" + $('#email').val() );
+	   $('#yourInfo').text( $('#firstName').val() + "\n" + $('#lastName').val());
 	   
 	   $('#appointmentConfirmation').show();
 	   
@@ -442,6 +460,7 @@ function makeLiEmpty(){
    //function to book appointment
    
    function bookAppointment(){
+	   
 	   
 
 	   var servicekey = $("#selectService option:selected").val()+"";
@@ -491,7 +510,7 @@ function makeLiEmpty(){
 			contentType :"application/json",
 			data     :JSON.stringify(inputValues),
 			success  : function(){
-				
+				alert(" your appointment got saved ");
 			},
 			error    : function(){
 				
@@ -567,7 +586,6 @@ function makeLiEmpty(){
 							}
 				  
 							var map    = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);	
-				  
 							
 			  }
 			})
@@ -614,23 +632,31 @@ function makeLiEmpty(){
    });
    
    
-   $('#slotsUl').on('click','li',function(){
-	   $('#availableSlots').hide();
-	  startTime = $(this).attr('id');
-	  if($("#selectStaff option:selected").val() == "all"){
-		  selectedStaffKey = $(this).parent().attr('id');
-		  selectedStaffName = $(this).parent().attr('text');
-	  }
-	   $('#customerForm').show();
-	  console.log('the value of slots li under the click function is ' + startTime );
-   });
+  
    
    $('#customerSubmit').on('click',function(){
-	   createContact();
+	 
+	   let firstName = $('#firstName').val();
+	   let lastName  = $('#lastName').val();
+	   let email     = $('#email').val();
+	   
+	   if(firstName == "" || null){
+		   alert("please enter the first name");
+		   document.getElementById('firstName').style.borderColor = "rgb(152, 152, 152)";
+	   }else if(email == "" || null){
+		   alert ("please enter the email address");
+		   document.getElementById('email').style.borderColor = "rgb(152, 152, 152)";
+	   }else{
+		   createContact();
+	   }
+	   
+	  
+	  
    });
    
    $('#bookAppointment').on('click',function(){
-   bookAppointment();
+	   $('#appointmentConfirmation').hide();
+      bookAppointment();
    });
    
    
