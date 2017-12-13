@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+
+	
 	$('#loader').hide();
 	$('#customerForm').hide();
 	$('#appointmentConfirmation').hide();
@@ -362,7 +364,11 @@ function makeLiEmpty(){
    function createContact (inputValues){
    
 	   $('#loader').show();
-	   $('#customerForm').hide();
+	  // $('#customerForm').hide();
+	   
+	   $("#customerForm").fadeOut();
+	  // $("#customerForm").css({"visibility":"hidden","display":"none"});
+	   
 	   
 	   var firstName = $('#firstName').val();
 	   var lastName  = $('#lastName').val();
@@ -431,6 +437,7 @@ function makeLiEmpty(){
    
    function confirmAppointmentDetails(){
 	   
+	   
 	   $('#serviceName').text($("#selectService option:selected").text());
 	   
 	   
@@ -470,17 +477,6 @@ function makeLiEmpty(){
 	   endTime = parseInt(startTime)+parseInt((service_duration*60*1000));
 	   console.log("start time of the appt is = " + startTime );
 	   console.log("End time of the appt is = " + endTime );
-	   /*
-	   var x = new Date(parseInt(startTime));
-	   console.log("x = " + x);
-	   var startTimeValue = x.toISOString();
-	   console.log("startTimeValue = " + startTimeValue);
-	   
-	   var y = new Date(parseInt(endTime));
-	   console.log("y = " + y);
-	   var endTimeValue = y.toISOString();
-	   console.log("endTimeValue = " + endTimeValue);
-	   */
 	   startTimeValue = (moment.tz(parseInt(startTime),timeZone).format("YYYY-MM-DDTHH:mm:ss.sssZ"));
 	   console.log("start time of the appt is : " + startTimeValue );
 	   
@@ -502,7 +498,8 @@ function makeLiEmpty(){
 			contentType :"application/json",
 			data     :JSON.stringify(inputValues),
 			success  : function(){
-				
+				alert("Appointment booked");
+				//start();
 			},
 			error    : function(){
 				
@@ -632,7 +629,11 @@ function makeLiEmpty(){
 		  selectedStaffKey = $(this).parent().attr('id');
 		  selectedStaffName = $(this).parent().attr('text');
 	  }
-	   $('#customerForm').show();
+	   //$('#customerForm').show();
+	  
+	  $("#customerForm").fadeIn();
+	//  $("#customerForm").css({"visibility":"visible","display":"block"});
+	  
 	  console.log('the value of slots li under the click function is ' + startTime );
    });
    
@@ -644,5 +645,7 @@ function makeLiEmpty(){
    bookAppointment();
    });
    
+   
+	
    
 }); 

@@ -77,12 +77,20 @@
     
     <input type ='text' id='datePicker' ></input>
  
-	<div id ='customerForm' >
+	<div id ='customerForm' style ="width:500px;
+ height:330px;
+ margin-top:100px;
+ background-color:#fff;
+ border-radius:3px;
+ box-shadow:0px 0px 10px 0px #424242;
+ padding:10px;
+ box-sizing:border-box;
+ font-family:helvetica">
 
 
 		<div id= "firstNameDiv" >First Name : <input type="text" id='firstName' required><br></div>
 		<div id ='lastNameDiv '>Last  Name :<input type ="text" id ='lastName' required><br></div>
-		<div id='emailDiv'>Email address :<input type = "text" id = "email" required><br>
+		<div id='emailDiv'>Email address :<input type = "text" id = "email" required><br></div>
 		<input type="button" value ="Continue" id='customerSubmit'>
 		
 	</div>
