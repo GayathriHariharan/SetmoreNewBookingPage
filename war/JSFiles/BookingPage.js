@@ -511,6 +511,8 @@ function makeLiEmpty(){
 			data     :JSON.stringify(inputValues),
 			success  : function(){
 				alert(" your appointment got saved ");
+				
+				
 			},
 			error    : function(){
 				

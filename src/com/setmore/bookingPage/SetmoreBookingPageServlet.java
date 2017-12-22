@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.setmore.bookingPage.URLFetchClass;
 @Controller
 @RequestMapping("/bookingpage")
@@ -33,6 +36,7 @@ public class SetmoreBookingPageServlet  {
 		myModel.put("services", services);
 		
 		return new ModelAndView("index", myModel);
+	//	DatastoreService ds =DatastoreServiceFactory.getDatastoreService();
 			
 	}
 	

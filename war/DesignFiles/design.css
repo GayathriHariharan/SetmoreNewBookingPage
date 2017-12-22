@@ -177,10 +177,10 @@ background: #FFFFFF;
     height: 75%;
 }
 #customerHeader{
-	    position: absolute;
-    bottom: 491px;
     font-size: larger;
     left: -78px;
+    position: absolute;
+    top: -36px;
 }
 #firstNameDiv{
 	position: relative;
