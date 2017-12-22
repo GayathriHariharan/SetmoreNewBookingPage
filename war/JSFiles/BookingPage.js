@@ -518,7 +518,6 @@ function makeLiEmpty(){
 	   
    }
    
-   
  //Function to get the company details
    
    
