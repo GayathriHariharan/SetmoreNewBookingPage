@@ -53,11 +53,7 @@
   
  
  
- <div style="    
-    padding-top: 22%;
-    margin-left: 17%;
-    display: inline-table;
-    width: 21%;">
+ <div style="padding-top: 22%;margin-left: 17%;display: inline-table;width: 21%;">
   <div id ='serviceContainer'>
   
     

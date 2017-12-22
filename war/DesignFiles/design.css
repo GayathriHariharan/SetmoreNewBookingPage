@@ -111,19 +111,21 @@ bottom: 20%;
 left: 40%;
 top: 15%;
 }
-#slotsUl {
-position: absolute;
-top: 44%;
-list-style: none;
-    width: 85%;
-    height: 80%;
-    overflow: scroll;
-}
 .noSlots{
     font-size: 21px;
     text-align: center;
     padding-top: 12%;
 }
+
+#slotsUl {
+    position: absolute;
+    top: 44%;
+    list-style: none;
+    width: 85%;
+    height: 78%;
+    overflow: scroll;
+}
+
 .ScrollStyle
 {
     max-height: 150px;
@@ -169,18 +171,22 @@ background: #FFFFFF;
     cursor: pointer;
     font-size: 19px;
     background-color: rgb(17, 195, 188);
-}#customerForm{
-	width: 75%;
-    position: absolute;
-    left: 820px;
-    top: 317px;
-    height: 75%;
 }
-#customerHeader{
-    font-size: larger;
-    left: -78px;
+
+#customerForm {
+    width: 30%;
     position: absolute;
-    top: -36px;
+    left: 55%;
+    top: 55%;
+    height: 24%;
+}
+
+#customerHeader {
+    font-size: larger;
+    right: 20%;
+    position: absolute;
+    bottom: 120%;
+    width: 100%;
 }
 #firstNameDiv{
 	position: relative;
@@ -188,9 +194,10 @@ background: #FFFFFF;
     font-family: sans-serif;
     font-size: large;
 }
-#firstName{
-	height: 26px;
-    width: 208px;  
+#firstName {
+    height: 50%;
+    width: 50%;
+    margin-left: 10%;
 }
 #lastNameDiv{
 	
@@ -199,18 +206,23 @@ background: #FFFFFF;
     font-family: sans-serif;
     font-size: large;
 }
-#lastName{
-	height: 26px;
-    width: 211px;
-}#emailDiv{
+#lastName {
+    height: 50%;
+    width: 50%;
+    margin-left: 12%;
+}
+
+#emailDiv{
 	position: relative;
     height: 50px;
     font-family: sans-serif;
     font-size: large;
 }
-#email{
-	height: 26px;
-    width: 208px;
+
+#email {
+    height: 50%;
+    width: 50%;
+    margin-left: 4%;
 }
 #appointmentConfirmation{
 	position: absolute;
