@@ -77,6 +77,7 @@
     
     <input type ='text' id='datePicker' ></input>
  
+
 	<div id ='customerForm' >
         <div id='customerHeader'> Enter your Information</div>
 

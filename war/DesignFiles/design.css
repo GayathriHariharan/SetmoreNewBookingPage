@@ -102,7 +102,7 @@ optionClassName{
   outline: 0;
   padding: 22px 18px;
 }
-#availableSlots{
+#availableSlots, #customerForm{
 	top: 50%;
 	width: 60%;
 display: block;
@@ -265,15 +265,31 @@ background: #FFFFFF;
     margin: 0 0 .4em;
 }
 
-#customerForm{
+/*  #customerForm{
 	position: absolute;
     right: 229px;
     top: 438px;
-}
-.staffLi{
+
+}  */
+.staffLi {
+
     width: 10%;
     text-align: center;
     padding: 10px;
     list-style-type: none;
 }
 
+/* #customerForm
+{
+ width:500px;
+ height:330px;
+ margin-top:100px;
+ background-color:#585858;
+ border-radius:3px;
+ box-shadow:0px 0px 10px 0px #424242;
+ padding:10px;
+ box-sizing:border-box;
+ font-family:helvetica;
+ visibility:hidden;
+ display:none;
+} */
